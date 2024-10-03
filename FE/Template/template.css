@@ -11,7 +11,7 @@ body {
 
 /* Navbar Styles */
 nav {
-  background-color: #FFa500;
+  background-color: #0072bc;
   padding: 15px 0;
 }
 
@@ -46,7 +46,7 @@ h1 {
 
 h2 {
   text-align: center;
-  color: #034c7d;
+  color: #0072bc;
 }
 
 p {
@@ -92,7 +92,7 @@ p {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #FFa500;
+  background-color: #0072bc;
   color: white;
   position: bottom;
   bottom: 0;
@@ -100,7 +100,7 @@ footer {
 }
 /* Card Styles */
 .btn {
-  background-color: #FFa500;
+  background-color: #00BFA6;
   padding: 14px 40px;
   color: #fff;
   text-transform: uppercase;
