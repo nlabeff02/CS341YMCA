@@ -1,62 +1,68 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Oct 03, 2024 at 03:30 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- ========================================================
+--                  YMCA Database Schema
+-- ========================================================
+-- Tables:
+-- 1. People: Stores information about staff, members, 
+--    and non-members.
+-- 2. Classes: Contains details about classes offered, 
+--    including prerequisites.
+-- 3. Registrations: Tracks the registrations of 
+--    individuals for classes.
+-- 4. Permissions: Manages role-based permissions for 
+--    users within the YMCA.
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- Last Updated: [10/3/2024]
 
+-- People table -- 
+CREATE TABLE IF NOT EXISTS People (
+    PersonID INT NOT NULL AUTO_INCREMENT,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(100) NOT NULL,
+    Role ENUM('Admin', 'Staff', 'Member', 'NonMember') NOT NULL,
+    PermissionID INT NOT NULL,
+    PRIMARY KEY (PersonID),
+    FOREIGN KEY (PermissionID) REFERENCES Permissions(PermissionID) ON DELETE CASCADE
+) ENGINE=InnoDB;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+-- Classes table --
+CREATE TABLE IF NOT EXISTS Classes (
+    ClassID INT NOT NULL AUTO_INCREMENT,
+    ClassName VARCHAR(100) NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
+    DayOfWeek VARCHAR(10),
+    StartTime TIME,
+    EndTime TIME,
+    Location VARCHAR(100),
+    MaxParticipants INT,
+    PriceMember DECIMAL(10, 2),
+    PriceNonMember DECIMAL(10, 2),
+    PrerequisiteClassID INT NULL,
+    PRIMARY KEY (ClassID),
+    FOREIGN KEY (PrerequisiteClassID) REFERENCES Classes(ClassID) ON DELETE SET NULL
+) ENGINE=InnoDB;
 
---
--- Database: `ymca_database`
---
+-- Registrations table --
+CREATE TABLE IF NOT EXISTS Registrations (
+    RegistrationID INT NOT NULL AUTO_INCREMENT,
+    PersonID INT NOT NULL,
+    ClassID INT NOT NULL,
+    RegistrationDate DATE NOT NULL,
+    PaymentAmount DECIMAL(10, 2),
+    PRIMARY KEY (RegistrationID),
+    FOREIGN KEY (PersonID) REFERENCES People(PersonID) ON DELETE CASCADE,
+    FOREIGN KEY (ClassID) REFERENCES Classes(ClassID) ON DELETE CASCADE
+) ENGINE=InnoDB;
 
--- --------------------------------------------------------
+-- Permissions table --
+CREATE TABLE IF NOT EXISTS Permissions (
+    PermissionID INT NOT NULL AUTO_INCREMENT,
+    Role ENUM('Admin', 'Staff', 'Member', 'NonMember') NOT NULL, 
+    CanCreateClass BOOLEAN DEFAULT FALSE,
+    CanRegisterClass BOOLEAN DEFAULT TRUE,
+    CanViewRegistrations BOOLEAN DEFAULT FALSE,
+    PRIMARY KEY (PermissionID)
+) ENGINE=InnoDB;
 
---
--- Table structure for table `staff`
---
-
-CREATE TABLE `staff` (
-  `StaffID` int(11) NOT NULL,
-  `FirstName` varchar(50) NOT NULL,
-  `LastName` varchar(50) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Password` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `staff`
---
-ALTER TABLE `staff`
-  ADD PRIMARY KEY (`StaffID`),
-  ADD UNIQUE KEY `Email` (`Email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `staff`
---
-ALTER TABLE `staff`
-  MODIFY `StaffID` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
