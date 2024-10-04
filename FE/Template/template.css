@@ -11,8 +11,9 @@ body {
 
 /* Navbar Styles */
 nav {
-  background-color: #0072bc;
+  background-color: #FFa500;
   padding: 15px 0;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 nav ul {
@@ -20,21 +21,25 @@ nav ul {
   margin: 0;
   padding: 0;
   text-align: center;
+  
 }
 
 nav ul li {
   display: inline;
   margin-right: 20px;
+  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
   font-size: 18px;
+  
 }
 
 nav ul li a:hover {
   text-decoration: underline;
+  
 }
 
 /* Header Styles */
@@ -42,11 +47,12 @@ h1 {
   text-align: center;
   color: #333;
   margin-top: 20px;
+  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 h2 {
   text-align: center;
-  color: #0072bc;
+  color: #034c7d;
 }
 
 p {
@@ -92,7 +98,7 @@ p {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #0072bc;
+  background-color: #FFa500;
   color: white;
   position: bottom;
   bottom: 0;
@@ -100,7 +106,7 @@ footer {
 }
 /* Card Styles */
 .btn {
-  background-color: #00BFA6;
+  background-color: #FFa500;
   padding: 14px 40px;
   color: #fff;
   text-transform: uppercase;
