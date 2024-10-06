@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Perform basic validation
         if (username && password) {
-            // Here you can add your login logic, e.g., sending data to the server
             alert('Login successful!');
         } else {
             alert('Please enter both username and password.');
@@ -22,10 +21,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Perform basic validation
         if (newUsername && newPassword) {
-            // Here you can add your signup logic, e.g., sending data to the server
             alert('Signup successful!');
         } else {
             alert('Please enter both username and password.');
         }
+    });
+
+    // Show/hide children info based on parent checkbox
+    document.getElementById('is-parent').addEventListener('change', function() {
+        const childrenInfo = document.getElementById('children-info');
+        if (this.checked) {
+            childrenInfo.style.display = 'block';
+        } else {
+            childrenInfo.style.display = 'none';
+        }
+    });
+
+    // Add another child input fields
+    document.getElementById('add-child').addEventListener('click', function() {
+        const childrenContainer = document.getElementById('children-container');
+        const newChild = document.createElement('div');
+        newChild.classList.add('child');
+        newChild.innerHTML = `
+            <input type="text" placeholder="Child's Name" required>
+            <input type="number" placeholder="Child's Age" required>
+        `;
+        childrenContainer.appendChild(newChild);
     });
 });

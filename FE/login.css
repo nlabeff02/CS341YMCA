@@ -174,3 +174,23 @@ button:hover {
     width: 90%;
   }
 }  
+#children-info {
+  margin-top: 20px;
+}
+
+.child {
+  margin-bottom: 10px;
+}
+
+#add-child {
+  background-color: #FFa500;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+#add-child:hover {
+  background-color: #00BFA6;
+}

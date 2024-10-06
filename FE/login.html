@@ -26,10 +26,23 @@
               <button type="submit">Login</button>
             </form>
             <form id="signup-form" class="form" action="register.php">
-              <h2>Sign Up</h2>
-              <input type="text" id="new-username" placeholder="Email or Username" required>
-              <input type="password" id="new-password" placeholder="Password" required>
-              <button type="submit">Sign Up</button>
+                <h2>Sign Up</h2>
+                <input type="text" id="new-username" placeholder="Email or Username" required>
+                <input type="password" id="new-password" placeholder="Password" required>
+                <label>
+                    <input type="checkbox" id="is-parent"> Are you a parent?
+                </label>
+                <div id="children-info" style="display: none;">
+                    <h3>Children Information</h3>
+                    <div id="children-container">
+                        <div class="child">
+                            <input type="text" placeholder="Child's Name" required>
+                            <input type="number" placeholder="Child's Age" required>
+                        </div>
+                    </div>
+                    <button type="button" id="add-child">Add Another Child</button>
+                </div>
+                <button type="submit">Sign Up</button>
             </form>
           </div>
     </body>
