@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YMCA | Register</title>
+    <link rel="stylesheet" type="text/css" href="registration.css" />
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="programs.html">Events</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+    <header>
+        <img src="img/Designer.png" alt="YMCA" width="200" height="200">
+        <h1>Registration</h1>
+    </header>
+    <main>
+        <div class="form-container">
+            <form id="signup-form" class="form" action="register.php">
+                <h2>Sign Up</h2>
+                <input type="text" id="new-username" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="tel" id="phone-number" placeholder="Phone Number" required>
+                <input type="password" id="new-password" placeholder="Password" required>
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                <label>
+                    <input type="checkbox" id="is-parent"> Are you a parent?
+                </label>
+                <div id="children-info" style="display: none;">
+                    <h3>Children Information</h3>
+                    <div id="children-container">
+                        <div class="child">
+                            <input type="text" placeholder="Child's Name" required>
+                            <input type="number" placeholder="Child's Age" required>
+                        </div>
+                    </div>
+                    <button type="button" id="add-child">Add Another Child</button>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>YMCA © 2024</p>
+    </footer>
+    <script src="registration.js"></script>
+</body>
+</html>
