@@ -1,8 +1,8 @@
 <?php
 // login script
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "ymca_user";
+$password = "123qwe";
 $db = "ymcadb";
 
 // Create connection.

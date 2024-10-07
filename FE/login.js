@@ -2,12 +2,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // Login form submission
     document.getElementById('login-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+        const username = document.getElementById('username').value.trim;
+        const password = document.getElementById('password').value.trim;
+        const loginButton = this.querySelector('button[type="submit"]');
 
         // Perform basic validation
         if (username && password) {
-            alert('Login successful!');
+            // Prepare the data
+            const formData = {
+                username: username,
+                password: password
+            };
+            fetch('php/login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                loginButton.disabled = false;
+                loginButton.textContent = 'Login';
+                
+                if (data.status === 'success') {
+                    console.log('Login Successful:', data);
+                    window.location.href = 'dashboard.php';
+                } else {
+                    alert('Login Failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                loginButton.disabled = false;
+                loginButton.textContent = 'Login';
+                alert('Error occurred during login: ' + error.message);
+            });
         } else {
             alert('Please enter both username and password.');
         }
