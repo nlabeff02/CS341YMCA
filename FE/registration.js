@@ -2,12 +2,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Signup form submission
     document.getElementById('signup-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        const newUsername = document.getElementById('new-username').value;
-        const newPassword = document.getElementById('new-password').value;
-        const confirmPassword = document.getElementById('confirm-password').value;
-        const phoneNumber = document.getElementById('phone-number').value;
-        const email = document.getElementById('email').value;
-        const fullName = document.getElementById('new-username').value;
+
+        const fullName = document.getElementById('new-username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phoneNumber = document.getElementById('phone-number').value.trim();
+        const newPassword = document.getElementById('new-password').value.trim();
+        const confirmPassword = document.getElementById('confirm-password').value.trim();
+        const hasChild = document.getElementById('has-child').checked;
 
         // Perform validation
         if (!validateEmail(email)) {
@@ -30,24 +31,72 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        if (newUsername && newPassword && confirmPassword && phoneNumber && email && fullName) {
-            alert('Signup successful!');
-        } else {
+        if (!newPassword || !confirmPassword || !phoneNumber || !email || !fullName) {
             alert('Please fill out all required fields.');
+            return;
         }
+
+        // Prepare the children information if the user is a parent
+        let children = [];
+        if (hasChild) {
+            const childrenInputs = document.querySelectorAll('#children-container .child');
+            childrenInputs.forEach(child => {
+                const childName = child.querySelector('input[type="text"]').value.trim();
+                const childAge = child.querySelector('input[type="number"]').value.trim();
+
+                if (childName && childAge) {
+                    children.push({
+                        name: childName,
+                        age: childAge
+                    });
+                }
+            });
+        }
+
+        // Prepare form data to send to register.php
+        const formData = {
+            fullName: fullName,
+            email: email,
+            phoneNumber: phoneNumber,
+            password: newPassword,
+            hasChild: hasChild,
+            children: children
+        };
+
+        // Send the data to register.php using fetch()
+        fetch('php/register.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                alert('Registration successful!');
+                window.location.href = 'login.html';
+            } else {
+                alert('Registration failed: ' + data.message);
+            }
+        })
+        .catch(error => {
+            alert('Error during registration: ' + error.message);
+        });
     });
 
     // Show/hide children info based on parent checkbox
     document.getElementById('is-parent').addEventListener('change', function() {
         const childrenInfo = document.getElementById('children-info');
-        if (this.checked) {
-            childrenInfo.style.display = 'block';
-        } else {
-            childrenInfo.style.display = 'none';
-        }
+        childrenInfo.style.display = this.checked ? 'block' : 'none';
     });
 
-    // Add another child input fields
+    // Add another child input fields dynamically
     document.getElementById('add-child').addEventListener('click', function() {
         const childrenContainer = document.getElementById('children-container');
         const newChild = document.createElement('div');

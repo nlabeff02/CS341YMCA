@@ -20,22 +20,23 @@
     </header>
     <main>
         <div class="form-container">
-            <form id="signup-form" class="form" action="register.php">
+            <form id="signup-form" class="form" action="php/register.php" method="POST">
                 <h2>Sign Up</h2>
-                <input type="text" id="new-username" placeholder="Full Name" required>
+                <input type="text" id="new-firstname" placeholder="First Name" required>
+                <input type="text" id="new-lastname" placeholder="Last Name" required>
                 <input type="email" id="email" placeholder="Email" required>
                 <input type="tel" id="phone-number" placeholder="Phone Number" required>
                 <input type="password" id="new-password" placeholder="Password" required>
                 <input type="password" id="confirm-password" placeholder="Confirm Password" required>
                 <label>
-                    <input type="checkbox" id="is-parent"> Are you a parent?
+                    <input type="checkbox" id="has-child"> Do you have a child to register?
                 </label>
                 <div id="children-info" style="display: none;">
                     <h3>Children Information</h3>
                     <div id="children-container">
                         <div class="child">
-                            <input type="text" placeholder="Child's Name" required>
-                            <input type="number" placeholder="Child's Age" required>
+                            <input type="text" id="child-name" placeholder="Child's Name">
+                            <input type="number" id="child-age" placeholder="Child's Age">
                         </div>
                     </div>
                     <button type="button" id="add-child">Add Another Child</button>
