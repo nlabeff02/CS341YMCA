@@ -2,31 +2,30 @@
 --                  YMCA Database Schema
 -- ========================================================
 -- Tables:
--- 1. People: Stores information about staff, members, 
+-- 1. People: Stores information about staff, members,
 --    and non-members.
--- 2. Classes: Contains details about classes offered, 
+-- 2. Classes: Contains details about classes offered,
 --    including prerequisites.
--- 3. Registrations: Tracks the registrations of 
+-- 3. Registrations: Tracks the registrations of
 --    individuals for classes.
--- 4. Permissions: Manages role-based permissions for 
+-- 4. Permissions: Manages role-based permissions for
 --    users within the YMCA.
 
 -- Last Updated: [10/3/2024]
 
--- People table -- 
-CREATE TABLE IF NOT EXISTS People (
-    PersonID INT NOT NULL AUTO_INCREMENT,
-    FirstName VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
-    Over18 BOOLEAN DEFAULT FALSE,
-    IsParent BOOLEAN DEFAULT FALSE,
-    IsChild BOOLEAN DEFAULT FALSE,
-    PasswordHash VARCHAR(100) NOT NULL,
+-- Permissions table --
+CREATE TABLE IF NOT EXISTS Permissions (
+    PermissionID INT NOT NULL AUTO_INCREMENT,
     Role ENUM('Admin', 'Supervisor', 'Staff', 'Member', 'NonMember') NOT NULL,
-    PermissionID INT NOT NULL,
-    PRIMARY KEY (PersonID),
-    FOREIGN KEY (PermissionID) REFERENCES Permissions(PermissionID) ON DELETE CASCADE
+    CanCreateMember BOOLEAN DEFAULT FALSE,
+    CanEditMember BOOLEAN DEFAULT FALSE,
+    CanCreateClass BOOLEAN DEFAULT FALSE,
+    CanRegisterClass BOOLEAN DEFAULT TRUE,
+    CanViewRegistrations BOOLEAN DEFAULT FALSE,
+    CanRemoveRegistrations BOOLEAN DEFAULT TRUE,
+    CanCreateEmployee BOOLEAN DEFAULT FALSE,
+    CanEditEmployee BOOLEAN DEFAULT FALSE,
+    PRIMARY KEY (PermissionID)
 ) ENGINE=InnoDB;
 
 -- Classes table --
@@ -47,6 +46,22 @@ CREATE TABLE IF NOT EXISTS Classes (
     FOREIGN KEY (PrerequisiteClassID) REFERENCES Classes(ClassID) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
+-- People table --
+CREATE TABLE IF NOT EXISTS People (
+    PersonID INT NOT NULL AUTO_INCREMENT,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Over18 BOOLEAN DEFAULT FALSE,
+    IsParent BOOLEAN DEFAULT FALSE,
+    IsChild BOOLEAN DEFAULT FALSE,
+    PasswordHash VARCHAR(100) NOT NULL,
+    Role ENUM('Admin', 'Supervisor', 'Staff', 'Member', 'NonMember') NOT NULL,
+    PermissionID INT NOT NULL,
+    PRIMARY KEY (PersonID),
+    FOREIGN KEY (PermissionID) REFERENCES Permissions(PermissionID) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 -- Registrations table --
 CREATE TABLE IF NOT EXISTS Registrations (
     RegistrationID INT NOT NULL AUTO_INCREMENT,
@@ -60,18 +75,5 @@ CREATE TABLE IF NOT EXISTS Registrations (
     FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
 ) ENGINE=InnoDB;
 
--- Permissions table --
-CREATE TABLE IF NOT EXISTS Permissions (
-    PermissionID INT NOT NULL AUTO_INCREMENT,
-    Role ENUM('Admin', 'Supervisor', 'Staff', 'Member', 'NonMember') NOT NULL,
-    CanCreateMember BOOLEAN DEFAULT FALSE,
-    CanEditMember BOOLEAN DEFAULT FALSE, 
-    CanCreateClass BOOLEAN DEFAULT FALSE,
-    CanRegisterClass BOOLEAN DEFAULT TRUE,
-    CanViewRegistrations BOOLEAN DEFAULT FALSE,
-    CanRemoveRegistrations BOOLEAN DEFAULT TRUE,
-    CanCreateEmployee BOOLEAN DEFAULT FALSE,
-    CanEditEmployee BOOLEAN DEFAULT FALSE,
-    PRIMARY KEY (PermissionID)
-) ENGINE=InnoDB;
+
 

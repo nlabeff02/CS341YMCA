@@ -1,15 +1,19 @@
 <?php
-// login script
+// Fetch database credentials from environment variables
 $servername = "localhost";
 $username = "ymca_user";
 $password = "123qwe";
-$db = "ymcadb";
+$db = "ymca";
 
-// Create connection.
+// Create connection
 $connect = new mysqli($servername, $username, $password, $db);
 
-// Check connection.
+// Check connection
 if ($connect->connect_error) {
-    die("Connection failed: " . $connect->connect_error);
+    error_log("Connection failed: " . $connect->connect_error);
+    die("There was a problem connecting to the database. Please try again later.");
 }
+
+// Close connection (optional to include at the end of script where relevant)
+// $connect->close();
 ?>
