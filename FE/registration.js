@@ -1,49 +1,48 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Signup form submission
+    // Handle form submission
     document.getElementById('signup-form').addEventListener('submit', function(event) {
         event.preventDefault();
 
+        // Collect form data
         const fullName = document.getElementById('new-username').value.trim();
         const email = document.getElementById('email').value.trim();
         const phoneNumber = document.getElementById('phone-number').value.trim();
         const newPassword = document.getElementById('new-password').value.trim();
         const confirmPassword = document.getElementById('confirm-password').value.trim();
         const hasChild = document.getElementById('has-child').checked;
+        const age = document.getElementById('age').value.trim();
+        const role = document.getElementById('role').value;
+        const permissionID = document.getElementById('permission-id').value;
 
-        // Perform validation
+        // Validate form data
         if (!validateEmail(email)) {
             alert('Please enter a valid email address.');
             return;
         }
-
         if (!validatePhoneNumber(phoneNumber)) {
-            alert('Please enter a valid phone number with the correct number of digits.');
+            alert('Please enter a valid phone number.');
             return;
         }
-
         if (!validateFullName(fullName)) {
-            alert('Please enter your full name (first and last name).');
+            alert('Please enter your full name.');
             return;
         }
-
         if (newPassword !== confirmPassword) {
             alert('Passwords do not match.');
             return;
         }
-
-        if (!newPassword || !confirmPassword || !phoneNumber || !email || !fullName) {
+        if (!newPassword || !confirmPassword || !phoneNumber || !email || !fullName || !age || !role || !permissionID) {
             alert('Please fill out all required fields.');
             return;
         }
 
-        // Prepare the children information if the user is a parent
+        // Collect children information if applicable
         let children = [];
         if (hasChild) {
             const childrenInputs = document.querySelectorAll('#children-container .child');
             childrenInputs.forEach(child => {
                 const childName = child.querySelector('input[type="text"]').value.trim();
                 const childAge = child.querySelector('input[type="number"]').value.trim();
-
                 if (childName && childAge) {
                     children.push({
                         name: childName,
@@ -53,17 +52,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Prepare form data to send to register.php
+        // Prepare data to send to the server
         const formData = {
             fullName: fullName,
             email: email,
             phoneNumber: phoneNumber,
             password: newPassword,
             hasChild: hasChild,
-            children: children
+            children: children,
+            age: age,
+            role: role,
+            permissionID: permissionID
         };
 
-        // Send the data to register.php using fetch()
+        // Send data to the server using fetch
         fetch('php/register.php', {
             method: 'POST',
             headers: {
@@ -90,13 +92,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Show/hide children info based on parent checkbox
+    // Show/hide children information based on parent checkbox
     document.getElementById('is-parent').addEventListener('change', function() {
         const childrenInfo = document.getElementById('children-info');
         childrenInfo.style.display = this.checked ? 'block' : 'none';
     });
 
-    // Add another child input fields dynamically
+    // Add more child input fields dynamically
     document.getElementById('add-child').addEventListener('click', function() {
         const childrenContainer = document.getElementById('children-container');
         const newChild = document.createElement('div');
