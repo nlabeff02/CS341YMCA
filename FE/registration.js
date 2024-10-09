@@ -4,15 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         // Collect form data
-        const fullName = document.getElementById('new-username').value.trim();
+        const firstName = document.getElementById('new-firstname').value.trim();
+        const lastName = document.getElementById('new-lastname').value.trim();
         const email = document.getElementById('email').value.trim();
         const phoneNumber = document.getElementById('phone-number').value.trim();
         const newPassword = document.getElementById('new-password').value.trim();
         const confirmPassword = document.getElementById('confirm-password').value.trim();
-        const hasChild = document.getElementById('has-child').checked;
-        const age = document.getElementById('age').value.trim();
-        const role = document.getElementById('role').value;
-        const permissionID = document.getElementById('permission-id').value;
 
         // Validate form data
         if (!validateEmail(email)) {
@@ -23,46 +20,26 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Please enter a valid phone number.');
             return;
         }
-        if (!validateFullName(fullName)) {
-            alert('Please enter your full name.');
+        if (!firstName || !lastName) {
+            alert('Please enter both your first and last names.');
             return;
         }
         if (newPassword !== confirmPassword) {
             alert('Passwords do not match.');
             return;
         }
-        if (!newPassword || !confirmPassword || !phoneNumber || !email || !fullName || !age || !role || !permissionID) {
+        if (!newPassword || !confirmPassword || !phoneNumber || !email || !firstName || !lastName) {
             alert('Please fill out all required fields.');
             return;
         }
 
-        // Collect children information if applicable
-        let children = [];
-        if (hasChild) {
-            const childrenInputs = document.querySelectorAll('#children-container .child');
-            childrenInputs.forEach(child => {
-                const childName = child.querySelector('input[type="text"]').value.trim();
-                const childAge = child.querySelector('input[type="number"]').value.trim();
-                if (childName && childAge) {
-                    children.push({
-                        name: childName,
-                        age: childAge
-                    });
-                }
-            });
-        }
-
         // Prepare data to send to the server
         const formData = {
-            fullName: fullName,
+            firstName: firstName,
+            lastName: lastName,
             email: email,
             phoneNumber: phoneNumber,
-            password: newPassword,
-            hasChild: hasChild,
-            children: children,
-            age: age,
-            role: role,
-            permissionID: permissionID
+            password: newPassword
         };
 
         // Send data to the server using fetch
@@ -92,24 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Show/hide children information based on parent checkbox
-    document.getElementById('is-parent').addEventListener('change', function() {
-        const childrenInfo = document.getElementById('children-info');
-        childrenInfo.style.display = this.checked ? 'block' : 'none';
-    });
-
-    // Add more child input fields dynamically
-    document.getElementById('add-child').addEventListener('click', function() {
-        const childrenContainer = document.getElementById('children-container');
-        const newChild = document.createElement('div');
-        newChild.classList.add('child');
-        newChild.innerHTML = `
-            <input type="text" placeholder="Child's Name" required>
-            <input type="number" placeholder="Child's Age" required>
-        `;
-        childrenContainer.appendChild(newChild);
-    });
-
     // Email validation function
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -127,4 +86,4 @@ document.addEventListener('DOMContentLoaded', function() {
         const re = /^[a-zA-Z]+ [a-zA-Z]+$/;
         return re.test(fullName);
     }
-}); 
+});
