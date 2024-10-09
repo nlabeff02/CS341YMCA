@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verify password
         if (password_verify($password, $hash)) {
+            $_SESSION['user'] = $row['PersonID'];
             echo json_encode([
                 'status' => 'success',
                 'personID' => $row['PersonID'],
@@ -72,3 +73,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $connect->close();
+?>
