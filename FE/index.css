@@ -6,12 +6,12 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #023047;
 }
 
 /* Navbar Styles */
 nav {
-  background-color: #FFa500;
+  background-color: #Fb8500;
   padding: 15px 0;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
@@ -45,18 +45,18 @@ nav ul li a:hover {
 /* Header Styles */
 h1 {
   text-align: center;
-  color: #333;
+  color: #219ebc;
   margin-top: 20px;
   text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 h2 {
   text-align: center;
-  color: #034c7d;
+  color: #8ecae6;
 }
 
 p {
-  color: #555;
+  color: white;
   text-align: center;
   width: 70%;
   margin: 20px auto;
@@ -98,7 +98,7 @@ p {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #FFa500;
+  background-color: #Fb8500;
   color: white;
   position: bottom;
   bottom: 0;
@@ -106,14 +106,14 @@ footer {
 }
 /* Card Styles */
 .btn {
-  background-color: #FFa500;
+  background-color: #Fb8500;
   padding: 14px 40px;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
   cursor: pointer;
   border-radius: 10px;
-  border: 2px dashed #00BFA6;
+  border: 2px dashed #023047;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: .4s;
  }
@@ -124,9 +124,9 @@ footer {
  
  .btn:hover {
   transition: .4s;
-  border: 2px dashed #00BFA6;
+  border: 2px dashed #8ecae6;
   background-color: #fff;
-  color: #00BFA6;
+  color: #8ecae6;
  }
  
  .btn:active {
