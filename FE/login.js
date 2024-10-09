@@ -51,9 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 loginButton.textContent = 'Login';
 
                 if (data.status === 'success') {
-                    state.isLoggedIn = true;
-                    state.user = data;
-                    render();
+                    // Redirect to programs.html after successful login
+                    window.location.href = '/CS341YMCA/FE/programs.html';
                 } else {
                     document.getElementById('error-message').textContent = data.message;
                     document.getElementById('error-message').style.display = 'block';
