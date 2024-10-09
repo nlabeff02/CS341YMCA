@@ -75,5 +75,24 @@ CREATE TABLE IF NOT EXISTS Registrations (
     FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
 ) ENGINE=InnoDB;
 
+-- Admin role -- 
+INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
+VALUES ('Admin', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
+
+-- Supervisor role -- 
+INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
+VALUES ('Supervisor', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
+
+-- Staff role -- 
+INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
+VALUES ('Staff', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE);
+
+-- Member role -- 
+INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
+VALUES ('Member', TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE);
+
+-- NonMember role -- 
+INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
+VALUES ('NonMember', TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE);
 
 
