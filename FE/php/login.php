@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 
 header('Content-Type: application/json');
 include __DIR__ . '/db.php';
+session_start();
 
 // Check database connection
 if ($connect->connect_error) {
@@ -56,11 +57,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verify password
         if (password_verify($password, $hash)) {
-            $_SESSION['user'] = $row['PersonID'];
+            // Store user info in session after successful login
+            $_SESSION['user'] = [
+                'personID' => $row['PersonID'],
+                'firstName' => $row['FirstName'],  // Store first name
+                'lastName' => $row['LastName'],    // Store last name
+                'email' => $row['Email'],          // Store email
+                'role' => $row['Role']             // Store role
+            ];
+
+            // Respond with success and user information
             echo json_encode([
                 'status' => 'success',
                 'personID' => $row['PersonID'],
-                'role' => $row['Role'],
+                'firstName' => $row['FirstName'],
+                'lastName' => $row['LastName'],
+                'email' => $row['Email'],
+                'role' => $row['Role']
             ]);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid password']);
