@@ -67,22 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCalendar();
     });
 
-    if (addEventForm) {
-        addEventForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const eventName = eventNameInput.value;
-            const eventDate = new Date(eventDateInput.value);
-            const dateKey = `${eventDate.getFullYear()}-${eventDate.getMonth() + 1}-${eventDate.getDate()}`;
+    addEventForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const eventName = eventNameInput.value;
+        const eventDate = new Date(eventDateInput.value);
+        const dateKey = `${eventDate.getFullYear()}-${eventDate.getMonth() + 1}-${eventDate.getDate()}`;
 
-            if (!events[dateKey]) {
-                events[dateKey] = [];
-            }
-            events[dateKey].push(eventName);
+        if (!events[dateKey]) {
+            events[dateKey] = [];
+        }
+        events[dateKey].push(eventName);
 
-            alert(`Event "${eventName}" added on ${eventDate.toDateString()}`);
-            showEvents(eventDate.getDate());
-        });
-    }
+        alert(`Event "${eventName}" added on ${eventDate.toDateString()}`);
+        eventNameInput.value = '';
+        eventDateInput.value = '';
+        renderCalendar();
+    });
 
     renderCalendar();
 });

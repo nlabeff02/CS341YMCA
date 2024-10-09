@@ -127,4 +127,4 @@ document.addEventListener('DOMContentLoaded', function() {
         const re = /^[a-zA-Z]+ [a-zA-Z]+$/;
         return re.test(fullName);
     }
-}); 
+});

@@ -1,33 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const state = {
-        isLoggedIn: false,
-        user: null
-    };
-
-    function render() {
-        const loggedInDiv = document.getElementById('loggedIn');
-        const loginForm = document.getElementById('login-form');
-        const errorMessage = document.getElementById('error-message');
-
-        if (state.isLoggedIn) {
-            loggedInDiv.style.display = 'block';
-            loginForm.style.display = 'none';
-            errorMessage.style.display = 'none';
-        } else {
-            loggedInDiv.style.display = 'none';
-            loginForm.style.display = 'block';
-        }
-    }
-
-    function login() {
+    // Login form submission
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
         const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value.trim();
-        const loginButton = document.querySelector('button[type="submit"]');
+        const loginButton = this.querySelector('button[type="submit"]');
 
+        // Perform basic validation
         if (username.length > 0 && password.length > 0) {
             loginButton.disabled = true;
             loginButton.textContent = 'Logging in...';
 
+            // Prepare the data
             const formData = {
                 username: username,
                 password: password
@@ -51,9 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 loginButton.textContent = 'Login';
 
                 if (data.status === 'success') {
-                    state.isLoggedIn = true;
-                    state.user = data;
-                    render();
+                    window.location.href = 'dashboard.php';
                 } else {
                     document.getElementById('error-message').textContent = data.message;
                     document.getElementById('error-message').style.display = 'block';
@@ -68,42 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             alert('Please enter both username and password.');
         }
-    }
-
-    function logout() {
-        fetch('/CS341YMCA/FE/php/logout.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                state.isLoggedIn = false;
-                state.user = null;
-                render();
-            }
-        });
-    }
-
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        login();
     });
 
-    fetch('/CS341YMCA/FE/php/check_login.php', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.isLoggedIn) {
-            state.isLoggedIn = true;
-            state.user = data;
-        }
-        render();
-    });
+    // The signup form submission is no longer relevant here as per your updates
 });
