@@ -22,15 +22,14 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 }
 
 // Extract form data
-$fullName = $input['fullName'] ?? null;
+$firstName = $input['firstName'] ?? null;
+$lastName = $input['lastName'] ?? null;
 $email = $input['email'] ?? null;
 $phoneNumber = $input['phoneNumber'] ?? null;
 $password = $input['password'] ?? null;
-$isParent = $input['isParent'] ?? false;
-$children = $input['children'] ?? [];
 
 // Validate required fields
-if (empty($fullName) || empty($email) || empty($phoneNumber) || empty($password)) {
+if (empty($firstName) || empty($lastName) || empty($email) || empty($phoneNumber) || empty($password)) {
     echo json_encode(['status' => 'error', 'message' => 'All fields are required']);
     exit();
 }
@@ -49,49 +48,20 @@ if ($result->num_rows > 0) {
 // Hash the password
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-// Insert user (parent or adult) into the People table
-$stmt = $connect->prepare("INSERT INTO People (FirstName, LastName, Email, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$fullNameParts = explode(" ", $fullName);
-$firstName = $fullNameParts[0];
-$lastName = isset($fullNameParts[1]) ? $fullNameParts[1] : ''; // Handles cases where there's no last name
+// Set default values for other fields not present in registration.html
+$role = 'Member'; // Default role
+$permissionID = 4; // Default permission to 'Member'
+$over18 = true; // Set default as true unless you want to check for specific conditions
+$isParent = false; // You can manually adjust this if necessary
+$isChild = false; // Default isChild to false
 
-// Set default role and permission
-$role = 'Member';
-$permissionID = 1; // Assuming 1 corresponds to 'Member' permissions
-$over18 = true; // Default to true for adults
-$isChild = false; // Parent or adult, so `IsChild` is false for the primary person
-
-$stmt->bind_param("ssssisssi", $firstName, $lastName, $email, $over18, $isParent, $isChild, $hashedPassword, $role, $permissionID);
+// Insert user into the People table
+$stmt = $connect->prepare("INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssissssi", $firstName, $lastName, $email, $phoneNumber, $over18, $isParent, $isChild, $hashedPassword, $role, $permissionID);
 
 if (!$stmt->execute()) {
     echo json_encode(['status' => 'error', 'message' => 'Error during registration']);
     exit();
-}
-
-// Get the last inserted user ID (PersonID)
-$parentID = $connect->insert_id;
-
-// If the user is a parent, insert children as individual entries in the People table
-if ($isParent && !empty($children)) {
-    foreach ($children as $child) {
-        $childName = $child['name'];
-        $childAge = $child['age'];
-
-        // For simplicity, split the child’s full name into first and last names
-        $childNameParts = explode(" ", $childName);
-        $childFirstName = $childNameParts[0];
-        $childLastName = isset($childNameParts[1]) ? $childNameParts[1] : '';
-
-        $stmt = $connect->prepare("INSERT INTO People (FirstName, LastName, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $over18 = false; // Children are not over 18
-        $isChild = true; // Mark as child
-        $hashedPassword = ''; // No password for children
-        $role = 'Member'; // Default role for children
-        $permissionID = 1; // Default to Member permissions
-
-        $stmt->bind_param("ssssissi", $childFirstName, $childLastName, $over18, $isParent, $isChild, $hashedPassword, $role, $permissionID);
-        $stmt->execute();
-    }
 }
 
 // Return a success response

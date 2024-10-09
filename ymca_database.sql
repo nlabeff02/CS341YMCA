@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS People (
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
     Email VARCHAR(100) NOT NULL,
+    PhoneNumber VARCHAR(15) NOT NULL,
     Over18 BOOLEAN DEFAULT FALSE,
     IsParent BOOLEAN DEFAULT FALSE,
     IsChild BOOLEAN DEFAULT FALSE,
@@ -59,7 +60,7 @@ CREATE TABLE IF NOT EXISTS People (
     Role ENUM('Admin', 'Supervisor', 'Staff', 'Member', 'NonMember') NOT NULL,
     PermissionID INT NOT NULL,
     PRIMARY KEY (PersonID),
-    FOREIGN KEY (PermissionID) REFERENCES Permissions(PermissionID) ON DELETE CASCADE
+    FOREIGN KEY (PermissionID) REFERENCES Permissions(PermissionID) ON DELETE CASCADE,
 ) ENGINE=InnoDB;
 
 -- Registrations table --
