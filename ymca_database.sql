@@ -75,24 +75,28 @@ CREATE TABLE IF NOT EXISTS Registrations (
     FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
 ) ENGINE=InnoDB;
 
--- Admin role -- 
+-- Admin role --
 INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
 VALUES ('Admin', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
 
--- Supervisor role -- 
+-- Supervisor role --
 INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
 VALUES ('Supervisor', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE);
 
--- Staff role -- 
+-- Staff role --
 INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
 VALUES ('Staff', TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE);
 
--- Member role -- 
+-- Member role --
 INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
 VALUES ('Member', TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE);
 
--- NonMember role -- 
+-- NonMember role --
 INSERT IGNORE INTO Permissions (Role, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
 VALUES ('NonMember', TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE);
+
+-- Test Members --
+INSERT INTO People (FirstName, LastName, Email, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID)
+VALUES ('Patrick', 'Star', 'pstar@gmail.com', 1, 0, 0, '123qwe', 'Member', 4);
 
 
