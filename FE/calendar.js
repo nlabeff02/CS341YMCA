@@ -4,15 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const daysContainer = document.getElementById('days');
     const prevButton = document.getElementById('prev');
     const nextButton = document.getElementById('next');
-    const addEventForm = document.getElementById('add-event-form');
-    const eventNameInput = document.getElementById('event-name');
-    const eventDateInput = document.getElementById('event-date');
     const eventList = document.getElementById('events');
     const selectedDateElement = document.getElementById('selected-date');
 
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
-    let events = {};
 
     function renderCalendar() {
         daysContainer.innerHTML = '';
@@ -36,17 +32,27 @@ document.addEventListener('DOMContentLoaded', () => {
     function showEvents(day) {
         const dateKey = `${currentYear}-${currentMonth + 1}-${day}`;
         selectedDateElement.textContent = new Date(currentYear, currentMonth, day).toDateString();
-        eventList.innerHTML = '';
-
-        if (events[dateKey]) {
-            events[dateKey].forEach(event => {
-                const eventItem = document.createElement('li');
-                eventItem.textContent = event;
-                eventList.appendChild(eventItem);
+        eventList.innerHTML = '<li>Loading classes...</li>';  // Show loading text
+    
+        //fetch classes for the selected date
+        fetch(`php/get_classes.php?date=${currentYear}-${currentMonth + 1}-${day}`)
+            .then(response => response.json())
+            .then(data => {
+                eventList.innerHTML = ''; // Clear the loading text
+                if (data.length > 0) {
+                    data.forEach(classItem => {
+                        const eventItem = document.createElement('li');
+                        eventItem.innerHTML = `${classItem.ClassName} (${classItem.StartTime} - ${classItem.EndTime}) at ${classItem.Location} <button onclick="registerClass(${classItem.ClassID})">Register</button>`;
+                        eventList.appendChild(eventItem);
+                    });
+                } else {
+                    eventList.innerHTML = '<li>No classes on this date</li>';
+                }
+            })
+            .catch(error => {
+                eventList.innerHTML = '<li>Error fetching classes</li>';
+                console.error('Error:', error);
             });
-        } else {
-            eventList.innerHTML = '<li>No events</li>';
-        }
     }
 
     prevButton.addEventListener('click', () => {
@@ -66,23 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         renderCalendar();
     });
-
-    if (addEventForm) {
-        addEventForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const eventName = eventNameInput.value;
-            const eventDate = new Date(eventDateInput.value);
-            const dateKey = `${eventDate.getFullYear()}-${eventDate.getMonth() + 1}-${eventDate.getDate()}`;
-
-            if (!events[dateKey]) {
-                events[dateKey] = [];
-            }
-            events[dateKey].push(eventName);
-
-            alert(`Event "${eventName}" added on ${eventDate.toDateString()}`);
-            showEvents(eventDate.getDate());
-        });
-    }
 
     renderCalendar();
 });
