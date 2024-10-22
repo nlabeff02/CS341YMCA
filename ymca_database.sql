@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS People (
     Role ENUM('Admin', 'Supervisor', 'Staff', 'Member', 'NonMember') NOT NULL,
     PermissionID INT NOT NULL,
     PRIMARY KEY (PersonID),
-    FOREIGN KEY (PermissionID) REFERENCES Permissions(PermissionID) ON DELETE CASCADE,
+    FOREIGN KEY (PermissionID) REFERENCES Permissions(PermissionID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- Registrations table --
