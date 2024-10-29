@@ -1,13 +1,19 @@
 /* General Styles */
 html {
   background-color: #023047;
+  height: 100%;
 }
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #023047;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
+
 
 /* Navbar Styles */
 nav {
@@ -21,7 +27,6 @@ nav ul {
   margin: 0;
   padding: 0;
   text-align: center;
-  
 }
 
 nav ul li {
@@ -34,12 +39,10 @@ nav ul li a {
   color: white;
   text-decoration: none;
   font-size: 18px;
-  
 }
 
 nav ul li a:hover {
   text-decoration: underline;
-  
 }
 
 /* Header Styles */
@@ -94,16 +97,6 @@ p {
   color: #333;
 }
 
-/* Footer styles */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #Fb8500;
-  color: white;
-  position: bottom;
-  bottom: 0;
-  width: 100%;
-}
 /* Card Styles */
 .btn {
   background-color: #Fb8500;
@@ -117,22 +110,22 @@ footer {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: .4s;
  }
- 
+
  .btn span:last-child {
   display: none;
  }
- 
+
  .btn:hover {
   transition: .4s;
   border: 2px dashed #8ecae6;
   background-color: #fff;
   color: #8ecae6;
  }
- 
+
  .btn:active {
   background-color: #87dbd0;
  }
-    
+
 /* Contact Form Styling */
 
 .container {
@@ -176,22 +169,6 @@ button:hover {
     .container {
         width: 90%;
     }
-}/* General Styles */
-html {
-  background-color: #f4f4f4;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #023047;
-}
-
-/* Navbar Styles */
-nav {
-  background-color: #Fb8500;
-  padding: 15px 0;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 nav ul {
@@ -199,7 +176,7 @@ nav ul {
   margin: 0;
   padding: 0;
   text-align: center;
-  
+
 }
 
 nav ul li {
@@ -212,12 +189,12 @@ nav ul li a {
   color: white;
   text-decoration: none;
   font-size: 18px;
-  
+
 }
 
 nav ul li a:hover {
   text-decoration: underline;
-  
+
 }
 
 /* Header Styles */
@@ -272,16 +249,6 @@ p {
   color: #333;
 }
 
-/* Footer styles */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #Fb8500;
-  color: white;
-  position: bottom;
-  bottom: 0;
-  width: 100%;
-}
 /* Card Styles */
 .btn {
   background-color: #Fb8500;
@@ -295,66 +262,48 @@ footer {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: .4s;
  }
- 
+
  .btn span:last-child {
   display: none;
  }
- 
+
  .btn:hover {
   transition: .4s;
   border: 2px dashed #8ecae6;
   background-color: #fff;
   color: #8ecae6;
  }
- 
+
  .btn:active {
   background-color: #87dbd0;
  }
-  
-/* General Styles */
-html {
-    background-color: #f4f4f4;
-  }
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #023047;
-  }
-  
-  /* Navbar Styles */
-  nav {
-    background-color: #Fb8500;
-    padding: 15px 0;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-  }
-  
+
   nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     text-align: center;
-    
+
   }
-  
+
   nav ul li {
     display: inline;
     margin-right: 20px;
     text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
   }
-  
+
   nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 18px;
-    
+
   }
-  
+
   nav ul li a:hover {
     text-decoration: underline;
-    
+
   }
-  
+
   /* Header Styles */
   h1 {
     text-align: center;
@@ -362,19 +311,19 @@ html {
     margin-top: 20px;
     text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   }
-  
+
   h2 {
     text-align: center;
     color: #8ecae6;
   }
-  
+
   p {
     color: white;
     text-align: center;
     width: 70%;
     margin: 20px auto;
   }
-  
+
   /* Card Styles */
   .card {
     background-color: white;
@@ -384,7 +333,7 @@ html {
     margin: 20px auto;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
   }
-  
+
   .card img {
     border-radius: 50%;
     margin: 15px 0;
@@ -392,31 +341,21 @@ html {
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .card .container {
     padding: 10px 20px;
     text-align: center;
   }
-  
+
   .card h4 {
     color: #0072bc;
     margin-bottom: 10px;
   }
-  
+
   .card p {
     color: #333;
   }
-  
-  /* Footer styles */
-  footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #Fb8500;
-    color: white;
-    position: bottom;
-    bottom: 0;
-    width: 100%;
-  }
+
   /* Card Styles */
   .btn {
     background-color: #Fb8500;
@@ -430,23 +369,23 @@ html {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     transition: .4s;
    }
-   
+
    .btn span:last-child {
     display: none;
    }
-   
+
    .btn:hover {
     transition: .4s;
     border: 2px dashed #8ecae6;
     background-color: #fff;
     color: #8ecae6;
    }
-   
+
    .btn:active {
     background-color: #87dbd0;
    }
-    
-  
+
+
 /* Login Styles */
 .form-container {
     max-width: 400px;
@@ -456,7 +395,7 @@ html {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-  
+
   .form {
     display: flex;
     flex-direction: column;
@@ -487,7 +426,7 @@ button:hover {
   .form-container {
     width: 90%;
   }
-}  
+}
 #children-info {
   margin-top: 20px;
 }
@@ -507,21 +446,6 @@ button:hover {
 
 #add-child:hover {
   background-color: #00BFA6;
-}html {
-  background-color: #023047;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #023047;
-}
-
-/* Navbar Styles */
-nav {
-  background-color: #Fb8500;
-  padding: 15px 0;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 nav ul {
@@ -643,16 +567,6 @@ h3 {
   cursor: pointer;
 }
 
-/* Footer styles */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #Fb8500;
-  color: white;
-  position: bottom;
-  bottom: 0;
-  width: 100%;
-}
 /* Container for the two-column layout */
 #page-container {
     display: flex;
@@ -731,31 +645,13 @@ footer {
 #event-list ul {
     margin-top: 10px;
 }
-/* General Styles */
-/* General Styles */
-html {
-  background-color: #f4f4f4;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #023047;
-}
-
-/* Navbar Styles */
-nav {
-  background-color: #Fb8500;
-  padding: 15px 0;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-}
 
 nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   text-align: center;
-  
+
 }
 
 nav ul li {
@@ -768,12 +664,12 @@ nav ul li a {
   color: white;
   text-decoration: none;
   font-size: 18px;
-  
+
 }
 
 nav ul li a:hover {
   text-decoration: underline;
-  
+
 }
 
 /* Header Styles */
@@ -834,10 +730,10 @@ footer {
   padding: 20px;
   background-color: #Fb8500;
   color: white;
-  position: bottom;
-  bottom: 0;
+  margin-top: auto;
   width: 100%;
 }
+
 /* Card Styles */
 .btn {
   background-color: #Fb8500;
@@ -851,22 +747,22 @@ footer {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: .4s;
  }
- 
+
  .btn span:last-child {
   display: none;
  }
- 
+
  .btn:hover {
   transition: .4s;
   border: 2px dashed #8ecae6;
   background-color: #fff;
   color: #8ecae6;
  }
- 
+
  .btn:active {
   background-color: #87dbd0;
  }
-  
+
 /* Form Styles */
 .form-container {
   max-width: 400px;

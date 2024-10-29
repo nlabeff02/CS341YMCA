@@ -4,14 +4,14 @@ session_start();
 <nav>
     <ul>
         <li><a href="index.php">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="programs_staff.html">Events</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <li><a href="programs.php">Events</a></li>
         <?php if (isset($_SESSION['user'])): ?>
-            <li><a href="logout.php">Logout</a></li>
             <li><span><?php echo $_SESSION['user']['firstName'] . " (" . $_SESSION['user']['role'] . ")"; ?></span></li>
+            <li><a href="php/logout.php">Logout</a></li>
         <?php else: ?>
-            <li><a href="login.php">Login</a></li>
+            <li><a href="login.php">Login or Join</a></li>
         <?php endif; ?>
     </ul>
 </nav>

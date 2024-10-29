@@ -5,9 +5,7 @@
     <link rel="stylesheet" type="text/css" href="css/ymca-main.css" />
 </head>
 <body>
-
-        <?php include 'php/header.php'; ?>
-
+    <?php include 'php/header.php'; ?>
     <img src="img/Designer.png" alt="YMCA" width="200" height="200">
     <h1>Login</h1>
     <div class="form-container">
@@ -28,5 +26,5 @@
 <footer>
     <p>YMCA © 2024</p>
 </footer>
-<script src="login.js"></script>
+<script src="js/login.js"></script>
 </html>

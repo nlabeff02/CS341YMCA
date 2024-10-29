@@ -36,4 +36,3 @@ echo json_encode(['status' => 'success', 'classes' => $classes]);
 // Close the connection
 $stmt->close();
 $connect->close();
-?>

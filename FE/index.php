@@ -7,15 +7,6 @@
 
     <body>
         <?php include 'php/header.php'; ?>
-        <nav>
-            <ul>
-                    <form action="php/logout.php" method="post" style="display:inline;">
-                        <button type="submit" class="btn">Logout</button>
-                    </form>
-                </li>
-            </ul>
-
-        </nav>
         <img src="img/Designer.png" alt="YMCA" width=200 height = 200>
         <h1>Welcome to the YMCA</h1>
         <p>Our mission is to put health principles into practice through programs that build healthy spirit, mind, and body for all.</p>

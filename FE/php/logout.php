@@ -5,4 +5,3 @@ session_destroy();
 // Redirect to the parent folder's index.html
 header("Location: ../index.php");
 exit();
-?>

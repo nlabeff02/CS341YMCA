@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.status === 'success') {
                 alert('Registration successful!');
-                window.location.href = 'login.html';
+                window.location.href = 'members.php';
             } else {
                 alert('Registration failed: ' + data.message);
             }

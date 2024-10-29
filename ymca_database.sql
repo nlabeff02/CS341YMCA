@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS Classes (
     ClassName VARCHAR(100) NOT NULL,
     StartDate DATE NOT NULL,
     EndDate DATE NOT NULL,
-    DayOfWeek VARCHAR(10),
+    DayOfWeek VARCHAR(50),
     StartTime TIME,
     EndTime TIME,
     Location VARCHAR(100),
@@ -100,4 +100,6 @@ VALUES ('NonMember', TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE);
 INSERT INTO People (FirstName, LastName, Email, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID)
 VALUES ('Patrick', 'Star', 'pstar@gmail.com', 1, 0, 0, '123qwe', 'Member', 4);
 
-
+-- Alterations to the Database --
+ALTER TABLE Classes MODIFY COLUMN DayOfWeek VARCHAR(50);
+    -- allows storage of more than one day for classes as a csv. --

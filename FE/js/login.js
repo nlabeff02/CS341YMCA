@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 loginButton.textContent = 'Login';
 
                 if (data.status === 'success') {
-                    // Redirect to programs.html after successful login
-                    window.location.href = '/CS341YMCA/FE/programs.html';
+                    // Redirect to members after successful login
+                    window.location.href = '/CS341YMCA/FE/members.php';
                 } else {
                     document.getElementById('error-message').textContent = data.message;
                     document.getElementById('error-message').style.display = 'block';
