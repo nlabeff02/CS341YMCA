@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="css/ymca-main.css" />
     </head>
     <body>
-        <?php include 'php/header.php'; ?>
+        <?php include 'php/nav_mgr.php'; ?>
         <img src="img/Designer.png" alt="YMCA" width=200 height = 200>
             <h1>About Us</h2>
             <p>The YMCA is more than just a gym; it's a community hub where people of all ages come together to improve their well-being, connect with others, and embrace healthy living.

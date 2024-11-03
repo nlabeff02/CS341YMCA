@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        <?php include 'php/header.php'; ?>
+        <?php include 'php/nav_mgr.php'; ?>
 
         <img src="img/Designer.png" alt="YMCA" width=200 height = 200>
         <h1>Welcome to the YMCA</h1>

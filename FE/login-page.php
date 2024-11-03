@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="css/ymca-main.css" />
 </head>
 <body>
-    <?php include 'php/header.php'; ?>
+    <?php include 'php/nav_mgr.php'; ?>
     <img src="img/Designer.png" alt="YMCA" width="200" height="200">
     <h1>Login</h1>
     <div class="form-container">

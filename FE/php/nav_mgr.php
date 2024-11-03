@@ -5,15 +5,15 @@ session_start();
 <nav class="main-nav">
     <ul>
         <li><a href="index.php">Home</a></li>
-        <li><a href="about.php">About</a></li>
-        <li><a href="contact.php">Contact</a></li>
-        <li><a href="programs.php">Events</a></li>
+        <li><a href="class-page.php">Classes</a></li>
+        <li><a href="contact-page.php">Contact</a></li>
+        <li><a href="about-page.php">About</a></li>
 
         <?php if (isset($_SESSION['user'])): ?>
             <li><span><?php echo $_SESSION['user']['firstName'] . " (" . $_SESSION['user']['role'] . ")"; ?></span></li>
             <li><a href="php/logout.php">Logout</a></li>
         <?php else: ?>
-            <li><a href="login.php">Login or Join</a></li>
+            <li><a href="login-page.php">Login or Join</a></li>
         <?php endif; ?>
     </ul>
 </nav>

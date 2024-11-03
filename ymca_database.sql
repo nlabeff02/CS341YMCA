@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Classes (
     MaxParticipants INT,
     PriceMember DECIMAL(10, 2),
     PriceNonMember DECIMAL(10, 2),
-    PrerequisiteClassID INT NULL,
+    PrerequisiteClassName VARCHAR(100),
     PRIMARY KEY (ClassID),
     FOREIGN KEY (PrerequisiteClassID) REFERENCES Classes(ClassID) ON DELETE SET NULL
 ) ENGINE=InnoDB;
@@ -103,8 +103,23 @@ VALUES ('Patrick', 'Star', 'pstar@gmail.com', 1, 0, 0, '123qwe', 'Member', 4);
 
 -- Alterations to the Database --
 ALTER TABLE Classes MODIFY COLUMN DayOfWeek VARCHAR(50);
+ALTER TABLE Classes MODIFY COLUMN PrerequisiteClassID VARCHAR(100);
     -- allows storage of more than one day for classes as a csv. --
 
 -- Alterations to User Permissions --
 UPDATE people SET role = "supervisor", PermissionID = 2 where FirstName = "Eugene";
 UPDATE people SET role = "staff", PermissionID = 3 where FirstName = "Squidward";
+
+-- Add Future Classes to Database --
+INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, Location, MaxParticipants, PriceMember, PriceNonMember, PrerequisiteClassID)
+VALUES ('Yoga Basics', '2025-01-10', '2025-03-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 101', 20, 15.00, 25.00, NULL);
+
+INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, Location, MaxParticipants, PriceMember, PriceNonMember, PrerequisiteClassID)
+VALUES ('Yoga Intermediate', '2025-04-10', '2025-06-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 103', 20, 20.00, 30.00, "Yoga Basics");
+
+
+-- Add Past Classes to Database --
+INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, Location, MaxParticipants, PriceMember, PriceNonMember, PrerequisiteClassID)
+VALUES ('Yoga Basics', '2024-04-10', '2024-06-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 100', 10, 10.00, 15.00, NULL);
+
+-- Add Current Classes to Database --
