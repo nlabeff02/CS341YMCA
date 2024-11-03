@@ -14,7 +14,7 @@
             <input type="text" id="username" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
-            <h3>No Account? <a href="registration.html">Click Here</a></h3>
+            <h3>No Account? <a href="registration.php">Click Here</a></h3>
         </form>
         <div id="error-message" style="color: red; display: none;"></div>
     </div>

@@ -7,4 +7,3 @@ if (isset($_SESSION['user'])) {
 }
 
 echo json_encode($response);
-?>
