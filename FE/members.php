@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/ymca-main.css" />
 </head>
 <body>
-    <?php include 'php/header.php'; ?>
+    <?php include 'php/nav_mgr.php'; ?>
     <img src="img/Designer.png" alt="YMCA" width="200" height="200">
 
     <div id="content">
@@ -29,9 +29,9 @@
         <?php else: ?>
             <!-- Message for users not logged in -->
             <p style="text-align: center; color: #FF0000; margin-top: 20px;">
-                <a href="login.php" style="color: #8ecae6; text-decoration: underline;">Login</a>
+                <a href="login-page.php" style="color: #8ecae6; text-decoration: underline;">Login</a>
                 to view your classes or
-                <a href="registration.php" style="color: #8ecae6; text-decoration: underline;">Join the Y</a>
+                <a href="signuppage.php" style="color: #8ecae6; text-decoration: underline;">Join the Y</a>
                  to start having fun!
             </p>
         <?php endif; ?>

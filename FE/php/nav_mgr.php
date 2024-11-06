@@ -24,12 +24,14 @@ session_start();
         <ul>
             <?php if ($_SESSION['user']['role'] === 'Staff'): ?>
                 <!-- Links for Staff -->
-                <li><a href="search_members.php">Manage Members</a></li>
-                <li><a href="page-manageclasses.php">Manage Classes</a></li>
+                <li><a href="manage-members-page.php">Manage Members</a></li>
+                <li><a href="manage-classes-page.php">Manage Classes</a></li>
             <?php elseif ($_SESSION['user']['role'] === 'Supervisor'): ?>
                 <!-- Links for Supervisors -->
-                <li><a href="manage_staff.php">Manage Staff</a></li>
-                <li><a href="overview.php">Supervisor Overview</a></li>
+                <li><a href="manage-members-page.php">Manage Members</a></li>
+                <li><a href="manage-classes-page.php">Manage Classes</a></li>
+                <li><a href="manage-staff-page.php">Manage Staff</a></li>
+                <li><a href="overview-page.php">Supervisor Overview</a></li>
             <?php elseif ($_SESSION['user']['role'] === 'Member' || $_SESSION['user']['role'] === 'NonMember'): ?>
                 <!-- Links for Members/Nonmembers -->
                 <li><a href="my_classes.php">My Classes</a></li>
