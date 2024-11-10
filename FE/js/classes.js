@@ -92,6 +92,16 @@ function getPastMemberClasses(memberId) {
         .catch(error => console.error(`Error fetching past classes for member ${memberId}:`, error));
 }
 
+// Fetches future classes for public view.
+async function getFutureClassesPublic() {
+    const data = await fetchData('php/get_future_classes_public.php');
+    if (data.status === 'success' && data.classes) {
+        populateClassesTable(data.classes);
+    } else {
+        console.error('Failed to fetch classes:', data.message);
+    }
+}
+
 // Reusable Fetch Function
 // $url is php endpoint
 async function fetchData(url) {
@@ -118,8 +128,7 @@ function populateClassesTable(classes) {
 
     classes.forEach(cls => {
         const row = tableBody.insertRow();
-
-        // Populate cells based on the updated database schema
+        createCell(row, cls.classID);
         createCell(row, cls.className);
         createCell(row, cls.classDescription);
         createCell(row, cls.startDate);

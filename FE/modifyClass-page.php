@@ -13,7 +13,7 @@
         <form id="modify-class-form" action="php/modify_class.php" method="POST">
 
             <label for="class-id">Class ID:</label>
-            <input type="text" id="class-id" name="classID" style="background-color: #f0f0f0; color: #888;" />
+            <input type="text" id="class-id" name="classID" readonly style="background-color: #f0f0f0; color: #888;" />
 
             <label for="class-name">Class Name:</label>
             <input type="text" id="class-name" name="className" required>
@@ -27,7 +27,6 @@
             <label for="end-date">End Date:</label>
             <input type="date" id="end-date" name="endDate" required>
 
-            <!-- Day of the Week Checkboxes -->
             <label>Day of the Week:</label>
             <div id="day-of-week">
                 <label><input type="checkbox" name="dayOfWeek" value="Monday"> Monday</label>
@@ -52,7 +51,7 @@
             <input type="number" id="max-participants" name="maxParticipants" required>
 
             <label for="current-participant-count">Current Participant Count:</label>
-            <input type="number" id="current-participant-count" name="currentParticipantCount" style="background-color: #f0f0f0; color: #888;" />
+            <input type="number" id="current-participant-count" readonly name="currentParticipantCount" style="background-color: #f0f0f0; color: #888;" />
 
             <label for="price-staff">Price for Staff:</label>
             <input type="number" step="0.01" id="price-staff" name="priceStaff" required>
@@ -78,6 +77,32 @@
                 document.getElementById('class-id').value = classID;
                 await loadClassDetails(classID);
             }
+
+            const form = document.getElementById('modify-class-form');
+
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch('php/modify_class.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const result = await response.json();
+
+                    if (result.status === 'success') {
+                        alert(result.message); // Show success message
+                        window.location.href = 'manageClasses-page.php'; // Redirect after success
+                    } else {
+                        alert('Error: ' + result.message); // Show error message if any
+                    }
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    alert('An error occurred while updating the class.');
+                }
+            });
         });
 
         // Fetch and populate form fields with class details
@@ -89,29 +114,29 @@
                 if (data.status === 'success' && data.class) {
                     const cls = data.class;
 
-                    document.getElementById('class-id').value = cls.classID ?? '';
-                    document.getElementById('class-name').value = cls.className ?? '';
-                    document.getElementById('class-description').value = cls.classDescription ?? '';
+                    document.getElementById('class-id').value = cls.ClassID ?? '';
+                    document.getElementById('class-name').value = cls.ClassName ?? '';
+                    document.getElementById('class-description').value = cls.ClassDescription ?? '';
                     
-                    document.getElementById('start-date').value = cls.startDate ? formatDate(cls.startDate) : '';
-                    document.getElementById('end-date').value = cls.endDate ? formatDate(cls.endDate) : '';
+                    document.getElementById('start-date').value = cls.StartDate ? formatDate(cls.StartDate) : '';
+                    document.getElementById('end-date').value = cls.EndDate ? formatDate(cls.EndDate) : '';
 
                     // Populate Day of the Week checkboxes
-                    const days = cls.dayOfWeek ? cls.dayOfWeek.split(',') : [];
+                    const days = cls.DayOfWeek ? cls.DayOfWeek.split(',') : [];
                     days.forEach(day => {
                         const checkbox = document.querySelector(`#day-of-week input[value="${day.trim()}"]`);
                         if (checkbox) checkbox.checked = true;
                     });
 
-                    document.getElementById('start-time').value = cls.startTime ?? '';
-                    document.getElementById('end-time').value = cls.endTime ?? '';
-                    document.getElementById('location').value = cls.location ?? '';
-                    document.getElementById('max-participants').value = cls.maxParticipants ?? '';
-                    document.getElementById('current-participant-count').value = cls.currentParticipantCount ?? '';
-                    document.getElementById('price-staff').value = cls.priceStaff ?? '';
-                    document.getElementById('price-member').value = cls.priceMember ?? '';
-                    document.getElementById('price-nonmember').value = cls.priceNonMember ?? '';
-                    document.getElementById('prerequisite-class').value = cls.prerequisiteClassName ?? '';
+                    document.getElementById('start-time').value = cls.StartTime ?? '';
+                    document.getElementById('end-time').value = cls.EndTime ?? '';
+                    document.getElementById('location').value = cls.Location ?? '';
+                    document.getElementById('max-participants').value = cls.MaxParticipants ?? '';
+                    document.getElementById('current-participant-count').value = cls.CurrentParticipantCount ?? '';
+                    document.getElementById('price-staff').value = cls.PriceStaff ?? '';
+                    document.getElementById('price-member').value = cls.PriceMember ?? '';
+                    document.getElementById('price-nonmember').value = cls.PriceNonMember ?? '';
+                    document.getElementById('prerequisite-class').value = cls.PrerequisiteClassName ?? '';
                 } else {
                     console.error('Failed to load class details:', data.message);
                 }

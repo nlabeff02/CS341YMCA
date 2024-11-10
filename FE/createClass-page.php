@@ -17,6 +17,10 @@
             <div id="class-form">
                 <h2>Create New Class</h2>
                 <form id="create-class-form">
+
+                    <label for="class-id">Class ID:</label>
+                    <input type="text" id="class-id" name="classID" readonly style="background-color: #f0f0f0; color: #888;" />
+
                     <label for="class-name">Class Name:</label>
                     <input type="text" id="class-name" name="className" required>
 
@@ -29,16 +33,16 @@
                     <label for="end-date">End Date:</label>
                     <input type="date" id="end-date" name="endDate" required>
 
-                    <label for="day-of-week">Day of the Week:</label>
-                    <select id="day-of-week" name="dayOfWeek" required>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Sunday">Sunday</option>
-                    </select>
+                    <label>Day of the Week:</label>
+                    <div id="day-of-week">
+                        <label><input type="checkbox" name="dayOfWeek" value="Sunday"> Sunday</label>
+                        <label><input type="checkbox" name="dayOfWeek" value="Monday"> Monday</label>
+                        <label><input type="checkbox" name="dayOfWeek" value="Tuesday"> Tuesday</label>
+                        <label><input type="checkbox" name="dayOfWeek" value="Wednesday"> Wednesday</label>
+                        <label><input type="checkbox" name="dayOfWeek" value="Thursday"> Thursday</label>
+                        <label><input type="checkbox" name="dayOfWeek" value="Friday"> Friday</label>
+                        <label><input type="checkbox" name="dayOfWeek" value="Saturday"> Saturday</label>
+                    </div>
 
                     <label for="start-time">Start Time:</label>
                     <input type="time" id="start-time" name="startTime" required>
@@ -52,11 +56,14 @@
                     <label for="max-participants">Max Participants:</label>
                     <input type="number" id="max-participants" name="maxParticipants" required>
 
+                    <label for="price-staff">Price for Staff:</label>
+                    <input type="number" step="1" id="price-staff" name="priceStaff" required>
+
                     <label for="price-member">Price for Members:</label>
-                    <input type="number" step="0.01" id="price-member" name="priceMember" required>
+                    <input type="number" step="1" id="price-member" name="priceMember" required>
 
                     <label for="price-nonmember">Price for Non-Members:</label>
-                    <input type="number" step="0.01" id="price-nonmember" name="priceNonMember" required>
+                    <input type="number" step="1" id="price-nonmember" name="priceNonMember" required>
 
                     <label for="prerequisite-class">Prerequisite Class ID (optional):</label>
                     <input type="number" id="prerequisite-class" name="prerequisiteClassID">

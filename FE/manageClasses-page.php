@@ -15,6 +15,7 @@
         <table id="classesTable" border="1">
             <thead>
                 <tr>
+                    <th>Class ID</th>
                     <th>Class Name</th>
                     <th>Description</th>
                     <th>Start Date</th>

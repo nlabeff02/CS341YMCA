@@ -37,5 +37,11 @@
 <footer>
     <p>YMCA © 2024</p>
 </footer>
-<script src="js/getFutureClasses.js"></script>
+<script src="js/classes.js"></script>
+<script>
+    // Load future member classes when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        getFutureClassesPublic();
+    });
+</script>
 </html>
