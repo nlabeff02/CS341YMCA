@@ -16,11 +16,15 @@
         <table id="classesTable" border="1" style="width: 100%; text-align: center;">
             <thead>
                 <tr>
+                    <th>Class ID</th>
                     <th>Class Name</th>
+                    <th>Description</th>
                     <th>Start Date</th>
                     <th>End Date</th>
+                    <th>Days</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th>Location</th>
                     <th>Max Participants</th>
                     <th>Currently Enrolled</th>
                     <th>Member Cost</th>

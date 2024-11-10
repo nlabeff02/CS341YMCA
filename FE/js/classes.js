@@ -94,9 +94,9 @@ function getPastMemberClasses(memberId) {
 
 // Fetches future classes for public view.
 async function getFutureClassesPublic() {
-    const data = await fetchData('php/get_future_classes_public.php');
+    const data = await fetchData('php/get_current_future_classes.php');
     if (data.status === 'success' && data.classes) {
-        populateClassesTable(data.classes);
+        populateClassesTablePublic(data.classes);
     } else {
         console.error('Failed to fetch classes:', data.message);
     }
@@ -115,8 +115,12 @@ async function fetchData(url) {
     }
 }
 
-// Staff view of classes.
+
+/* * * * * * * * * * * * * * * * * * * *
+ *      Tables
+ * * * * * * * * * * * * * * * * * * * */
 // Creates and populates the tables with all columns.
+// Staff view of classes.
 function populateClassesTable(classes) {
     const tableBody = document.getElementById('classesTable').getElementsByTagName('tbody')[0];
     tableBody.innerHTML = ''; // Clear any existing rows
@@ -138,7 +142,7 @@ function populateClassesTable(classes) {
         createCell(row, cls.endTime);
         createCell(row, cls.location);
         createCell(row, cls.maxParticipants);
-        createCell(row, cls.currentParticipantCount); // Updated to match schema
+        createCell(row, cls.currentParticipantCount) ?? '0'; // Updated to match schema
         createCell(row, cls.priceStaff);              // Price for staff
         createCell(row, cls.priceMember);
         createCell(row, cls.priceNonMember);
@@ -147,6 +151,39 @@ function populateClassesTable(classes) {
         const actionsCell = row.insertCell();
         const modifyButton = createModifyButton(cls);
         actionsCell.appendChild(modifyButton);
+    });
+}
+
+// Public view of classes.
+function populateClassesTablePublic(classes) {
+    const tableBody = document.getElementById('classesTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear any existing rows
+
+    if (classes.length === 0) {
+        createNoDataRow(tableBody, 'No classes available.');
+        return;
+    }
+
+    classes.forEach(cls => {
+        const row = tableBody.insertRow();
+        createCell(row, cls.classID);
+        createCell(row, cls.className);
+        createCell(row, cls.classDescription);
+        createCell(row, cls.startDate);
+        createCell(row, cls.endDate);
+        createCell(row, cls.dayOfWeek);
+        createCell(row, cls.startTime);
+        createCell(row, cls.endTime);
+        createCell(row, cls.location);
+        createCell(row, cls.maxParticipants);
+        createCell(row, cls.currentParticipantCount) ?? '0'; 
+        createCell(row, cls.priceMember);
+        createCell(row, cls.priceNonMember);
+        createCell(row, cls.prerequisiteClassName ?? 'None');  // Default to 'None' if no prerequisite
+
+        const actionsCell = row.insertCell();
+        const registerButton = createRegisterButton(cls);
+        actionsCell.appendChild(registerButton);
     });
 }
 
