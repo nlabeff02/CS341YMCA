@@ -12,3 +12,12 @@ o add JS/PHP for current/past classes
   - getPastClasses_mgr.php/getCurrentClasses_mgr.php
 o Update session management for logged-in users
   - unique for each permission level.
+o Update class creation page
+  - use class search on this page
+  - create a class overview of current and future classes
+  - dashboard style
+o Create class search
+
+# Demo 3
+o Admin Dashboard
+  - user count/class count/etc.

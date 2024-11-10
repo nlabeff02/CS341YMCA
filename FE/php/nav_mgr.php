@@ -25,7 +25,7 @@ session_start();
             <?php if ($_SESSION['user']['role'] === 'Staff'): ?>
                 <!-- Links for Staff -->
                 <li><a href="manage-members-page.php">Manage Members</a></li>
-                <li><a href="manage-classes-page.php">Manage Classes</a></li>
+                <li><a href="manageClasses-page.php">Manage Classes</a></li>
             <?php elseif ($_SESSION['user']['role'] === 'Supervisor'): ?>
                 <!-- Links for Supervisors -->
                 <li><a href="manage-members-page.php">Manage Members</a></li>
@@ -35,7 +35,7 @@ session_start();
             <?php elseif ($_SESSION['user']['role'] === 'Member' || $_SESSION['user']['role'] === 'NonMember'): ?>
                 <!-- Links for Members/Nonmembers -->
                 <li><a href="my_classes.php">My Classes</a></li>
-                <li><a href="available_classes.php">Available Classes</a></li>
+                <li><a href="class-page.php">Search Classes</a></li>
             <?php endif; ?>
         </ul>
     </nav>

@@ -1,7 +1,4 @@
-<?php
-include 'auth_check.php';
-requireRole(['Admin', 'Supervisor', 'Staff']);
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +7,7 @@ requireRole(['Admin', 'Supervisor', 'Staff']);
     <link rel="stylesheet" type="text/css" href="css/ymca-main.css" />
 </head>
 <body>
-    <?php include 'header.php'; ?>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="programs_staff.html">Events</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
-    </nav>
+    <?php include 'php/nav_mgr.php'; ?>
     <img src="img/Designer.png" alt="YMCA" width="200" height="200">
     <h1>Classes</h1>
 
@@ -117,7 +105,7 @@ requireRole(['Admin', 'Supervisor', 'Staff']);
         </div>
     </div>
 
-    <script src="calendar.js"></script>
+    <script src="js/calendar.js"></script>
     <script>
         // Fetch and display current classes
         function loadClasses() {
