@@ -18,6 +18,7 @@ $currentDate = date('Y-m-d');
 $query = "
     SELECT
         c.ClassName,
+        c.Description,
         c.StartDate,
         c.EndDate,
         c.StartTime,
@@ -41,6 +42,7 @@ $classes = [];
 while ($row = $result->fetch_assoc()) {
     $classes[] = [
         'className' => $row['ClassName'],
+        'description' => $row['Description'],
         'startDate' => $row['StartDate'],
         'endDate' => $row['EndDate'],
         'startTime' => $row['StartTime'],

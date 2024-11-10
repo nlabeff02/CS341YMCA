@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS Permissions (
 CREATE TABLE IF NOT EXISTS Classes (
     ClassID INT NOT NULL AUTO_INCREMENT,
     ClassName VARCHAR(100) NOT NULL,
+    ClassDescription VARCHAR(500),
     StartDate DATE NOT NULL,
     EndDate DATE NOT NULL,
     DayOfWeek VARCHAR(50),
@@ -39,6 +40,8 @@ CREATE TABLE IF NOT EXISTS Classes (
     EndTime TIME,
     Location VARCHAR(100),
     MaxParticipants INT,
+    CurrentParticipantCount INT,
+    PriceStaff DECIMAL(10, 2),
     PriceMember DECIMAL(10, 2),
     PriceNonMember DECIMAL(10, 2),
     PrerequisiteClassName VARCHAR(100),
@@ -104,6 +107,9 @@ VALUES ('Patrick', 'Star', 'pstar@gmail.com', 1, 0, 0, '123qwe', 'Member', 4);
 -- Alterations to the Database --
 ALTER TABLE Classes MODIFY COLUMN DayOfWeek VARCHAR(50);
 ALTER TABLE Classes MODIFY COLUMN PrerequisiteClassID VARCHAR(100);
+ALTER TABLE Classes ADD COLUMN ClassDescription VARCHAR(500) AFTER ClassName;
+ALTER TABLE Classes ADD COLUMN PriceStaff DECIMAL(10, 2) AFTER MaxParticipants;
+ALTER TABLE Classes ADD COLUMN CurrentParticipantCount INT AFTER MaxParticipants;
     -- allows storage of more than one day for classes as a csv. --
 
 -- Alterations to User Permissions --
