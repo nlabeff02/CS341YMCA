@@ -3,7 +3,6 @@ html {
   background-color: #023047;
   height: 100%;
 }
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -13,38 +12,31 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-
 /* Navbar Styles */
 nav {
   background-color: #Fb8500;
   padding: 15px 0;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
-
 nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   text-align: center;
 }
-
 nav ul li {
   display: inline;
   margin-right: 20px;
   text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
 }
-
 nav ul li a {
   color: white;
   text-decoration: none;
   font-size: 18px;
 }
-
 nav ul li a:hover {
   text-decoration: underline;
 }
-
 /* Header Styles */
 h1 {
   text-align: center;
@@ -52,19 +44,16 @@ h1 {
   margin-top: 20px;
   text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
-
 h2 {
   text-align: center;
   color: #8ecae6;
 }
-
 p {
   color: white;
   text-align: center;
   width: 70%;
   margin: 20px auto;
 }
-
 /* Card Styles */
 .card {
   background-color: white;
@@ -74,7 +63,6 @@ p {
   margin: 20px auto;
   box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
 }
-
 .card img {
   border-radius: 50%;
   margin: 15px 0;
@@ -82,21 +70,17 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
-
 .card .container {
   padding: 10px 20px;
   text-align: center;
 }
-
 .card h4 {
   color: #0072bc;
   margin-bottom: 10px;
 }
-
 .card p {
   color: #333;
 }
-
 /* Card Styles */
 .btn {
   background-color: #Fb8500;
@@ -109,332 +93,96 @@ p {
   border: 2px dashed #023047;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: .4s;
- }
-
- .btn span:last-child {
+}
+.btn span:last-child {
   display: none;
- }
-
- .btn:hover {
+}
+.btn:hover {
   transition: .4s;
   border: 2px dashed #8ecae6;
   background-color: #fff;
   color: #8ecae6;
- }
-
- .btn:active {
+}
+.btn:active {
   background-color: #87dbd0;
- }
-
+}
 /* Contact Form Styling */
-
 .container {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input,
-textarea {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-@media only screen and (max-width: 600px) {
-    .container {
-        width: 90%;
-    }
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 20px;
-  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
-
-}
-
-/* Header Styles */
-h1 {
-  text-align: center;
-  color: #219ebc;
-  margin-top: 20px;
-  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-h2 {
-  text-align: center;
-  color: #8ecae6;
-}
-
-p {
-  color: white;
-  text-align: center;
-  width: 70%;
-  margin: 20px auto;
-}
-
-/* Card Styles */
-.card {
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 300px;
-  margin: 20px auto;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-}
-
-.card img {
-  border-radius: 50%;
-  margin: 15px 0;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.card .container {
-  padding: 10px 20px;
-  text-align: center;
-}
-
-.card h4 {
-  color: #0072bc;
-  margin-bottom: 10px;
-}
-
-.card p {
-  color: #333;
-}
-
-/* Card Styles */
-.btn {
-  background-color: #Fb8500;
-  padding: 14px 40px;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  border-radius: 10px;
-  border: 2px dashed #023047;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  transition: .4s;
- }
-
- .btn span:last-child {
-  display: none;
- }
-
- .btn:hover {
-  transition: .4s;
-  border: 2px dashed #8ecae6;
+  max-width: 600px;
+  margin: 50px auto;
   background-color: #fff;
-  color: #8ecae6;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+input, textarea {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
+}
+@media only screen and (max-width: 600px) {
+  .container {
+      width: 90%;
  }
-
- .btn:active {
-  background-color: #87dbd0;
- }
-
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-
-  }
-
-  nav ul li {
-    display: inline;
-    margin-right: 20px;
-    text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
-  }
-
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-
-  }
-
-  nav ul li a:hover {
-    text-decoration: underline;
-
-  }
-
-  /* Header Styles */
-  h1 {
-    text-align: center;
-    color: #219ebc;
-    margin-top: 20px;
-    text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-  }
-
-  h2 {
-    text-align: center;
-    color: #8ecae6;
-  }
-
-  p {
-    color: white;
-    text-align: center;
-    width: 70%;
-    margin: 20px auto;
-  }
-
-  /* Card Styles */
-  .card {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 300px;
-    margin: 20px auto;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-  }
-
-  .card img {
-    border-radius: 50%;
-    margin: 15px 0;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .card .container {
-    padding: 10px 20px;
-    text-align: center;
-  }
-
-  .card h4 {
-    color: #0072bc;
-    margin-bottom: 10px;
-  }
-
-  .card p {
-    color: #333;
-  }
-
-  /* Card Styles */
-  .btn {
-    background-color: #Fb8500;
-    padding: 14px 40px;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    border-radius: 10px;
-    border: 2px dashed #023047;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    transition: .4s;
-   }
-
-   .btn span:last-child {
-    display: none;
-   }
-
-   .btn:hover {
-    transition: .4s;
-    border: 2px dashed #8ecae6;
-    background-color: #fff;
-    color: #8ecae6;
-   }
-
-   .btn:active {
-    background-color: #87dbd0;
-   }
-
-
+}
 /* Login Styles */
 .form-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-  .form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  input[type="text"],
-input[type="password"],
-button {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+input[type="text"], input[type="password"], button {
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 16px;
 }
-
 button {
   background-color: #FFa500;
   color: white;
   border: none;
   cursor: pointer;
 }
-
 button:hover {
   background-color: #00BFA6;
 }
-
 @media screen and (max-width: 600px) {
   .form-container {
-    width: 90%;
-  }
+      width: 90%;
+ }
 }
 #children-info {
   margin-top: 20px;
 }
-
 .child {
   margin-bottom: 10px;
 }
-
 #add-child {
   background-color: #FFa500;
   color: white;
@@ -443,90 +191,39 @@ button:hover {
   cursor: pointer;
   border-radius: 3px;
 }
-
 #add-child:hover {
   background-color: #00BFA6;
 }
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 20px;
-  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
-}
-
-/* Header Styles */
-h1 {
-  text-align: center;
-  color: #219ebc;
-  margin-top: 20px;
-  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-h2 {
-  text-align: center;
-  color: #8ecae6;
-}
-
-p {
-  color: white;
-  text-align: center;
-  width: 70%;
-  margin: 20px auto;
-}
-
 /* Calendar Styles */
 #calendar {
   width: 300px;
   margin: 0 auto;
   text-align: center;
 }
-
 #header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 #days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 5px;
 }
-
 #days div {
   border: 1px solid #ccc;
   color: #8ecae6;
   padding: 10px;
   cursor: pointer;
 }
-
 #days div:hover {
   background-color: #f0f0f0;
 }
-
 /* Events List Styles */
 #events {
   list-style-type: none;
   padding: 0;
 }
-
 #events li {
   margin: 10px 0;
   padding: 10px;
@@ -536,7 +233,6 @@ p {
   justify-content: space-between;
   align-items: center;
 }
-
 #events li button {
   background-color: #fb8500;
   color: white;
@@ -545,185 +241,84 @@ p {
   cursor: pointer;
   border-radius: 5px;
 }
-
 #events li button:hover {
   background-color: #ffb703;
 }
-
 h3 {
   color: #8ecae6;
   text-align: center;
   margin-top: 20px;
 }
-
 #registration {
   text-align: center;
   margin-top: 20px;
 }
-
 #registration button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
 }
-
 /* Container for the two-column layout */
 #page-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
-
 /* Left column for class form */
 #left-column {
-    flex: 1;
-    max-width: 400px;
+  flex: 1;
+  max-width: 400px;
 }
-
 #class-form {
-    margin-top: 20px;
-}
-
-#class-form form {
-    display: flex;
-    flex-direction: column;
-}
-
-#class-form label {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #8ecae6;
-}
-
-#class-form input,
-#class-form select,
-#class-form button {
-    margin-top: 5px;
-    padding: 8px;
-    font-size: 16px;
-    width: 100%;
-}
-
-#class-form button {
-    margin-top: 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#class-form button:hover {
-    background-color: #45a049;
-}
-
-/* Right column for calendar and event components */
-#right-column {
-    flex: 2;
-}
-
-#calendar,
-#event-form,
-#event-list {
-    margin-bottom: 20px;
-}
-
-#calendar #header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#calendar #days {
-    margin-top: 10px;
-}
-
-#event-form form,
-#event-list ul {
-    margin-top: 10px;
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 20px;
-  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.75);
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
-
-}
-
-/* Header Styles */
-h1 {
-  text-align: center;
-  color: #219ebc;
   margin-top: 20px;
-  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
-
-h2 {
-  text-align: center;
+#class-form form {
+  display: flex;
+  flex-direction: column;
+}
+#class-form label {
+  margin-top: 10px;
+  font-weight: bold;
   color: #8ecae6;
 }
-
-p {
+#class-form input, #class-form select, #class-form button {
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+}
+#class-form button {
+  margin-top: 20px;
+  background-color: #4CAF50;
   color: white;
-  text-align: center;
-  width: 70%;
-  margin: 20px auto;
+  border: none;
+  cursor: pointer;
 }
-
-/* Card Styles */
-.card {
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 300px;
-  margin: 20px auto;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+#class-form button:hover {
+  background-color: #45a049;
 }
-
-.card img {
-  border-radius: 50%;
-  margin: 15px 0;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+/* Right column for calendar and event components */
+#right-column {
+  flex: 2;
 }
-
-.card .container {
-  padding: 10px 20px;
-  text-align: center;
+#calendar, #event-form, #event-list {
+  margin-bottom: 20px;
 }
-
-.card h4 {
-  color: #0072bc;
-  margin-bottom: 10px;
+#calendar #header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
-.card p {
-  color: #333;
+#calendar #days {
+  margin-top: 10px;
 }
-
+#event-form form, #event-list ul {
+  margin-top: 10px;
+}
 /* Footer styles */
 footer {
   text-align: center;
@@ -733,36 +328,6 @@ footer {
   margin-top: auto;
   width: 100%;
 }
-
-/* Card Styles */
-.btn {
-  background-color: #Fb8500;
-  padding: 14px 40px;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  border-radius: 10px;
-  border: 2px dashed #023047;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  transition: .4s;
- }
-
- .btn span:last-child {
-  display: none;
- }
-
- .btn:hover {
-  transition: .4s;
-  border: 2px dashed #8ecae6;
-  background-color: #fff;
-  color: #8ecae6;
- }
-
- .btn:active {
-  background-color: #87dbd0;
- }
-
 /* Form Styles */
 .form-container {
   max-width: 400px;
@@ -772,58 +337,16 @@ footer {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"],
-button {
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], button {
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 16px;
 }
-
 button {
   background-color: #Fb8500;
   color: white;
   border: none;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #00BFA6;
-}
-
-@media screen and (max-width: 600px) {
-  .form-container {
-    width: 90%;
-  }
-}
-
-#children-info {
-  margin-top: 20px;
-}
-
-.child {
-  margin-bottom: 10px;
-}
-
-#add-child {
-  background-color: #FFa500;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-#add-child:hover {
-  background-color: #00BFA6;
 }
