@@ -26,7 +26,7 @@
                 <div class="container">
                 <h4><b>Membership</b></h4>
                 <p>Join today to become a part of our wonderful community!</p>
-                <button class="btn" onclick="window.location.href='login.html'"> REGISTER
+                <button class="btn" onclick="window.location.href='login-page.php'"> REGISTER
                 </button>
                 </div>
         </div>
@@ -35,7 +35,7 @@
                 <div class="container">
                 <h4><b>Events</b></h4>
                 <p>Take a look at our upcoming events!</p>
-                <button class="btn" onclick="window.location.href='programs.html'"> PROGRAMS
+                <button class="btn" onclick="window.location.href='class-page.php'"> PROGRAMS
                 </button>
                 </div>
             </div>
