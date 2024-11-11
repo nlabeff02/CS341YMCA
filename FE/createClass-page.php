@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,6 +121,12 @@
             });
         });
     </script>
+    <style>
+        /* Add custom styles here */
+        #day-of-week {
+            
+        }
+    </style>
 </body>
 <footer>
     <p>YMCA © 2024</p>

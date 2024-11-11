@@ -19,12 +19,14 @@
                 Whether you're looking to join a group exercise class, volunteer, or spend quality time with your family, the YMCA is here to support you every step of the way.
                 Join us at the YMCA, where community and wellness meet!
             </p>
-            <div class="card">
-                <img src="img/groupAbout.jpg" alt="Avatar" style="width:80%">
-            </div>
-            <div class="card">
-                    <img src="img/aboutPhoto2.jpg" alt="Avatar" style="width:80%">
+            <div class="row">
+                <div class="card">
+                    <img src="img/groupAbout.jpg" alt="Avatar" style="width:80%">
                 </div>
+                <div class="card">
+                        <img src="img/aboutPhoto2.jpg" alt="Avatar" style="width:80%">
+                </div>
+            </div>
     </body>
     <footer>
         <p>YMCA &copy; 2024</p>
