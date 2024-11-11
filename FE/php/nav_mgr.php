@@ -42,13 +42,7 @@
         </ul>
     </nav>
 <?php endif; ?>
-<?php 
-if (isset($_SESSION['user_'])) {
-    echo "<script>console.log('User session active: " . $_SESSION['user'] . "');</script>";
-} else {
-    echo "<script>console.log('No active user session found.');</script>";
-}
-?>
+
 <!-- Styles for Role-Based Navigation Bar -->
 <style>
     .role-nav {

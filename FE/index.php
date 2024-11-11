@@ -28,15 +28,15 @@
                 <div class="container">
                     <h4><b>Membership</b></h4>
                     <p>Join today to become a part of our wonderful community!</p>
-                    <button class="btn" onclick="window.location.href='login-page.php'">REGISTER</button>
+                    <button class="btn" onclick="window.location.href='login-page.php'">JOIN</button>
                 </div>
             </div>
             <div class="card">
                 <img src="img/swim.jpg" alt="Avatar" style="width: 80%;" />
                 <div class="container">
                     <h4><b>Events</b></h4>
-                    <p>Take a look at our upcoming events!</p>
-                    <button class="btn" onclick="window.location.href='class-page.php'">PROGRAMS</button>
+                    <p>Take a look at our upcoming classes!</p>
+                    <button class="btn" onclick="window.location.href='class-page.php'">Classes</button>
                 </div>
             </div>
         </div>

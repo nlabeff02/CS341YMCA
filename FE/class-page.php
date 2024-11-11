@@ -24,7 +24,7 @@
                     <th>Days</th>
                     <th>Start Time</th>
                     <th>End Time</th>
-                    <th>Location</th>
+                    <th>Class Location</th>
                     <th>Max Participants</th>
                     <th>Currently Enrolled</th>
                     <th>Member Cost</th>

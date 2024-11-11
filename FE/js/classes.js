@@ -140,10 +140,10 @@ function populateClassesTable(classes) {
         createCell(row, cls.dayOfWeek);
         createCell(row, cls.startTime);
         createCell(row, cls.endTime);
-        createCell(row, cls.location);
+        createCell(row, cls.classLocation);
         createCell(row, cls.maxParticipants);
-        createCell(row, cls.currentParticipantCount) ?? '0'; // Updated to match schema
-        createCell(row, cls.priceStaff);              // Price for staff
+        createCell(row, cls.currentParticipantCount) ?? '0'; // Default to zero if no participants.
+        createCell(row, cls.priceStaff);          
         createCell(row, cls.priceMember);
         createCell(row, cls.priceNonMember);
         createCell(row, cls.prerequisite ?? 'None');  // Default to 'None' if no prerequisite
@@ -159,8 +159,8 @@ function populateClassesTablePublic(classes) {
     const tableBody = document.getElementById('classesTable').getElementsByTagName('tbody')[0];
     tableBody.innerHTML = ''; // Clear any existing rows
 
-    console.log("isLoggedIn in classes.js:", isLoggedIn); // Debugging line
-    
+    //console.log("isLoggedIn in classes.js:", isLoggedIn); // Debugging line
+
     if (classes.length === 0) {
         createNoDataRow(tableBody, 'No classes available.');
         return;
@@ -176,9 +176,9 @@ function populateClassesTablePublic(classes) {
         createCell(row, cls.dayOfWeek);
         createCell(row, cls.startTime);
         createCell(row, cls.endTime);
-        createCell(row, cls.location);
+        createCell(row, cls.classLocation);
         createCell(row, cls.maxParticipants);
-        createCell(row, cls.currentParticipantCount) ?? '0'; 
+        createCell(row, cls.currentParticipantCount) ?? '0'; // Default to zero if no participants.
         createCell(row, cls.priceMember);
         createCell(row, cls.priceNonMember);
         createCell(row, cls.prerequisiteClassName ?? 'None');  // Default to 'None' if no prerequisite

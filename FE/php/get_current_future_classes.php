@@ -25,14 +25,13 @@ $query = "
         c.DayOfWeek,
         c.StartTime,
         c.EndTime,
-        c.Location,
+        c.ClassLocation,
         c.MaxParticipants,
         c.CurrentParticipantCount,
         c.PriceMember,
         c.PriceNonMember,
-        p.ClassName AS PrerequisiteClassName
+        c.PrerequisiteClassName
     FROM Classes c
-    LEFT JOIN Classes p ON c.PrerequisiteClassID = p.ClassID
     WHERE c.EndDate >= ?
 ";
 $stmt = $connect->prepare($query);
@@ -52,7 +51,7 @@ while ($row = $result->fetch_assoc()) {
         'dayOfWeek' => $row['DayOfWeek'],
         'startTime' => $row['StartTime'],
         'endTime' => $row['EndTime'],
-        'location' => $row['Location'],
+        'classLocation' => $row['ClassLocation'],
         'maxParticipants' => $row['MaxParticipants'],
         'currentParticipantCount' => $row['CurrentParticipantCount'] ?? '0',
         'priceMember' => $row['PriceMember'],
