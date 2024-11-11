@@ -31,5 +31,5 @@
     <footer>
         <p>YMCA &copy; 2024</p>
     </footer>
-    <script src="contact.js"></script>
+    <script src="js/contact.js"></script>
 </html>

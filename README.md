@@ -11,7 +11,8 @@ o Update class creation page
   - create a class overview of current and future classes
   - dashboard style
 o Create class search
-o Set new membership to be non-member.
+o rebuild register for class page
+o add check for overlapping class dates
 
 
 # Demo 3

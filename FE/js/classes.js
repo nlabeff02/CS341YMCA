@@ -186,7 +186,6 @@ function populateClassesTablePublic(classes) {
         const actionsCell = row.insertCell();
         if (isLoggedIn) { // Only show the register button if user is logged in
             const registerButton = createRegisterButton(cls.classID);
-            registerButton.onclick = () => registerForClass(cls.classID); // Pass classID as argument
             actionsCell.appendChild(registerButton);
         } else {
             actionsCell.innerText = 'Login to Register';
@@ -236,7 +235,7 @@ function createRegisterButton(cls) {
     if (cls.currentParticipantCount >= cls.maxParticipants) {
         registerButton.disabled = true;
         registerButton.style.backgroundColor = '#ccc';
-        registerButton.style.cursor = 'not-allowed';
+        registerButton.style.cursor = 'class full';
     } else {
         registerButton.onclick = () => registerForClass(cls.classID);
     }

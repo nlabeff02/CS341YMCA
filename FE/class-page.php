@@ -16,7 +16,7 @@
         <table id="classesTable" border="1" style="width: 100%; text-align: center;">
             <thead>
                 <tr>
-                    <th style="display: hidden;">Class ID</th>
+                    <th>Class ID</th>
                     <th>Class Name</th>
                     <th>Description</th>
                     <th>Start Date</th>
