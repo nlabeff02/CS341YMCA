@@ -159,6 +159,8 @@ function populateClassesTablePublic(classes) {
     const tableBody = document.getElementById('classesTable').getElementsByTagName('tbody')[0];
     tableBody.innerHTML = ''; // Clear any existing rows
 
+    console.log("isLoggedIn in classes.js:", isLoggedIn); // Debugging line
+    
     if (classes.length === 0) {
         createNoDataRow(tableBody, 'No classes available.');
         return;
@@ -182,8 +184,13 @@ function populateClassesTablePublic(classes) {
         createCell(row, cls.prerequisiteClassName ?? 'None');  // Default to 'None' if no prerequisite
 
         const actionsCell = row.insertCell();
-        const registerButton = createRegisterButton(cls);
-        actionsCell.appendChild(registerButton);
+        if (isLoggedIn) { // Only show the register button if user is logged in
+            const registerButton = createRegisterButton(cls.classID);
+            registerButton.onclick = () => registerForClass(cls.classID); // Pass classID as argument
+            actionsCell.appendChild(registerButton);
+        } else {
+            actionsCell.innerText = 'Login to Register';
+        }
     });
 }
 
@@ -231,7 +238,7 @@ function createRegisterButton(cls) {
         registerButton.style.backgroundColor = '#ccc';
         registerButton.style.cursor = 'not-allowed';
     } else {
-        registerButton.onclick = () => registerForClass(cls.className);
+        registerButton.onclick = () => registerForClass(cls.classID);
     }
 
     return registerButton;

@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!-- Main Navigation Bar -->
 <nav class="main-nav">
@@ -36,13 +36,19 @@ session_start();
                 <li><a href="overview-page.php">Supervisor Overview</a></li>
             <?php elseif ($_SESSION['user']['role'] === 'Member' || $_SESSION['user']['role'] === 'NonMember'): ?>
                 <!-- Links for Members/Nonmembers -->
-                <li><a href="my_classes.php">My Classes</a></li>
+                <li><a href="members.php">My Classes</a></li>
                 <li><a href="class-page.php">Search Classes</a></li>
             <?php endif; ?>
         </ul>
     </nav>
 <?php endif; ?>
-
+<?php 
+if (isset($_SESSION['user_'])) {
+    echo "<script>console.log('User session active: " . $_SESSION['user'] . "');</script>";
+} else {
+    echo "<script>console.log('No active user session found.');</script>";
+}
+?>
 <!-- Styles for Role-Based Navigation Bar -->
 <style>
     .role-nav {

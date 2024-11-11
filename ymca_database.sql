@@ -106,7 +106,7 @@ VALUES ('Patrick', 'Star', 'pstar@gmail.com', 1, 0, 0, '123qwe', 'Member', 4);
 
 -- Alterations to the Database --
 ALTER TABLE Classes MODIFY COLUMN DayOfWeek VARCHAR(50);
-ALTER TABLE Classes MODIFY COLUMN PrerequisiteClassID VARCHAR(100);
+-- ALTER TABLE Classes MODIFY COLUMN PrerequisiteClassID VARCHAR(100);
 ALTER TABLE Classes ADD COLUMN ClassDescription VARCHAR(500) AFTER ClassName;
 ALTER TABLE Classes ADD COLUMN PriceStaff DECIMAL(10, 2) AFTER MaxParticipants;
 ALTER TABLE Classes ADD COLUMN CurrentParticipantCount INT AFTER MaxParticipants;

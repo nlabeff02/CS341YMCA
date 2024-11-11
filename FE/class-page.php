@@ -16,7 +16,7 @@
         <table id="classesTable" border="1" style="width: 100%; text-align: center;">
             <thead>
                 <tr>
-                    <th>Class ID</th>
+                    <th style="display: hidden;">Class ID</th>
                     <th>Class Name</th>
                     <th>Description</th>
                     <th>Start Date</th>
@@ -41,6 +41,11 @@
 <footer>
     <p>YMCA © 2024</p>
 </footer>
+<script>
+    // Set isLoggedIn based on session status
+    const isLoggedIn = <?php echo isset($_SESSION['user']) ? 'true' : 'false'; ?>;
+    console.log("User is logged in:", isLoggedIn); // Debugging line
+</script>
 <script src="js/classes.js"></script>
 <script>
     // Load future member classes when the page loads

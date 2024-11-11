@@ -69,4 +69,4 @@ echo json_encode(['status' => 'success', 'message' => 'Registration successful']
 
 // Close the database connection
 $connect->close();
-?>
+
