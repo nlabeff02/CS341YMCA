@@ -24,7 +24,7 @@ $location = $_POST['location'] ?? null;
 $maxParticipants = $_POST['maxParticipants'] ?? null;
 $priceMember = $_POST['priceMember'] ?? null;
 $priceNonMember = $_POST['priceNonMember'] ?? null;
-$prerequisiteClassID = $_POST['prerequisiteClassID'] ?? null;
+$prerequisiteClassName = $_POST['prerequisiteClassName'] ?? null;
 
 // Validate required fields
 if (empty($className) || empty($startDate) || empty($endDate) || empty($dayOfWeek) || empty($startTime) || empty($endTime) || empty($location) || empty($maxParticipants) || empty($priceMember) || empty($priceNonMember)) {
@@ -32,19 +32,19 @@ if (empty($className) || empty($startDate) || empty($endDate) || empty($dayOfWee
     exit();
 }
 
-// If PrerequisiteClassID is empty, set it to NULL
-if (empty($prerequisiteClassID)) {
-    $prerequisiteClassID = NULL;
+// If PrerequisiteClassName is empty, set it to NULL
+if (empty($prerequisiteClassName)) {
+    $prerequisiteClassName = NULL;
 }
 
 // Insert class into the database
 $stmt = $connect->prepare("
     INSERT INTO Classes
-    (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, Location, MaxParticipants, PriceMember, PriceNonMember, PrerequisiteClassID)
+    (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, Location, MaxParticipants, PriceMember, PriceNonMember, PrerequisiteClassName)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
-// Use `bind_param` with appropriate types, setting `PrerequisiteClassID` to NULL if necessary
+// Use `bind_param` with appropriate types, setting `PrerequisiteClassName` to NULL if necessary
 $stmt->bind_param(
     "sssssssidii",
     $className,
@@ -57,7 +57,7 @@ $stmt->bind_param(
     $maxParticipants,
     $priceMember,
     $priceNonMember,
-    $prerequisiteClassID
+    $prerequisiteClassName
 );
 
 if ($stmt->execute()) {

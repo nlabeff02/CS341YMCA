@@ -146,7 +146,7 @@ function populateClassesTable(classes) {
         createCell(row, cls.priceStaff);          
         createCell(row, cls.priceMember);
         createCell(row, cls.priceNonMember);
-        createCell(row, cls.prerequisite ?? 'None');  // Default to 'None' if no prerequisite
+        createCell(row, cls.prerequisiteClassName ?? 'None');  // Default to 'None' if no prerequisite
 
         const actionsCell = row.insertCell();
         const modifyButton = createModifyButton(cls);

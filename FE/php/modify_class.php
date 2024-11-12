@@ -51,7 +51,7 @@ $stmt = $connect->prepare("
         PriceStaff = ?, 
         PriceMember = ?, 
         PriceNonMember = ?, 
-        PrerequisiteClassID = ?
+        PrerequisiteClassName = ?
     WHERE 
         ClassID = ?
 ");
@@ -71,7 +71,7 @@ $stmt->bind_param(
     $priceStaff,
     $priceMember,
     $priceNonMember,
-    $prerequisiteClassID,
+    $prerequisiteClassName,
     $classID
 );
 

@@ -41,7 +41,7 @@ function populateClassesTable(classes) {
         row.insertCell(6).innerText = cls.currentEnrolled;
         row.insertCell(7).innerText = cls.priceMember;
         row.insertCell(8).innerText = cls.priceNonMember;
-        row.insertCell(9).innerText = cls.prerequisite;
+        row.insertCell(9).innerText = cls.prerequisiteClassName;
 
         // Create the Register button
         const registerCell = row.insertCell(10);

@@ -29,7 +29,7 @@ $query = "
         (SELECT COUNT(*) FROM Registrations r WHERE r.ClassID = c.ClassID) AS CurrentEnrolled,
         p.ClassName AS Prerequisite
     FROM Classes c
-    LEFT JOIN Classes p ON c.PrerequisiteClassID = p.ClassID
+    LEFT JOIN Classes p ON c.PrerequisiteClassName = p.ClassID
     WHERE c.StartDate >= ?
 ";
 $stmt = $connect->prepare($query);
