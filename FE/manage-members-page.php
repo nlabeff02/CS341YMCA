@@ -1,115 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>YMCA | Manage Members</title>
-        <link rel="stylesheet" type="text/css" href="css/ymca-main.css" />
+        <link rel="stylesheet" href="css/ymca-main.css">
     </head>
-
     <body>
         <?php include 'php/nav_mgr.php'; ?>
 
-        <img src="img/Designer.png" alt="YMCA" width="200" height="200">
-        <h1>Manage Members</h1>
+        <header class="ymca-page-header">
+            <img class="ymca-logo" src="img/Designer.png" alt="YMCA Logo">
+            <h1 class="ymca-page-title">Manage Members</h1>
+        </header>
 
-        <!-- Search Form -->
-        <div id="searchFormContainer" style="width: 90%; margin: 20px auto;">
-            <h3>Search for Members</h3>
-            <form id="searchForm">
-                <label for="searchType">Search By:</label>
-                <select id="searchType" name="searchType">
-                    <option value="email">Email</option>
-                    <option value="phone">Phone Number</option>
-                    <option value="firstName">First Name</option>
-                    <option value="lastName">Last Name</option>
-                </select>
+        <div class="ymca-container">
+            <!-- Search Form -->
+            <section class="ymca-search-form-container">
+                <h3 class="ymca-section-title">Search for Members</h3>
+                <form id="searchForm" class="ymca-search-form">
+                    <div class="ymca-form-group">
+                        <label for="searchType" class="ymca-form-label">Search By:</label>
+                        <select id="searchType" name="searchType" class="ymca-form-input">
+                            <option value="email">Email</option>
+                            <option value="phone">Phone Number</option>
+                            <option value="firstName">First Name</option>
+                            <option value="lastName">Last Name</option>
+                        </select>
+                    </div>
+                    <div class="ymca-form-group">
+                        <label for="searchText" class="ymca-form-label">Search Text:</label>
+                        <input type="text" id="searchText" name="searchText" class="ymca-form-input" placeholder="Enter search text">
+                    </div>
+                    <div class="ymca-form-actions">
+                        <button type="button" class="ymca-btn ymca-primary-btn" onclick="searchMembers()">Search</button>
+                        <button type="button" class="ymca-btn ymca-secondary-btn" onclick="viewAllMembers()">View All Members</button>
+                    </div>
+                </form>
+            </section>
 
-                <input type="text" id="searchText" name="searchText" placeholder="Enter search text">
-                <button type="button" onclick="searchMembers()">Search</button>
-                <button type="button" onclick="viewAllMembers()">View All Members</button>
-            </form>
-        </div>
-
-        <!-- Results Table -->
-        <div id="resultsContainer" style="width: 90%; margin: 20px auto;">
-            <h3>Search Results</h3>
-            <table id="resultsTable" border="1" style="width: 100%; text-align: center;">
-                <thead>
-                    <tr>
-                        <th>Member ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Role</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Table rows will be populated dynamically with JavaScript -->
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Registrations Modal -->
-        <section id="registrationsContainer" class="registrations-container" style="display: none;">
-            <h3>Member Registrations</h3>
-            <div class="registrations-table-container">
-                <table id="registrationsTable" class="registrations-table">
+            <!-- Results Table -->
+            <section class="ymca-members-results-container">
+                <h3 class="ymca-section-title">Search Results</h3>
+                <table id="resultsTable" class="ymca-members-results-table">
                     <thead>
                         <tr>
-                            <th>Class Name</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Payment Status</th>
+                            <th>Member ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Role</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="registrationsTableBody">
-                        <!-- Data populated dynamically -->
+                    <tbody id="resultsTableBody">
+                        <!-- Table rows populated dynamically -->
                     </tbody>
                 </table>
-            </div>
-            <!-- Close Button -->
-            <div class="close-button-container">
-                <button onclick="closeRegistrationsModal()">Close</button>
-            </div>
-        </section>
+            </section>
 
-        <!-- Edit Form -->
-        <div id="editFormContainer" style="width: 50%; margin: 20px auto; display: none;">
-            <h3>Edit Member Information</h3>
-            <form id="editForm">
-                <input type="hidden" id="editMemberId" name="memberId">
+            <!-- Registrations Modal -->
+            <section id="registrationsContainer" class="registrations-container" style="display: none;">
+                <h3>Member Registrations</h3>
+                <div class="registrations-table-container">
+                    <table id="registrationsTable" class="registrations-table">
+                        <thead>
+                            <tr>
+                                <th>Class Name</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Payment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registrationsTableBody">
+                            <!-- Data populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Close Button -->
+                <div class="close-button-container">
+                    <button onclick="closeRegistrationsModal()">Close</button>
+                </div>
+            </section>
 
-                <label for="editFirstName">First Name:</label>
-                <input type="text" id="editFirstName" name="firstName">
-
-                <label for="editLastName">Last Name:</label>
-                <input type="text" id="editLastName" name="lastName">
-
-                <label for="editEmail">Email:</label>
-                <input type="email" id="editEmail" name="email">
-
-                <label for="editPhone">Phone Number:</label>
-                <input type="text" id="editPhone" name="phone">
-
-                <label for="editRole">Role:</label>
-                <select id="editRole" name="role">
-                    <option value="Member">Member</option>
-                    <option value="NonMember">NonMember</option>
-                    <option value="Staff">Staff</option>
-                    <option value="Supervisor">Supervisor</option>
-                    <option value="Admin">Admin</option>
-                </select>
-
-                <button type="button" onclick="saveMember()">Save Changes</button>
-                <button type="button" onclick="cancelEdit()">Cancel</button>
-            </form>
+        <!-- Edit Form Modal -->
+        <section id="editFormContainer" class="ymca-modal-container" style="display: none;">
+                <h3 class="ymca-modal-title">Edit Member Information</h3>
+                <form id="editForm" class="ymca-modal-form">
+                    <input type="hidden" id="editMemberId" name="memberId">
+                    <div class="ymca-form-group">
+                        <label for="editFirstName" class="ymca-form-label">First Name:</label>
+                        <input type="text" id="editFirstName" name="firstName" class="ymca-form-input">
+                    </div>
+                    <div class="ymca-form-group">
+                        <label for="editLastName" class="ymca-form-label">Last Name:</label>
+                        <input type="text" id="editLastName" name="lastName" class="ymca-form-input">
+                    </div>
+                    <div class="ymca-form-group">
+                        <label for="editEmail" class="ymca-form-label">Email:</label>
+                        <input type="email" id="editEmail" name="email" class="ymca-form-input">
+                    </div>
+                    <div class="ymca-form-group">
+                        <label for="editPhone" class="ymca-form-label">Phone Number:</label>
+                        <input type="text" id="editPhone" name="phone" class="ymca-form-input">
+                    </div>
+                    <div class="ymca-form-group">
+                        <label for="editRole" class="ymca-form-label">Role:</label>
+                        <select id="editRole" name="role" class="ymca-form-input">
+                            <option value="Member">Member</option>
+                            <option value="NonMember">NonMember</option>
+                            <option value="Staff">Staff</option>
+                            <option value="Supervisor">Supervisor</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="ymca-form-actions">
+                        <button type="button" class="ymca-btn ymca-primary-btn" onclick="saveMember()">Save Changes</button>
+                        <button type="button" class="ymca-btn ymca-secondary-btn" onclick="cancelEdit()">Cancel</button>
+                    </div>
+                </form>
+            </section>
         </div>
-    </body>
 
-    <footer>
-        <p>YMCA &copy; 2024</p>
-    </footer>
-    
-    <script src="js/manageMembers.js"></script>
+        <footer>
+            <p>&copy; 2024 YMCA. All Rights Reserved.</p>
+        </footer>
+
+        <script src="js/manageMembers.js"></script>
+    </body>
 </html>

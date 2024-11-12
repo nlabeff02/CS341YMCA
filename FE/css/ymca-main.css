@@ -480,3 +480,183 @@ button {
 .button-spacing {
   margin-right: 15px;
 }
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Page Header */
+.ymca-page-header {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.ymca-logo {
+  max-width: 200px;
+}
+
+.ymca-page-title {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Main Container */
+.ymca-container {
+  width: 85%;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+/* Section Titles */
+.ymca-section-title {
+  font-size: 1.6rem;
+  color: #023047;
+  margin-bottom: 15px;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Search Form */
+.ymca-search-form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.ymca-search-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ymca-form-group {
+  margin-bottom: 15px;
+}
+
+.ymca-form-label {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.ymca-form-input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.ymca-form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ymca-btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ymca-primary-btn {
+  background-color: #219ebc;
+  color: #fff;
+  border: none;
+}
+
+.ymca-primary-btn:hover {
+  background-color: #0077b6;
+}
+
+.ymca-secondary-btn {
+  background-color: #fb8500;
+  color: #fff;
+  border: none;
+}
+
+.ymca-secondary-btn:hover {
+  background-color: #ff6f00;
+}
+
+/* Results Table */
+.ymca-members-results-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ymca-members-results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.ymca-members-results-table th,
+.ymca-members-results-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.ymca-members-results-table th {
+  background-color: #219ebc;
+  color: white;
+}
+
+.ymca-members-results-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Modal */
+.ymca-modal-container {
+  background-color: #fff;
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ymca-modal-title {
+  font-size: 1.8rem;
+  color: #023047;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.ymca-modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ymca-form-group {
+  margin-bottom: 15px;
+}
+
+.ymca-form-label {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.ymca-form-input {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  margin-top: 5px;
+}
+
