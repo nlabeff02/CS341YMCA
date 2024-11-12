@@ -8,7 +8,7 @@
     <body>
         <?php include 'php/nav_mgr.php'; ?>
 
-        <img src="img/Designer.png" alt="YMCA" width=200 height = 200>
+        <img src="img/Designer.png" alt="YMCA" width="200" height="200">
         <h1>Manage Members</h1>
 
         <!-- Search Form -->
@@ -24,7 +24,6 @@
                 </select>
 
                 <input type="text" id="searchText" name="searchText" placeholder="Enter search text">
-            
                 <button type="button" onclick="searchMembers()">Search</button>
                 <button type="button" onclick="viewAllMembers()">View All Members</button>
             </form>
@@ -50,6 +49,30 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Registrations Modal -->
+        <section id="registrationsContainer" class="registrations-container" style="display: none;">
+            <h3>Member Registrations</h3>
+            <div class="registrations-table-container">
+                <table id="registrationsTable" class="registrations-table">
+                    <thead>
+                        <tr>
+                            <th>Class Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Payment Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="registrationsTableBody">
+                        <!-- Data populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- Close Button -->
+            <div class="close-button-container">
+                <button onclick="closeRegistrationsModal()">Close</button>
+            </div>
+        </section>
 
         <!-- Edit Form -->
         <div id="editFormContainer" style="width: 50%; margin: 20px auto; display: none;">
@@ -85,7 +108,8 @@
     </body>
 
     <footer>
-            <p>YMCA &copy; 2024</p>
+        <p>YMCA &copy; 2024</p>
     </footer>
+    
     <script src="js/manageMembers.js"></script>
 </html>
