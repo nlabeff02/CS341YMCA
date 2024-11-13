@@ -1,71 +1,68 @@
 <?php
-header('Content-Type: application/json');
-include 'db.php'; // Include the database connection
-
 // Enable error reporting for debugging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Check database connection
-if ($connect->connect_error) {
-    echo json_encode(['status' => 'error', 'message' => 'Database connection failed']);
-    exit();
+header('Content-Type: application/json');
+include __DIR__ . '/db.php';
+session_start();
+
+// Check if the request method is POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Prepare and sanitize form data
+    $className = $_POST['className'] ?? '';
+    $classDescription = $_POST['classDescription'] ?? '';
+    $startDate = $_POST['startDate'] ?? '';
+    $endDate = $_POST['endDate'] ?? '';
+    //$dayOfWeek = isset($_POST['dayOfWeek']) ? implode(',', $_POST['dayOfWeek']) : '';
+    $dayOfWeek = isset($_POST['dayOfWeek']) && is_array($_POST['dayOfWeek']) ? implode(',', $_POST['dayOfWeek']) : '';
+    $startTime = $_POST['startTime'] ?? '';
+    $endTime = $_POST['endTime'] ?? '';
+    $location = $_POST['location'] ?? '';
+    $maxParticipants = $_POST['maxParticipants'] ?? 0;
+    $priceStaff = $_POST['priceStaff'] ?? 0;
+    $priceMember = $_POST['priceMember'] ?? 0;
+    $priceNonMember = $_POST['priceNonMember'] ?? 0;
+    $prerequisiteClassName = $_POST['prerequisiteClassName'] ?? null;
+
+    // SQL query to insert the data
+    $sql = "INSERT INTO Classes (className, classDescription, startDate, endDate, dayOfWeek, startTime, endTime, classlocation, maxParticipants, priceStaff, priceMember, priceNonMember, prerequisiteClassName)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    // Prepare statement
+    if ($stmt = $connect->prepare($sql)) {
+        // Bind parameters
+        $stmt->bind_param(
+            "ssssssssiiiis",
+            $className,
+            $classDescription,
+            $startDate,
+            $endDate,
+            $dayOfWeek,
+            $startTime,
+            $endTime,
+            $location,
+            $maxParticipants,
+            $priceStaff,
+            $priceMember,
+            $priceNonMember,
+            $prerequisiteClassName
+        );
+
+        // Execute the statement and check if the insertion was successful
+        if ($stmt->execute()) {
+            echo json_encode(['status' => 'success', 'message' => 'Class created successfully']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to create class: ' . $stmt->error]);
+        }
+
+        // Close the statement
+        $stmt->close();
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Database query failed']);
+    }
 }
 
-// Collect data from the POST request
-$className = $_POST['className'] ?? null;
-$startDate = $_POST['startDate'] ?? null;
-$endDate = $_POST['endDate'] ?? null;
-$dayOfWeek = isset($_POST['dayOfWeek']) ? implode(',', $_POST['dayOfWeek']) : null;
-$startTime = $_POST['startTime'] ?? null;
-$endTime = $_POST['endTime'] ?? null;
-$classLocation = $_POST['location'] ?? null;
-$maxParticipants = $_POST['maxParticipants'] ?? null;
-$priceMember = $_POST['priceMember'] ?? null;
-$priceNonMember = $_POST['priceNonMember'] ?? null;
-$prerequisiteClassName = $_POST['prerequisiteClassName'] ?? null; // Assuming this is a ClassID
-
-// Validate required fields
-if (empty($className) || empty($startDate) || empty($endDate) || empty($dayOfWeek) || empty($startTime) || empty($endTime) || empty($classLocation) || empty($maxParticipants) || empty($priceMember) || empty($priceNonMember)) {
-    echo json_encode(['status' => 'error', 'message' => 'All fields are required']);
-    exit();
-}
-
-// If PrerequisiteClassID is empty, set it to NULL
-if (empty($prerequisiteClassName)) {
-    $prerequisiteClassName = NULL;
-}
-
-// Insert class into the database
-$stmt = $connect->prepare("
-    INSERT INTO Classes
-    (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceMember, PriceNonMember, PrerequisiteClassName)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-");
-
-// Bind parameters for the query
-$stmt->bind_param(
-    "sssssssiis", 
-    $className,
-    $startDate,
-    $endDate,
-    $dayOfWeek,
-    $startTime,
-    $endTime,
-    $classLocation,
-    $maxParticipants,
-    $priceMember,
-    $priceNonMember,
-    $prerequisiteClassName
-);
-
-if ($stmt->execute()) {
-    echo json_encode(['status' => 'success', 'message' => 'Class created successfully']);
-} else {
-    echo json_encode(['status' => 'error', 'message' => 'Error creating class: ' . $stmt->error]);
-}
-
-// Close database connection
+// Close the database connection
 $connect->close();
-?>

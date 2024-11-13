@@ -16,4 +16,3 @@ if ($connect->connect_error) {
 
 // Close connection (optional to include at the end of script where relevant)
 // $connect->close();
-?>
