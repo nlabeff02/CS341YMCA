@@ -238,7 +238,7 @@ function createRegisterButton(cls) {
         registerButton.style.cursor = 'class full';
     } else {
         registerButton.onclick = () => registerForClass(cls.classID);
-        registerButton.onclick = () => alert('You have been registed for' + cls.className);
+        registerButton.onclick = () => alert('You have been registed for ' + cls.className);
         
     }
     return registerButton;
