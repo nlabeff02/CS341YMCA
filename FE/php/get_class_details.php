@@ -40,7 +40,8 @@ $query = "
         c.PriceNonMember,
         c.PrerequisiteClassName
     FROM Classes c
-";
+    WHERE c.ClassID = $classID
+    ";
 
 // Prepare and execute the statement
 $stmt = $connect->prepare($query);

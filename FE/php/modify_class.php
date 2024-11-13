@@ -30,7 +30,8 @@ $priceNonMember = $_POST['priceNonMember'] ?? null;
 $prerequisiteClassName = $_POST['prerequisiteClassName'] ?? null;
 
 // Validate required fields
-if (empty($classID) || empty($className) || empty($startDate) || empty($endDate) || empty($dayOfWeek) || empty($startTime) || empty($endTime) || empty($classLocation) || empty($maxParticipants) || empty($priceStaff) || empty($priceMember) || empty($priceNonMember)) {
+if (empty($className) || empty($startDate) || empty($endDate) || empty($startTime) || empty($endTime) || empty($classLocation) || empty($priceStaff) || empty($priceMember) || empty($priceNonMember)) 
+{
     echo json_encode(['status' => 'error', 'message' => 'All required fields are missing']);
     exit();
 }

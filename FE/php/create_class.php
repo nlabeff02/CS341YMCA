@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 
 header('Content-Type: application/json');
 include __DIR__ . '/db.php';
-session_start();
 
 // Check if the request method is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,17 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $priceStaff = $_POST['priceStaff'] ?? 0;
     $priceMember = $_POST['priceMember'] ?? 0;
     $priceNonMember = $_POST['priceNonMember'] ?? 0;
-    $prerequisiteClassName = $_POST['prerequisiteClassName'] ?? null;
+    $prerequisiteClassName = $_POST['prerequisiteClassName'] ?? "";
+
+    $currentParticipantCount = 0;
 
     // SQL query to insert the data
-    $sql = "INSERT INTO Classes (className, classDescription, startDate, endDate, dayOfWeek, startTime, endTime, classlocation, maxParticipants, priceStaff, priceMember, priceNonMember, prerequisiteClassName)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO Classes (className, classDescription, startDate, endDate, dayOfWeek, startTime, endTime, classlocation, maxParticipants, currentParticipantCount, priceStaff, priceMember, priceNonMember, prerequisiteClassName)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Prepare statement
     if ($stmt = $connect->prepare($sql)) {
         // Bind parameters
         $stmt->bind_param(
-            "ssssssssiiiis",
+            "ssssssssiiiiis",
             $className,
             $classDescription,
             $startDate,
@@ -44,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $endTime,
             $location,
             $maxParticipants,
+            $currentParticipantCount,
             $priceStaff,
             $priceMember,
             $priceNonMember,

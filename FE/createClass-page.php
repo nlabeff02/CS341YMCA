@@ -31,13 +31,13 @@
 
                     <label>Day of the Week:</label>
                     <div id="day-of-week" name="dayOfWeek">
-                        <label><input type="checkbox" name="dayOfWeek" value="Sunday"> Sunday</label>
-                        <label><input type="checkbox" name="dayOfWeek" value="Monday"> Monday</label>
-                        <label><input type="checkbox" name="dayOfWeek" value="Tuesday"> Tuesday</label>
-                        <label><input type="checkbox" name="dayOfWeek" value="Wednesday"> Wednesday</label>
-                        <label><input type="checkbox" name="dayOfWeek" value="Thursday"> Thursday</label>
-                        <label><input type="checkbox" name="dayOfWeek" value="Friday"> Friday</label>
-                        <label><input type="checkbox" name="dayOfWeek" value="Saturday"> Saturday</label>
+                        <label><input type="checkbox" name="dayOfWeek[]" value="Sunday"> Sunday</label>
+                        <label><input type="checkbox" name="dayOfWeek[]" value="Monday"> Monday</label>
+                        <label><input type="checkbox" name="dayOfWeek[]" value="Tuesday"> Tuesday</label>
+                        <label><input type="checkbox" name="dayOfWeek[]" value="Wednesday"> Wednesday</label>
+                        <label><input type="checkbox" name="dayOfWeek[]" value="Thursday"> Thursday</label>
+                        <label><input type="checkbox" name="dayOfWeek[]" value="Friday"> Friday</label>
+                        <label><input type="checkbox" name="dayOfWeek[]" value="Saturday"> Saturday</label>
                     </div>
 
                     <label for="start-time">Start Time:</label>

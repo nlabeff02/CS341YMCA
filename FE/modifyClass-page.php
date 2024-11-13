@@ -54,13 +54,13 @@
             <input type="number" id="current-participant-count" readonly name="currentParticipantCount" style="background-color: #f0f0f0; color: #888;" />
 
             <label for="price-staff">Price for Staff:</label>
-            <input type="number" step="0.01" id="price-staff" name="priceStaff" required>
+            <input type="number" step="1" id="price-staff" name="priceStaff" required>
 
             <label for="price-member">Price for Members:</label>
-            <input type="number" step="0.01" id="price-member" name="priceMember" required>
+            <input type="number" step="1" id="price-member" name="priceMember" required>
 
             <label for="price-nonmember">Price for Non-Members:</label>
-            <input type="number" step="0.01" id="price-nonmember" name="priceNonMember" required>
+            <input type="number" step="1" id="price-nonmember" name="priceNonMember" required>
 
             <label for="prerequisite-class">Prerequisite Class Name (optional):</label>
             <input type="text" id="prerequisite-class" name="prerequisiteClassName">
