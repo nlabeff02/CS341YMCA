@@ -24,7 +24,7 @@ $query = "
         c.DayOfWeek,
         c.StartTime,
         c.EndTime,
-        c.Location,
+        c.ClassLocation,
         c.MaxParticipants,
         c.CurrentParticipantCount,
         c.PriceStaff,
@@ -50,13 +50,13 @@ while ($row = $result->fetch_assoc()) {
         'dayOfWeek' => $row['DayOfWeek'],
         'startTime' => $row['StartTime'],
         'endTime' => $row['EndTime'],
-        'location' => $row['Location'],
+        'classLocation' => $row['ClassLocation'],
         'maxParticipants' => $row['MaxParticipants'],
         'currentParticipantCount' => $row['CurrentParticipantCount'],
         'priceStaff' => $row['PriceStaff'],
         'priceMember' => $row['PriceMember'],
         'priceNonMember' => $row['PriceNonMember'],
-        'PrerequisiteClassName' => $row['PrerequisiteClassName'] ?? 'None'
+        'prerequisiteClassName' => $row['PrerequisiteClassName'] ?? 'None'
     ];
 }
 

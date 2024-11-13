@@ -32,7 +32,7 @@ $query = "
         c.DayOfWeek,
         c.StartTime,
         c.EndTime,
-        c.Location,
+        c.ClassLocation,
         c.MaxParticipants,
         c.CurrentParticipantCount,
         c.PriceStaff,

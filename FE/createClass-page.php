@@ -17,9 +17,6 @@
                 <h2>Create New Class</h2>
                 <form id="create-class-form">
 
-                    <label for="class-id">Class ID:</label>
-                    <input type="text" id="class-id" name="classID" readonly style="background-color: #f0f0f0; color: #888;" />
-
                     <label for="class-name">Class Name:</label>
                     <input type="text" id="class-name" name="className" required>
 
@@ -65,7 +62,7 @@
                     <input type="number" step="1" id="price-nonmember" name="priceNonMember" required>
 
                     <label for="prerequisite-class">Prerequisite Class ID (optional):</label>
-                    <input type="number" id="prerequisite-class" name="prerequisiteClassID">
+                    <input type="number" id="prerequisite-class" name="prerequisiteClassName">
 
                     <button type="submit">Create Class</button>
                 </form>

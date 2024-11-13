@@ -22,7 +22,7 @@ $endDate = $_POST['endDate'] ?? null;
 $dayOfWeek = $_POST['dayOfWeek'] ?? null;
 $startTime = $_POST['startTime'] ?? null;
 $endTime = $_POST['endTime'] ?? null;
-$location = $_POST['location'] ?? null;
+$classLocation = $_POST['classLocation'] ?? null;
 $maxParticipants = $_POST['maxParticipants'] ?? null;
 $priceStaff = $_POST['priceStaff'] ?? null;
 $priceMember = $_POST['priceMember'] ?? null;
@@ -30,7 +30,7 @@ $priceNonMember = $_POST['priceNonMember'] ?? null;
 $prerequisiteClassName = $_POST['prerequisiteClassName'] ?? null;
 
 // Validate required fields
-if (empty($classID) || empty($className) || empty($startDate) || empty($endDate) || empty($dayOfWeek) || empty($startTime) || empty($endTime) || empty($location) || empty($maxParticipants) || empty($priceStaff) || empty($priceMember) || empty($priceNonMember)) {
+if (empty($classID) || empty($className) || empty($startDate) || empty($endDate) || empty($dayOfWeek) || empty($startTime) || empty($endTime) || empty($classLocation) || empty($maxParticipants) || empty($priceStaff) || empty($priceMember) || empty($priceNonMember)) {
     echo json_encode(['status' => 'error', 'message' => 'All required fields are missing']);
     exit();
 }
@@ -46,7 +46,7 @@ $stmt = $connect->prepare("
         DayOfWeek = ?, 
         StartTime = ?, 
         EndTime = ?, 
-        Location = ?, 
+        ClassLocation = ?, 
         MaxParticipants = ?, 
         PriceStaff = ?, 
         PriceMember = ?, 
@@ -66,7 +66,7 @@ $stmt->bind_param(
     $dayOfWeek,
     $startTime,
     $endTime,
-    $location,
+    $classLocation,
     $maxParticipants,
     $priceStaff,
     $priceMember,

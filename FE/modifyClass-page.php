@@ -45,7 +45,7 @@
             <input type="time" id="end-time" name="endTime" required>
 
             <label for="location">Location:</label>
-            <input type="text" id="location" name="location" required>
+            <input type="text" id="location" name="ClassLocation" required>
 
             <label for="max-participants">Max Participants:</label>
             <input type="number" id="max-participants" name="maxParticipants" required>
@@ -130,7 +130,7 @@
 
                     document.getElementById('start-time').value = cls.StartTime ?? '';
                     document.getElementById('end-time').value = cls.EndTime ?? '';
-                    document.getElementById('location').value = cls.Location ?? '';
+                    document.getElementById('location').value = cls.ClassLocation ?? '';
                     document.getElementById('max-participants').value = cls.MaxParticipants ?? '';
                     document.getElementById('current-participant-count').value = cls.CurrentParticipantCount ?? '';
                     document.getElementById('price-staff').value = cls.PriceStaff ?? '';

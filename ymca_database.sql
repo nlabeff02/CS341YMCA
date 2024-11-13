@@ -11,7 +11,7 @@
 -- 4. Permissions: Manages role-based permissions for
 --    users within the YMCA.
 
--- Last Updated: [10/3/2024]
+-- Last Updated: [11/12/2024]
 
 -- Permissions table --
 CREATE TABLE IF NOT EXISTS Permissions (
@@ -103,92 +103,50 @@ VALUES ('NonMember', TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE
 
 -- Add Future Classes to Database --
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Yoga Basics', '2025-01-10', '2025-03-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 101', 20, 20, 15.00, 25.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Yoga Intermediate', '2025-04-10', '2025-06-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 103', 20, 20, 20.00, 30.00, "Yoga Basics");
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Pilates Beginner', '2025-02-15', '2025-05-01', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 15, 20, 12.00, 18.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Pilates Advanced', '2025-05-15', '2025-07-01', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 10, 20, 18.00, 25.00, 'Pilates Beginner');
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('HIIT Workout', '2025-03-01', '2025-05-15', 'Saturday', '08:00:00', '09:00:00', 'Gym', 30, 20, 10.00, 20.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Swimming Basics', '2025-06-01', '2025-08-01', 'Tuesday,Thursday', '13:00:00', '14:00:00', 'Pool', 25, 20, 15.00, 25.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Advanced Swimming', '2025-09-01', '2025-11-01', 'Tuesday,Thursday', '14:00:00', '15:00:00', 'Pool', 20, 20, 20.00, 30.00, 'Swimming Basics');
-
+VALUES 
+('Yoga Basics', '2025-01-10', '2025-03-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 101', 20, 20, 15.00, 25.00, NULL),
+('Yoga Intermediate', '2025-04-10', '2025-06-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 103', 20, 20, 20.00, 30.00, 'Yoga Basics'),
+('Pilates Beginner', '2025-02-15', '2025-05-01', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 15, 20, 12.00, 18.00, NULL),
+('Pilates Advanced', '2025-05-15', '2025-07-01', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 10, 20, 18.00, 25.00, 'Pilates Beginner'),
+('HIIT Workout', '2025-03-01', '2025-05-15', 'Saturday', '08:00:00', '09:00:00', 'Gym', 30, 20, 10.00, 20.00, NULL),
+('Swimming Basics', '2025-06-01', '2025-08-01', 'Tuesday,Thursday', '13:00:00', '14:00:00', 'Pool', 25, 20, 15.00, 25.00, NULL),
+('Advanced Swimming', '2025-09-01', '2025-11-01', 'Tuesday,Thursday', '14:00:00', '15:00:00', 'Pool', 20, 20, 20.00, 30.00, 'Swimming Basics');
 
 -- Add Current Classes to Database --
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Yoga Basics', '2024-10-10', '2025-01-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 204', 20, 20, 15.00, 25.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Yoga Intermediate', '2024-09-10', '2024-12-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 103', 20, 20, 20.00, 30.00, "Yoga Basics");
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Pilates Beginner', '2024-11-01', '2025-01-01', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 15, 20, 12.00, 18.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Pilates Advanced', '2024-10-15', '2024-12-14', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 10, 20, 18.00, 25.00, 'Pilates Beginner');
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('HIIT Workout', '2024-08-01', '2024-12-15', 'Saturday', '08:00:00', '09:00:00', 'Gym', 30, 20, 10.00, 20.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Swimming Basics', '2024-06-01', '2024-12-01', 'Tuesday,Thursday', '13:00:00', '14:00:00', 'Pool', 25, 20, 15.00, 25.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Advanced Swimming', '2024-09-01', '2025-02-01', 'Tuesday,Thursday', '14:00:00', '15:00:00', 'Pool', 20, 20, 20.00, 30.00, 'Swimming Basics');
-
+VALUES 
+('Yoga Basics', '2024-10-10', '2025-01-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 204', 20, 20, 15.00, 25.00, NULL),
+('Yoga Intermediate', '2024-09-10', '2024-12-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 103', 20, 20, 20.00, 30.00, 'Yoga Basics'),
+('Pilates Beginner', '2024-11-01', '2025-01-01', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 15, 20, 12.00, 18.00, NULL),
+('Pilates Advanced', '2024-10-15', '2024-12-14', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 10, 20, 18.00, 25.00, 'Pilates Beginner'),
+('HIIT Workout', '2024-08-01', '2024-12-15', 'Saturday', '08:00:00', '09:00:00', 'Gym', 30, 20, 10.00, 20.00, NULL),
+('Swimming Basics', '2024-06-01', '2024-12-01', 'Tuesday,Thursday', '13:00:00', '14:00:00', 'Pool', 25, 20, 15.00, 25.00, NULL),
+('Advanced Swimming', '2024-09-01', '2025-02-01', 'Tuesday,Thursday', '14:00:00', '15:00:00', 'Pool', 20, 20, 20.00, 30.00, 'Swimming Basics');
 
 -- Add Past Classes to Database --
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Yoga Basics', '2024-04-10', '2024-06-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 100', 10, 20, 10.00, 15.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Kickboxing Intro', '2024-01-10', '2024-03-20', 'Monday,Wednesday', '17:00:00', '18:00:00', 'Room 105', 20, 20, 10.00, 15.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Kickboxing Advanced', '2024-04-10', '2024-06-20', 'Monday,Wednesday', '17:00:00', '18:00:00', 'Room 105', 15, 20, 15.00, 25.00, 'Kickboxing Intro');
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Senior Yoga', '2023-09-10', '2023-12-20', 'Thursday', '10:00:00', '11:00:00', 'Room 101', 12, 20, 8.00, 12.00, NULL);
-
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Youth Swimming', '2024-03-01', '2024-06-01', 'Saturday', '09:00:00', '10:00:00', 'Pool', 20, 20, 5.00, 10.00, NULL);
-
+VALUES 
+('Yoga Basics', '2024-04-10', '2024-06-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 100', 10, 20, 10.00, 15.00, NULL),
+('Kickboxing Intro', '2024-01-10', '2024-03-20', 'Monday,Wednesday', '17:00:00', '18:00:00', 'Room 105', 20, 20, 10.00, 15.00, NULL),
+('Kickboxing Advanced', '2024-04-10', '2024-06-20', 'Monday,Wednesday', '17:00:00', '18:00:00', 'Room 105', 15, 20, 15.00, 25.00, 'Kickboxing Intro'),
+('Senior Yoga', '2023-09-10', '2023-12-20', 'Thursday', '10:00:00', '11:00:00', 'Room 101', 12, 20, 8.00, 12.00, NULL),
+('Youth Swimming', '2024-03-01', '2024-06-01', 'Saturday', '09:00:00', '10:00:00', 'Pool', 20, 20, 5.00, 10.00, NULL);
 
 -- Add Shark Program on Sundays
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Shark', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24.00, 48.00, 96.00, 'Pike Level');
+VALUES 
+('Shark', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24.00, 48.00, 96.00, 'Pike Level');
 
 -- Add Shark Program on Mondays and Wednesdays
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Shark', '2024-11-17', '2024-12-22', 'Monday,Wednesday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 8, 33.00, 65.00, 130.00, 'Pike Level');
+VALUES 
+('Shark', '2024-11-17', '2024-12-22', 'Monday,Wednesday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 8, 33.00, 65.00, 130.00, 'Pike Level');
 
 -- Add Log Rolling Program on Sundays
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
-VALUES ('Log Rolling', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50.00, 100.00, 200.00, NULL);
+VALUES 
+('Log Rolling', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50.00, 100.00, 200.00, NULL);
 
-
--- Alterations to the Database --
-ALTER TABLE Classes MODIFY COLUMN DayOfWeek VARCHAR(50);
-ALTER TABLE Classes DROP FOREIGN KEY PrerequisiteClassID;
-ALTER TABLE Classes DROP COLUMN PrerequisiteClassID;
-ALTER TABLE Classes ADD COLUMN PrerequisiteClassName VARCHAR(100);
-ALTER TABLE Classes ADD COLUMN ClassDescription VARCHAR(500) AFTER ClassName;
-ALTER TABLE Classes ADD COLUMN PriceStaff DECIMAL(10, 2) AFTER MaxParticipants;
-ALTER TABLE Classes ADD COLUMN CurrentParticipantCount INT AFTER MaxParticipants;
-
--- Alterations to User Permissions --
---UPDATE people SET role = "supervisor", PermissionID = 2 where FirstName = "Eugene";
---UPDATE people SET role = "staff", PermissionID = 3 where FirstName = "Squidward";
 
 INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID, MembershipPaid, HasMessage, MessageText) VALUES
 ('Mickey', 'Mouse', 'mm@email.com', '123-456-7890', TRUE, FALSE, FALSE, '123qwe', 'Member', 4, TRUE, FALSE, NULL),
@@ -219,57 +177,70 @@ INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, I
 
 
 -- Fix up the max participants and staff prices.
-UPDATE Classes SET MaxParticipants = FLOOR(2 + RAND() * 11);
+UPDATE Classes SET MaxParticipants = FLOOR(10 + RAND() * 25);
 UPDATE Classes SET PriceStaff = CEIL(PriceMember / 2);
 
 
 -- Populate Registrations for various classes ensuring prerequisites are met
 -- Assume PersonIDs 1 to 25 are the test users created
 
--- Register users for past classes
 INSERT INTO Registrations (PersonID, ClassID, RegistrationDate, PaymentAmount, PaymentStatus)
 VALUES 
-(1, (SELECT ClassID FROM Classes WHERE ClassName = 'Yoga Basics' AND StartDate = '2024-04-10'), '2024-05-01', 10.00, 'Paid'),
-(2, (SELECT ClassID FROM Classes WHERE ClassName = 'Kickboxing Intro'), '2024-02-10', 10.00, 'Paid'),
-(3, (SELECT ClassID FROM Classes WHERE ClassName = 'Senior Yoga'), '2023-10-01', 8.00, 'Paid'),
-(4, (SELECT ClassID FROM Classes WHERE ClassName = 'Youth Swimming'), '2024-04-15', 5.00, 'Paid'),
-(5, (SELECT ClassID FROM Classes WHERE ClassName = 'Kickboxing Advanced' AND StartDate = '2024-04-10'), '2024-05-01', 15.00, 'Paid');
+(1, 2, '2024-06-15', 20.00, 'Paid'),
+(2, 3, '2024-12-05', 12.00, 'Paid'),
+(3, 4, '2025-03-15', 18.00, 'Paid'),
+(4, 5, '2025-04-01', 10.00, 'Paid'),
+(5, 6, '2024-12-01', 15.00, 'Paid'),
+(6, 7, '2024-07-10', 20.00, 'Paid'),
+(7, 8, '2024-11-20', 10.00, 'Due'),
+(8, 9, '2024-03-05', 10.00, 'Paid'),
+(9, 10, '2024-08-01', 15.00, 'Paid'),
+(10, 11, '2023-12-01', 8.00, 'Paid'),
+(11, 12, '2024-02-10', 5.00, 'Paid'),
+(12, 13, '2024-09-10', 12.00, 'Due'),
+(13, 14, '2024-11-05', 10.00, 'Paid'),
+(14, 15, '2024-08-15', 20.00, 'Paid'),
+(15, 16, '2024-09-01', 12.00, 'Paid'),
+(16, 17, '2025-05-20', 18.00, 'Due'),
+(17, 18, '2024-10-05', 20.00, 'Paid'),
+(18, 19, '2024-11-01', 30.00, 'Paid'),
+(19, 20, '2024-12-01', 18.00, 'Due'),
+(20, 21, '2024-11-15', 48.00, 'Paid'),
+(21, 22, '2024-11-22', 96.00, 'Due'),
+(22, 1, '2024-09-15', 15.00, 'Paid'),
+(23, 3, '2024-11-25', 12.00, 'Paid'),
+(24, 5, '2024-10-30', 10.00, 'Paid'),
+(25, 7, '2024-09-20', 20.00, 'Paid'),
+(26, 2, '2024-07-01', 20.00, 'Paid'),
+(27, 6, '2024-05-10', 15.00, 'Paid'),
+(28, 10, '2024-09-01', 18.00, 'Paid'),
+(29, 8, '2024-08-01', 10.00, 'Paid'),
+(30, 13, '2024-12-05', 12.00, 'Paid'),
+(31, 9, '2024-10-05', 15.00, 'Paid'),
+(32, 4, '2024-11-01', 18.00, 'Paid'),
+(33, 16, '2024-06-10', 12.00, 'Paid'),
+(34, 14, '2024-09-15', 20.00, 'Paid'),
+(35, 12, '2024-07-10', 5.00, 'Paid'),
+(36, 15, '2024-08-10', 18.00, 'Paid'),
+(37, 17, '2024-07-20', 18.00, 'Paid'),
+(38, 18, '2025-03-10', 30.00, 'Paid'),
+(39, 19, '2024-10-01', 20.00, 'Paid'),
+(40, 20, '2024-08-25', 30.00, 'Paid'),
+(41, 21, '2024-12-10', 48.00, 'Due'),
+(42, 22, '2024-09-01', 96.00, 'Paid'),
+(43, 5, '2024-06-20', 25.00, 'Paid'),
+(44, 9, '2024-05-05', 15.00, 'Paid'),
+(45, 8, '2024-09-15', 25.00, 'Paid'),
+(46, 10, '2024-07-05', 15.00, 'Paid'),
+(47, 11, '2024-12-01', 18.00, 'Paid'),
+(48, 12, '2024-06-01', 5.00, 'Paid'),
+(49, 6, '2025-01-01', 15.00, 'Paid'),
+(50, 7, '2024-11-01', 20.00, 'Paid');
 
--- Register users for current classes
-INSERT INTO Registrations (PersonID, ClassID, RegistrationDate, PaymentAmount, PaymentStatus)
-VALUES 
-(6, (SELECT ClassID FROM Classes WHERE ClassName = 'Pilates Beginner' AND StartDate = '2024-11-01'), '2024-11-10', 12.00, 'Paid'),
-(7, (SELECT ClassID FROM Classes WHERE ClassName = 'HIIT Workout' AND StartDate = '2024-08-01'), '2024-10-10', 10.00, 'Paid'),
-(8, (SELECT ClassID FROM Classes WHERE ClassName = 'Swimming Basics' AND StartDate = '2024-06-01'), '2024-07-01', 15.00, 'Paid');
 
--- Register users for future classes, ensuring prerequisites are met
-INSERT INTO Registrations (PersonID, ClassID, RegistrationDate, PaymentAmount, PaymentStatus)
-VALUES 
-(9, (SELECT ClassID FROM Classes WHERE ClassName = 'Yoga Basics' AND StartDate = '2025-01-10'), '2025-01-05', 15.00, 'Due'),
-(10, (SELECT ClassID FROM Classes WHERE ClassName = 'Yoga Intermediate' AND StartDate = '2025-04-10'), '2025-03-01', 20.00, 'Waived'),
-(11, (SELECT ClassID FROM Classes WHERE ClassName = 'Pilates Beginner' AND StartDate = '2025-02-15'), '2025-02-01', 12.00, 'Paid'),
-(12, (SELECT ClassID FROM Classes WHERE ClassName = 'Pilates Advanced' AND StartDate = '2025-05-15'), '2025-04-15', 18.00, 'Paid');
-
--- Additional registrations to ensure all users are registered for at least 2 classes
-INSERT INTO Registrations (PersonID, ClassID, RegistrationDate, PaymentAmount, PaymentStatus)
-VALUES 
-(13, (SELECT ClassID FROM Classes WHERE ClassName = 'HIIT Workout' AND StartDate = '2025-03-01'), '2025-03-05', 10.00, 'Paid'),
-(14, (SELECT ClassID FROM Classes WHERE ClassName = 'Swimming Basics' AND StartDate = '2025-06-01'), '2025-06-01', 15.00, 'Paid'),
-(15, (SELECT ClassID FROM Classes WHERE ClassName = 'Advanced Swimming' AND StartDate = '2025-09-01'), '2025-09-05', 20.00, 'Due'),
-(16, (SELECT ClassID FROM Classes WHERE ClassName = 'Yoga Basics' AND StartDate = '2024-10-10'), '2024-10-15', 15.00, 'Paid'),
-(17, (SELECT ClassID FROM Classes WHERE ClassName = 'Pilates Beginner' AND StartDate = '2025-02-15'), '2025-02-20', 12.00, 'Paid'),
-(18, (SELECT ClassID FROM Classes WHERE ClassName = 'Yoga Intermediate' AND StartDate = '2025-04-10'), '2025-03-10', 20.00, 'Waived'),
-(19, (SELECT ClassID FROM Classes WHERE ClassName = 'Senior Yoga'), '2023-09-15', 8.00, 'Paid'),
-(20, (SELECT ClassID FROM Classes WHERE ClassName = 'Youth Swimming' AND StartDate = '2024-03-01'), '2024-03-10', 5.00, 'Paid'),
-(21, (SELECT ClassID FROM Classes WHERE ClassName = 'Kickboxing Advanced' AND StartDate = '2024-04-10'), '2024-05-10', 15.00, 'Due'),
-(22, (SELECT ClassID FROM Classes WHERE ClassName = 'Yoga Basics' AND StartDate = '2025-01-10'), '2025-01-15', 15.00, 'Paid'),
-(23, (SELECT ClassID FROM Classes WHERE ClassName = 'Swimming Basics' AND StartDate = '2025-06-01'), '2025-06-15', 15.00, 'Paid'),
-(24, (SELECT ClassID FROM Classes WHERE ClassName = 'Advanced Swimming' AND StartDate = '2025-09-01'), '2025-09-10', 20.00, 'Waived'),
-(25, (SELECT ClassID FROM Classes WHERE ClassName = 'Pilates Advanced' AND StartDate = '2025-05-15'), '2025-05-20', 18.00, 'Paid');
-
-UPDATE Classes
+UPDATE Classes 
 SET CurrentParticipantCount = (
-    SELECT COUNT(*)
-    FROM Registrations
+    SELECT COUNT(*) 
+    FROM Registrations 
     WHERE Registrations.ClassID = Classes.ClassID
 );

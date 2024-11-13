@@ -51,7 +51,7 @@ while ($row = $result->fetch_assoc()) {
         'currentEnrolled' => $row['CurrentEnrolled'],
         'priceMember' => $row['PriceMember'],
         'priceNonMember' => $row['PriceNonMember'],
-        'prerequisite' => $row['Prerequisite'] ?? 'None'
+        'prerequisiteClassName' => $row['PrerequisiteClassName'] ?? 'None'
     ];
 }
 
