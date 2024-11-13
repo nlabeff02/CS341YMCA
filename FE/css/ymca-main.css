@@ -659,4 +659,10 @@ button {
   width: 100%;
   margin-top: 5px;
 }
-
+/*Class and Programs Styling*/
+table#classesTable{
+  border-color: lightgrey;
+}
+table#classesTable th{
+  background-color: #8ecae6;
+}
