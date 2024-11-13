@@ -28,16 +28,37 @@ switch ($action) {
     case 'getRegistrations':
         getRegistrations($connect);
         break;
+    case 'updatePaymentStatus':
+        updatePaymentStatus($connect);
+        break;
     default:
         echo json_encode(['status' => 'error', 'message' => 'Invalid action specified']);
         break;
+}
+
+function updatePaymentStatus($connect) {
+    $registrationId = $_POST['registrationId'];
+    $newStatus = $_POST['newStatus'];
+
+    $query = "UPDATE Registrations SET PaymentStatus = ? WHERE RegistrationID = ?";
+    $stmt = $connect->prepare($query);
+    $stmt->bind_param('si', $newStatus, $registrationId);
+
+    if ($stmt->execute()) {
+        echo json_encode(['status' => 'success', 'message' => 'Payment status updated successfully']);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Failed to update payment status']);
+    }
+
+    $stmt->close();
 }
 
 // Function to fetch registrations for a specific member
 function getRegistrations($connect) {
     $memberId = $_POST['memberId'];
 
-    $query = "SELECT c.ClassName AS className, c.StartDate AS startDate, c.EndDate AS endDate, r.PaymentStatus AS paymentStatus 
+    $query = "SELECT r.RegistrationID AS registrationId, c.ClassName AS className, 
+                     c.StartDate AS startDate, c.EndDate AS endDate, r.PaymentStatus AS paymentStatus 
               FROM Registrations r
               JOIN Classes c ON r.ClassID = c.ClassID
               WHERE r.PersonID = ?";
@@ -56,7 +77,8 @@ function getRegistrations($connect) {
     $stmt->close();
 }
 
-// Function to search members based on a specific criterion
+
+// Function to search for Members and NonMembers based on a specific criterion
 function searchMembers($connect) {
     $searchType = $_POST['searchType'];
     $searchText = $_POST['searchText'];
@@ -66,12 +88,12 @@ function searchMembers($connect) {
         // Remove non-numeric characters for phone number comparison
         $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role 
                   FROM People 
-                  WHERE REPLACE(REPLACE(REPLACE(PhoneNumber, '-', ''), '(', ''), ')', '') LIKE ?";
+                  WHERE Role IN ('Member', 'NonMember') AND REPLACE(REPLACE(REPLACE(PhoneNumber, '-', ''), '(', ''), ')', '') LIKE ?";
         $searchText = "%" . preg_replace('/\D/', '', $searchText) . "%"; // Remove non-numeric characters from input
     } else {
         $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role 
                   FROM People 
-                  WHERE $searchType LIKE ?";
+                  WHERE Role IN ('Member', 'NonMember') AND $searchType LIKE ?";
         $searchText = "%" . $searchText . "%";
     }
 
@@ -90,9 +112,11 @@ function searchMembers($connect) {
     $stmt->close();
 }
 
-// Function to retrieve all members
+// Function to retrieve all Members and NonMembers
 function viewAllMembers($connect) {
-    $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role FROM People";
+    $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role 
+              FROM People 
+              WHERE Role IN ('Member', 'NonMember')";
     $result = $connect->query($query);
 
     $members = [];
@@ -102,6 +126,7 @@ function viewAllMembers($connect) {
 
     echo json_encode(['status' => 'success', 'members' => $members]);
 }
+
 
 // Function to save updated member information
 function saveMember($connect) {

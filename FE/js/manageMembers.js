@@ -181,14 +181,29 @@ function displayRegistrations(registrations) {
     const tableBody = document.getElementById("registrationsTableBody");
     tableBody.innerHTML = ''; // Clear previous data
 
-    console.log("Registrations received:", registrations);
-
     registrations.forEach(registration => {
         const row = tableBody.insertRow();
         row.insertCell(0).innerText = registration.className;
         row.insertCell(1).innerText = registration.startDate;
         row.insertCell(2).innerText = registration.endDate;
-        row.insertCell(3).innerText = registration.paymentStatus;
+        
+        // Create dropdown for Payment Status
+        const paymentCell = row.insertCell(3);
+        const paymentDropdown = document.createElement("select");
+
+        ["Paid", "Due", "Waived"].forEach(status => {
+            const option = document.createElement("option");
+            option.value = status;
+            option.text = status;
+            option.selected = registration.paymentStatus === status;
+            paymentDropdown.appendChild(option);
+        });
+
+        paymentDropdown.onchange = function () {
+            updatePaymentStatus(registration.registrationId, paymentDropdown.value);
+        };
+
+        paymentCell.appendChild(paymentDropdown);
     });
 
     document.getElementById("registrationsContainer").style.display = "block";
@@ -199,3 +214,23 @@ function closeRegistrationsModal() {
     document.getElementById("registrationsContainer").style.display = "none";
 }
 
+function updatePaymentStatus(registrationId, newStatus) {
+    fetch('php/manageMembers_mgr.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+            action: 'updatePaymentStatus',
+            registrationId: registrationId,
+            newStatus: newStatus
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            console.log("Payment status updated successfully");
+        } else {
+            console.error("Failed to update payment status:", data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}

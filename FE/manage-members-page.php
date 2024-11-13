@@ -84,8 +84,8 @@
                 </div>
             </section>
 
-        <!-- Edit Form Modal -->
-        <section id="editFormContainer" class="ymca-modal-container" style="display: none;">
+            <!-- Edit Form Modal -->
+            <section id="editFormContainer" class="ymca-modal-container" style="display: none;">
                 <h3 class="ymca-modal-title">Edit Member Information</h3>
                 <form id="editForm" class="ymca-modal-form">
                     <input type="hidden" id="editMemberId" name="memberId">
