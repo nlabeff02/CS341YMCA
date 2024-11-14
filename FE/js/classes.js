@@ -227,7 +227,7 @@ function populateClassesTablePublic(classes) {
 
         const actionsCell = row.insertCell();
         if (isLoggedIn) { // Only show the register button if user is logged in
-            const registerButton = createRegisterButton(cls.classID);
+            const registerButton = createRegisterButton(cls);
             actionsCell.appendChild(registerButton);
         } else {
             actionsCell.innerText = 'Login to Register';
