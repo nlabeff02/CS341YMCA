@@ -125,6 +125,8 @@ async function registerForClass(cls) {
         });
 
         const data = await response.json();
+
+        // Check the status from the PHP response
         if (data.status === 'success') {
             console.log('Registration successful:', data.message);
             alert('Registration successful! Redirecting to your registered classes...');
@@ -133,13 +135,19 @@ async function registerForClass(cls) {
         } else if (data.message === 'You are already registered for this class.') {
             console.log('You are already registered for this class.');
             alert('You are already registered for this class.');
+        } else if (data.message === 'You must complete the prerequisite class before registering for this class.') {
+            console.log('Prerequisite not completed.');
+            alert('You must complete the prerequisite class before registering for this class.');
         } else {
             console.error('Registration failed:', data.message);
+            alert('Registration failed: ' + data.message);
         }
     } catch (error) {
         console.error('Error during registration:', error);
+        alert('An error occurred. Please try again.');
     }
 }
+
 
 
 
@@ -310,7 +318,7 @@ function createRegisterButton(cls) {
         registerButton.style.backgroundColor = '#ccc';
         registerButton.style.cursor = 'class full';
     } else {
-        registerButton.onclick = () => registerForClass(cls);
+        registerButton.onclick = () => registerForClass(cls.classID);
     }
     return registerButton;
 }

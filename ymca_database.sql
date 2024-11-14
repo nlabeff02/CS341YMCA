@@ -178,7 +178,7 @@ INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, I
 
 
 -- Fix up the max participants and staff prices.
-UPDATE Classes SET MaxParticipants = FLOOR(10 + RAND() * 25);
+UPDATE Classes SET MaxParticipants = FLOOR(2 + RAND() * 10);
 UPDATE Classes SET PriceStaff = CEIL(PriceMember / 2);
 
 

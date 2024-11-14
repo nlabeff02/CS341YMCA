@@ -44,6 +44,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode(['status' => 'error', 'message' => 'Invalid user role']);
             exit();
     } 
+    // Retrieve prerequisite class name for the selected class
+    $prerequisiteQuery = "SELECT PrerequisiteClassName FROM Classes WHERE ClassID = ? LIMIT 1";
+    $stmt = $connect->prepare($prerequisiteQuery);
+    $stmt->bind_param("i", $classID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $classInfo = $result->fetch_assoc();
+    $stmt->close();
+
+    if ($classInfo && !empty($classInfo['PrerequisiteClassName'])) {
+        $prerequisiteClassName = $classInfo['PrerequisiteClassName'];
+
+        // Check if the user has completed a class that matches the prerequisite class name
+        $prerequisiteCheckQuery = "
+            SELECT 1 
+            FROM Registrations r
+            INNER JOIN Classes c ON r.ClassID = c.ClassID
+            WHERE r.PersonID = ? 
+              AND c.ClassName = ? 
+              AND r.PaymentStatus = 'Paid'
+            LIMIT 1";
+        
+        $stmt = $connect->prepare($prerequisiteCheckQuery);
+        $stmt->bind_param("is", $personID, $prerequisiteClassName);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows == 0) {
+            echo json_encode(['status' => 'error', 'message' => 'Prerequisite not met: You must complete "' . $prerequisiteClassName . '" before registering for this class.']);
+            $stmt->close();
+            exit();
+        }
+        $stmt->close();
+    }
+
     // Check if the user is already registered for this class
     $checkQuery = "SELECT 1 FROM Registrations WHERE personID = ? AND classID = ? LIMIT 1";
     $stmt = $connect->prepare($checkQuery);
