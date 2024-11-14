@@ -30,7 +30,8 @@ $query = "
         c.PriceStaff,
         c.PriceMember,
         c.PriceNonMember,
-        c.PrerequisiteClassName
+        c.PrerequisiteClassName,
+        c.IsActive
     FROM Classes c
 ";
 
@@ -56,7 +57,8 @@ while ($row = $result->fetch_assoc()) {
         'priceStaff' => $row['PriceStaff'],
         'priceMember' => $row['PriceMember'],
         'priceNonMember' => $row['PriceNonMember'],
-        'prerequisiteClassName' => $row['PrerequisiteClassName'] ?? 'None'
+        'prerequisiteClassName' => $row['PrerequisiteClassName'] ?? 'None',
+        'isActive' => $row['IsActive']
     ];
 }
 

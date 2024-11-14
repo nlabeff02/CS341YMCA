@@ -127,6 +127,9 @@ async function registerForClass(cls) {
         const data = await response.json();
         if (data.status === 'success') {
             console.log('Registration successful:', data.message);
+            alert('Registration successful! Redirecting to your registered classes...');
+            // Redirect to members.php on successful registration
+            window.location.href = 'members.php';
         } else {
             console.error('Registration failed:', data.message);
         }
@@ -181,6 +184,7 @@ function populateClassesTable(classes) {
         createCell(row, cls.priceMember);
         createCell(row, cls.priceNonMember);
         createCell(row, cls.prerequisiteClassName ?? 'None');  // Default to 'None' if no prerequisite
+        createCell(row, cls.isActive);
 
         const actionsCell = row.insertCell();
         const modifyButton = createModifyButton(cls);

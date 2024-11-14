@@ -63,14 +63,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Prepare registration data
     $registrationDate = date('Y-m-d'); // Today's date
     $paymentAmount = $classInfo['PaymentAmount'];
-    $PaymentStatus = "Due";
+    $paymentStatus = "Due";
 
     // Insert new registration
     $stmt = $connect->prepare("INSERT INTO Registrations (personID, classID, registrationDate, paymentAmount, paymentStatus) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("iisis", $personID, $classID, $registrationDate, $paymentAmount, $paymentStatus);
 
     if ($stmt->execute()) {
-        echo json_encode(['status' => 'success', 'message' => 'Class registered successfully']);
+        // Increment the CurrentParticipantCount in the Classes table
+        $stmt->close();
+        $stmt = $connect->prepare("UPDATE Classes SET CurrentParticipantCount = CurrentParticipantCount + 1 WHERE classID = ?");
+        $stmt->bind_param("i", $classID);
+
+        if ($stmt->execute()) {
+            echo json_encode(['status' => 'success', 'message' => 'Class registered successfully']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to update participant count: ' . $stmt->error]);
+        }
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Failed to register for class: ' . $stmt->error]);
     }

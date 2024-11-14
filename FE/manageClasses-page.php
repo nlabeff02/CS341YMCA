@@ -30,6 +30,7 @@
                     <th>Price for Members</th>
                     <th>Price for Non-Members</th>
                     <th>Prerequisite</th>
+                    <th>Active</th>
                     <th>Actions</th>
                 </tr>
             </thead>

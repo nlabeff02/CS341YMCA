@@ -29,13 +29,13 @@
 
             <label>Day of the Week:</label>
             <div id="day-of-week">
-                <label><input type="checkbox" name="dayOfWeek" value="Monday"> Monday</label>
-                <label><input type="checkbox" name="dayOfWeek" value="Tuesday"> Tuesday</label>
-                <label><input type="checkbox" name="dayOfWeek" value="Wednesday"> Wednesday</label>
-                <label><input type="checkbox" name="dayOfWeek" value="Thursday"> Thursday</label>
-                <label><input type="checkbox" name="dayOfWeek" value="Friday"> Friday</label>
-                <label><input type="checkbox" name="dayOfWeek" value="Saturday"> Saturday</label>
-                <label><input type="checkbox" name="dayOfWeek" value="Sunday"> Sunday</label>
+                <label><input type="checkbox" name="dayOfWeek[]" value="Monday"> Monday</label>
+                <label><input type="checkbox" name="dayOfWeek[]" value="Tuesday"> Tuesday</label>
+                <label><input type="checkbox" name="dayOfWeek[]" value="Wednesday"> Wednesday</label>
+                <label><input type="checkbox" name="dayOfWeek[]" value="Thursday"> Thursday</label>
+                <label><input type="checkbox" name="dayOfWeek[]" value="Friday"> Friday</label>
+                <label><input type="checkbox" name="dayOfWeek[]" value="Saturday"> Saturday</label>
+                <label><input type="checkbox" name="dayOfWeek[]" value="Sunday"> Sunday</label>
             </div>
 
             <label for="start-time">Start Time:</label>
@@ -45,7 +45,7 @@
             <input type="time" id="end-time" name="endTime" required>
 
             <label for="location">Location:</label>
-            <input type="text" id="location" name="ClassLocation" required>
+            <input type="text" id="location" name="Location" required>
 
             <label for="max-participants">Max Participants:</label>
             <input type="number" id="max-participants" name="maxParticipants" required>
@@ -64,6 +64,9 @@
 
             <label for="prerequisite-class">Prerequisite Class Name (optional):</label>
             <input type="text" id="prerequisite-class" name="prerequisiteClassName">
+
+            <label for="is-active">Is this class available to register? (t or f):</label>
+            <input type="text" id="is-active" name="isActive">
 
             <button type="submit">Update Class</button>
         </form>
@@ -94,7 +97,7 @@
 
                     if (result.status === 'success') {
                         alert(result.message); // Show success message
-                        window.location.href = 'manageClasses-page.php'; // Redirect after success
+                        //window.location.href = 'manageClasses-page.php'; // Redirect after success
                     } else {
                         alert('Error: ' + result.message); // Show error message if any
                     }
@@ -137,6 +140,7 @@
                     document.getElementById('price-member').value = cls.PriceMember ?? '';
                     document.getElementById('price-nonmember').value = cls.PriceNonMember ?? '';
                     document.getElementById('prerequisite-class').value = cls.PrerequisiteClassName ?? '';
+                    document.getElementById('is-active').value = cls.IsActive;
                 } else {
                     console.error('Failed to load class details:', data.message);
                 }

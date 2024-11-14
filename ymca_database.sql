@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS Classes (
     PriceMember DECIMAL(10, 2),
     PriceNonMember DECIMAL(10, 2),
     PrerequisiteClassName VARCHAR(100),
+    IsActive BOOLEAN DEFAULT TRUE NOT NULL,
     PRIMARY KEY (ClassID)
 ) ENGINE=InnoDB;
 

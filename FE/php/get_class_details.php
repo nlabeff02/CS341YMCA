@@ -38,7 +38,8 @@ $query = "
         c.PriceStaff,
         c.PriceMember,
         c.PriceNonMember,
-        c.PrerequisiteClassName
+        c.PrerequisiteClassName,
+        c.IsActive
     FROM Classes c
     WHERE c.ClassID = $classID
     ";

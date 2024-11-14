@@ -27,3 +27,11 @@ at	5:00pm	on	Sundays.
 # Demo 3
 o Admin Dashboard
   - user count/class count/etc.
+
+
+
+# To-Do
+- If a person is already registered for a class, the registration button needs to be disabled.
+- nav_mgr.php should check for and activate any flags for messages for a user.
+  o Allow the user to acknowledge the message. System removes the flag and clears the message.
+- Need sort and search options for tables/columns.
