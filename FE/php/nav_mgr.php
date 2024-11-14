@@ -40,6 +40,13 @@
                 <li><a href="class-page.php">Search Classes</a></li>
             <?php endif; ?>
         </ul>
+        <?php
+            $personID = $_SESSION['user']['personID'];
+            $personRole = $_SESSION['user']['role'];
+            echo "<script>const personID = " . json_encode($personID) . ";
+                    const personRole = " . json_encode($personRole) . ";
+                    console.log(personID, personRole);</script>";
+        ?>
     </nav>
 <?php endif; ?>
 
@@ -50,6 +57,7 @@
         background-color: #219ebc; /* Distinct color for role-based nav */
         padding: 10px;
         text-align: center;
+        width: 100%;
     }
 
     .role-nav ul {

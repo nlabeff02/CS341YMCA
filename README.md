@@ -14,14 +14,15 @@ must	have	passed	pike	level	before.
 Onalaska pool,	maximum	1,	$100 member,	$200 non-member.	
 2. Jane	Doe	is	a	YMCA	member,	logs	in	and	registers	the	programs Shark	at	5:00pm	
 on	Sunday	and	Log	Rolling	at	5:00pm	on	Sundays	as	well.
-3. Luke	Anderson	is	not	a	YMCA	member,	registers	the	programs Shark	on	
+# Ready 3. Luke	Anderson	is	not	a	YMCA	member,	registers	the	programs Shark	on	
 Mondays	and	Wednesdays at	6:00pm,	and	Log	Rolling	on	Sundays	at	5:00pm.
-4. Aini	Anderson	is	a	YMCA	member,	logs	in	and	registers	the	program	Log	Rolling	
+# Ready 4. Aini	Anderson	is	a	YMCA	member,	logs	in	and	registers	the	program	Log	Rolling	
 at	5:00pm	on	Sundays.
-5. Staff	search	and	view	Jan	Doe’s	the	program	registrations.
+# Ready 5. Staff	search	and	view	Jan	Doe’s	the	program	registrations.
 6. Staff	cancels	Log	Rolling	on	Sundays	at	5:00pm (How	would	Luke	be	notified?)
 # READY 7. Show	your	database	tables:	Member, Program, Registration …
 
+- ability to make class active/inactive
 
 # Demo 3
 o Admin Dashboard

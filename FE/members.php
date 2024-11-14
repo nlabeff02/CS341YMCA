@@ -10,16 +10,20 @@
     <img src="img/Designer.png" alt="YMCA" width="200" height="200">
 
     <div id="content">
-        <?php if (isset($_SESSION['user'])): ?>
+        <?php if (isset($_SESSION['user']['personID'])): ?>
             <!-- Content for logged-in users -->
             <h3>Registered Classes</h3>
             <table id="classesTable" style="border: solid; width: 80%; margin: 0 auto; text-align: center; color: white;">
                 <thead>
                     <tr>
                         <th>Class Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
                         <th>Day(s)</th>
                         <th>Start Time</th>
                         <th>End Time</th>
+                        <th>Location</th>
+                        <th>Payment</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,10 +40,17 @@
             </p>
         <?php endif; ?>
     </div>
-
-    <footer>
-        <p>YMCA © 2024</p>
-    </footer>
-
 </body>
+<footer>
+        <p>YMCA © 2024</p>
+</footer>
+<script src="js/classes.js"></script>
+<script>
+    // Load future member classes when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        const memberID = <?php echo $_SESSION['user']['personID']; ?>;
+        console.log(`members.php memberID: ${memberID}`)
+        getMemberClassesActive(memberID);
+    });
+</script>
 </html>

@@ -69,8 +69,8 @@ function getFutureMemberClasses(memberId) {
 }
 
 // Fetches active classes for a specific member
-function getActiveMemberClasses(memberId) {
-    return fetch(`php/get_active_member_classes.php?memberId=${memberId}`)
+async function getMemberClassesActive(memberId) {
+ /*   return fetch(`php/get_member_classes_active.php?memberId=${memberId}`)
         .then(response => response.json())
         .then(data => {
             // Handle data for active classes for a specific member
@@ -78,6 +78,13 @@ function getActiveMemberClasses(memberId) {
             return data;
         })
         .catch(error => console.error(`Error fetching active classes for member ${memberId}:`, error));
+        */
+    const data = await fetchData(`php/get_member_classes_active.php?memberId=${memberId}`);
+    if (data.status === 'success' && data.classes) {
+        populateMemberClassesActive(data.classes);
+    } else {
+        console.error('Failed to fetch classes:', data.message);
+    }
 }
 
 // Fetches past classes for a specific member
@@ -101,6 +108,33 @@ async function getFutureClassesPublic() {
         console.error('Failed to fetch classes:', data.message);
     }
 }
+
+async function registerForClass(cls) {
+    console.log(`Class ID: ${cls}, Person ID: ${personID}, Person Role: ${personRole}`);
+    try {
+        const response = await fetch('php/registerClass.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                classID: cls,
+                personID: personID,
+                personRole: personRole
+            })
+        });
+
+        const data = await response.json();
+        if (data.status === 'success') {
+            console.log('Registration successful:', data.message);
+        } else {
+            console.error('Registration failed:', data.message);
+        }
+    } catch (error) {
+        console.error('Error during registration:', error);
+    }
+}
+
 
 // Reusable Fetch Function
 // $url is php endpoint
@@ -193,6 +227,37 @@ function populateClassesTablePublic(classes) {
     });
 }
 
+function populateMemberClassesActive(classes) {
+    const tableBody = document.getElementById('classesTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear any existing rows
+
+    //console.log("isLoggedIn in classes.js:", isLoggedIn); // Debugging line
+
+    if (classes.length === 0) {
+        createNoDataRow(tableBody, 'No classes available.');
+        return;
+    }
+
+    classes.forEach(cls => {
+        const row = tableBody.insertRow();
+        //createCell(row, cls.classID);
+        createCell(row, cls.className);
+        //createCell(row, cls.classDescription);
+        createCell(row, cls.startDate);
+        createCell(row, cls.endDate);
+        createCell(row, cls.dayOfWeek);
+        createCell(row, cls.startTime);
+        createCell(row, cls.endTime);
+        createCell(row, cls.classLocation);
+        //createCell(row, cls.maxParticipants);
+        //createCell(row, cls.currentParticipantCount) ?? '0'; // Default to zero if no participants.
+        //createCell(row, cls.priceMember);
+        //createCell(row, cls.priceNonMember);
+        //createCell(row, cls.prerequisiteClassName ?? 'None');  // Default to 'None' if no prerequisite
+        createCell(row, cls.paymentStatus);
+    });
+}
+
 // Creates a generic cell and appends it to a row.
 function createCell(row, text) {
     const cell = row.insertCell();
@@ -237,9 +302,7 @@ function createRegisterButton(cls) {
         registerButton.style.backgroundColor = '#ccc';
         registerButton.style.cursor = 'class full';
     } else {
-        registerButton.onclick = () => registerForClass(cls.classID);
-        registerButton.onclick = () => alert('You have been registed for ' + cls.className);
-        
+        registerButton.onclick = () => registerForClass(cls);
     }
     return registerButton;
 }
