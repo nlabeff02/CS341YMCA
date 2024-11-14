@@ -44,7 +44,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode(['status' => 'error', 'message' => 'Invalid user role']);
             exit();
     } 
+    // Check if the user is already registered for this class
+    $checkQuery = "SELECT 1 FROM Registrations WHERE personID = ? AND classID = ? LIMIT 1";
+    $stmt = $connect->prepare($checkQuery);
+    $stmt->bind_param("ii", $personID, $classID);
+    $stmt->execute();
+    $stmt->store_result();
 
+    if ($stmt->num_rows > 0) {
+        echo json_encode(['status' => 'error', 'message' => 'You are already registered for this class.']);
+        $stmt->close();
+        exit();
+    }
+    $stmt->close();
     // Retrieve the payment amount from the determined column
     $sql = "SELECT $paymentColumn AS PaymentAmount FROM Classes WHERE classID = ? LIMIT 1";
     $stmt = $connect->prepare($sql);

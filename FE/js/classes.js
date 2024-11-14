@@ -130,6 +130,9 @@ async function registerForClass(cls) {
             alert('Registration successful! Redirecting to your registered classes...');
             // Redirect to members.php on successful registration
             window.location.href = 'members.php';
+        } else if (data.message === 'You are already registered for this class.') {
+            console.log('You are already registered for this class.');
+            alert('You are already registered for this class.');
         } else {
             console.error('Registration failed:', data.message);
         }
@@ -137,6 +140,7 @@ async function registerForClass(cls) {
         console.error('Error during registration:', error);
     }
 }
+
 
 
 // Reusable Fetch Function
