@@ -11,7 +11,7 @@
     <img src="img/Designer.png" alt="YMCA" width="200" height="200">
     <h1>Manage Classes</h1>
     <!-- Table to display classes -->
-    <div id="class-table-container">
+    <div id="classTableContainer">
         <table id="classesTable" border="1">
             <thead>
                 <tr>

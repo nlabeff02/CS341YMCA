@@ -31,7 +31,7 @@
                 <!-- Links for Supervisors -->
                 <li><a href="manage-members-page.php">Manage Members</a></li>
                 <li><a href="createClass-page.php">Create New Class</a></li>
-                <li><a href="manage-classes-page.php">Manage Classes</a></li>
+                <li><a href="manageClasses-page.php">Manage Classes</a></li>
                 <li><a href="manage-staff-page.php">Manage Staff</a></li>
                 <li><a href="overview-page.php">Supervisor Overview</a></li>
             <?php elseif ($_SESSION['user']['role'] === 'Member' || $_SESSION['user']['role'] === 'NonMember'): ?>
