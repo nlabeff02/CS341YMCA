@@ -54,10 +54,14 @@ $permissionID = 5; // Default permission to 'Member'
 $over18 = true; // Set default as true unless you want to check for specific conditions
 $isParent = false; // You can manually adjust this if necessary
 $isChild = false; // Default isChild to false
+$membershipPaid = false;
+$hasMessage = false;
+$messageText = '';
+$isActive = true; // Default isActive to true
 
 // Insert user into the People table
-$stmt = $connect->prepare("INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssissssi", $firstName, $lastName, $email, $phoneNumber, $over18, $isParent, $isChild, $hashedPassword, $role, $permissionID);
+$stmt = $connect->prepare("INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID, MembershipPaid, HasMessage, MessageText, isActive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssissssissss", $firstName, $lastName, $email, $phoneNumber, $over18, $isParent, $isChild, $hashedPassword, $role, $permissionID, $MembershipPaid, $HasMessage, $MessageText, $isActive);
 
 if (!$stmt->execute()) {
     echo json_encode(['status' => 'error', 'message' => 'Error during registration']);

@@ -41,7 +41,7 @@ function viewAllMembers() {
     .catch(error => console.error('Error:', error));
 }
 
-
+/*
 // Function to populate the results table with member data
 function populateResultsTable(members) {
     const tableBody = document.getElementById("resultsTable").getElementsByTagName("tbody")[0];
@@ -55,9 +55,11 @@ function populateResultsTable(members) {
         row.insertCell(3).innerText = member.email;
         row.insertCell(4).innerText = member.phone;
         row.insertCell(5).innerText = member.role;
+        member.isActive = member.isActive === '1' ? 'true' : 'false';
+        row.insertCell(6).innerText = member.isActive;
 
         // Action cell for Edit and View Registrations buttons
-        const actionCell = row.insertCell(6);
+        const actionCell = row.insertCell(7);
 
         // Edit button
         const editButton = document.createElement("button");
@@ -72,7 +74,7 @@ function populateResultsTable(members) {
         actionCell.appendChild(viewRegistrationsButton);
     });
 }
-
+*/
 
 // Function to open the edit form and populate it with selected member data
 function editMember(member) {
@@ -82,6 +84,7 @@ function editMember(member) {
     document.getElementById("editEmail").value = member.email;
     document.getElementById("editPhone").value = member.phone;
     document.getElementById("editRole").value = member.role;
+
 
     // Show the edit form
     document.getElementById("editFormContainer").style.display = "block";
@@ -95,6 +98,7 @@ function saveMember() {
     const email = document.getElementById("editEmail").value;
     const phone = document.getElementById("editPhone").value;
     const role = document.getElementById("editRole").value;
+
 
     fetch('php/manageMembers_mgr.php', {
         method: 'POST',
@@ -140,9 +144,11 @@ function populateResultsTable(members) {
         row.insertCell(3).innerText = member.email;
         row.insertCell(4).innerText = member.phone;
         row.insertCell(5).innerText = member.role;
+        member.isActive = member.isActive === '1' ? 'true' : 'false';
+        row.insertCell(6).innerText = member.isActive;
 
         // Action cell for Edit and View Registrations buttons
-        const actionCell = row.insertCell(6);
+        const actionCell = row.insertCell(7);
 
         // Edit button
         const editButton = document.createElement("button");

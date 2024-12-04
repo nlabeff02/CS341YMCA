@@ -51,6 +51,7 @@
                             <th>Email</th>
                             <th>Phone Number</th>
                             <th>Role</th>
+                            <th>Active</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

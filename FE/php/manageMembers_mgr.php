@@ -114,7 +114,7 @@ function searchMembers($connect) {
 
 // Function to retrieve all Members and NonMembers
 function viewAllMembers($connect) {
-    $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role 
+    $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role, isActive as isActive 
               FROM People 
               WHERE Role IN ('Member', 'NonMember')";
     $result = $connect->query($query);

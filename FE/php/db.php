@@ -1,8 +1,8 @@
 <?php
 // Fetch database credentials from environment variables
 $servername = "localhost";
-$username = "ymca_user";
-$password = "123qwe";
+$username = "root";
+$password = "";
 $db = "ymca";
 
 // Create connection

@@ -35,7 +35,7 @@
             <p style="text-align: center; color: #FF0000; margin-top: 20px;">
                 <a href="login-page.php" style="color: #8ecae6; text-decoration: underline;">Login</a>
                 to view your classes or
-                <a href="signuppage.php" style="color: #8ecae6; text-decoration: underline;">Join the Y</a>
+                <a href="signup-page.php" style="color: #8ecae6; text-decoration: underline;">Join the Y</a>
                  to start having fun!
             </p>
         <?php endif; ?>

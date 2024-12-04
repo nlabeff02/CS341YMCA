@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS People (
     MembershipPaid BOOLEAN DEFAULT FALSE,
     HasMessage BOOLEAN DEFAULT FALSE,
     MessageText VARCHAR(500),
+    isActive BOOLEAN DEFAULT TRUE;
     PRIMARY KEY (PersonID),
     FOREIGN KEY (PermissionID) REFERENCES Permissions(PermissionID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
@@ -148,6 +149,13 @@ INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTim
 VALUES 
 ('Log Rolling', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50.00, 100.00, 200.00, NULL);
 
+-- Demo 3 Preloaded classes
+INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+VALUES
+('Shark', '2025-01-05', '2025-02-09', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24, 48, 96, 'Pike'),
+('Shark', '2025-01-05', '2025-02-09', 'Monday,Wednesday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 8, 33, 65, 130, 'Pike'),
+('Log Rolling', '2025-01-05', '2025-02-09', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50, 100, 200, NULL),
+('Log Rolling', '2025-01-05', '2025-02-09', 'Monday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 2, 50, 100, 200, NULL);
 
 INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID, MembershipPaid, HasMessage, MessageText) VALUES
 ('Mickey', 'Mouse', 'mm@email.com', '123-456-7890', TRUE, FALSE, FALSE, '123qwe', 'Member', 4, TRUE, FALSE, NULL),
@@ -244,3 +252,9 @@ SET CurrentParticipantCount = (
     FROM Registrations 
     WHERE Registrations.ClassID = Classes.ClassID
 );
+
+
+
+ALTER TABLE people ADD COLUMN isActive BOOLEAN DEFAULT TRUE;
+
+UPDATE People SET IsActive = TRUE;
