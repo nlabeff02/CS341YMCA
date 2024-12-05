@@ -10,6 +10,23 @@
     <img src="img/Designer.png" alt="YMCA" width="200" height="200">
     <h1>Upcoming Classes and Programs</h1>
 
+    <!-- Search Section -->
+    <div id="searchClassesContainer" style="width: 90%; margin: 20px auto;">
+        <h3>Search for Classes</h3>
+        <form id="searchClassesForm" style="margin-bottom: 20px;">
+            <label for="classSearchType">Search By:</label>
+            <select id="classSearchType">
+                <option value="className">Class Name</option>
+                <option value="startDate">Start Date</option>
+                <option value="endDate">End Date</option>
+                <option value="classLocation">Location</option>
+            </select>
+            <input type="text" id="classSearchText" placeholder="Enter search text" />
+            <button type="button" onclick="searchClasses()">Search</button>
+            <button type="button" onclick="getFutureClassesPublic()">View All</button>
+        </form>
+    </div>
+
     <!-- Table to display upcoming classes -->
     <div id="classTableContainer" style="width: 90%; margin: 20px auto;">
         <h3>Available Classes</h3>

@@ -1,8 +1,58 @@
 // classes.js
 
+function searchClasses() {
+    const searchType = document.getElementById("classSearchType").value;
+    const searchText = document.getElementById("classSearchText").value;
+
+    // Send POST request to the server to search for classes
+    fetch('php/get_current_future_classes.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+            action: 'search',
+            searchType: searchType,
+            searchText: searchText
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            populateClassesTablePublic(data.classes); // Use your existing function
+        } else {
+            console.error(data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function searchManageClasses() {
+    const searchType = document.getElementById("classSearchType").value;
+    const searchText = document.getElementById("classSearchText").value;
+
+    // Send POST request to the server to search for classes
+    fetch('php/get_all_classes.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+            action: 'search',
+            searchType: searchType,
+            searchText: searchText
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            populateClassesTable(data.classes); // Use your existing function
+        } else {
+            console.error(data.message);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
 // Fetches all classes
 async function getAllClasses() {
-    const data = await fetchData('php/get_all_classes.php');
+    const data = await fetchData('php/get_all_classes.php', { action: 'viewAll' });
     if (data.status === 'success' && data.classes) {
         populateClassesTable(data.classes);
     } else {
@@ -101,13 +151,22 @@ function getPastMemberClasses(memberId) {
 
 // Fetches future classes for public view.
 async function getFutureClassesPublic() {
-    const data = await fetchData('php/get_current_future_classes.php');
-    if (data.status === 'success' && data.classes) {
-        populateClassesTablePublic(data.classes);
-    } else {
-        console.error('Failed to fetch classes:', data.message);
+    try {
+        // Pass the action parameter to the server
+        const data = await fetchData('php/get_current_future_classes.php', {
+            action: 'viewAll' // Action to fetch all future classes
+        });
+
+        if (data.status === 'success' && data.classes) {
+            populateClassesTablePublic(data.classes); // Use your existing function
+        } else {
+            console.error('Failed to fetch classes:', data.message);
+        }
+    } catch (error) {
+        console.error('Error fetching classes:', error);
     }
 }
+
 
 async function registerForClass(cls) {
     console.log(`Class ID: ${cls}, Person ID: ${personID}, Person Role: ${personRole}`);
@@ -152,10 +211,15 @@ async function registerForClass(cls) {
 
 
 // Reusable Fetch Function
-// $url is php endpoint
-async function fetchData(url) {
+// $url is the PHP endpoint and $params is an optional object containing parameters to send
+async function fetchData(url, params = {}) {
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(params) // Send params as form data
+        });
+
         const data = await response.json();
         return data;
     } catch (error) {
@@ -163,6 +227,7 @@ async function fetchData(url) {
         return { status: 'error', message: error.message };
     }
 }
+
 
 
 /* * * * * * * * * * * * * * * * * * * *
