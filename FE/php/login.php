@@ -55,6 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $hash = $row['PasswordHash'];
 
+        if (!$row['isActive']) {
+            echo json_encode(['status' => 'error', 'message' => 'There is a problem with your account. Please contact the YMCA for assistance.']);
+            exit();
+        }
+
         // Verify password
         if (password_verify($password, $hash)) {
             // Store user info in session after successful login
@@ -63,7 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'firstName' => $row['FirstName'],  // Store first name
                 'lastName' => $row['LastName'],    // Store last name
                 'email' => $row['Email'],          // Store email
-                'role' => $row['Role']             // Store role
+                'role' => $row['Role'],            // Store role
+                'active' => $row['isActive']       // Store account status
             ];
 
             // Respond with success and user information
@@ -73,7 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'firstName' => $row['FirstName'],
                 'lastName' => $row['LastName'],
                 'email' => $row['Email'],
-                'role' => $row['Role']
+                'role' => $row['Role'],
+                'active' => $row['isActive']
             ]);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid password']);

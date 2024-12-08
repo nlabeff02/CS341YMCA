@@ -86,12 +86,12 @@ function searchMembers($connect) {
     // Build the query dynamically
     if ($searchType === 'phone') {
         // Remove non-numeric characters for phone number comparison
-        $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role 
+        $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role, isActive as active
                   FROM People 
                   WHERE Role IN ('Member', 'NonMember') AND REPLACE(REPLACE(REPLACE(PhoneNumber, '-', ''), '(', ''), ')', '') LIKE ?";
         $searchText = "%" . preg_replace('/\D/', '', $searchText) . "%"; // Remove non-numeric characters from input
     } else {
-        $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role 
+        $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role, isActive as active 
                   FROM People 
                   WHERE Role IN ('Member', 'NonMember') AND $searchType LIKE ?";
         $searchText = "%" . $searchText . "%";
@@ -114,7 +114,7 @@ function searchMembers($connect) {
 
 // Function to retrieve all Members and NonMembers
 function viewAllMembers($connect) {
-    $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role, isActive as isActive 
+    $query = "SELECT PersonID AS memberId, FirstName AS firstName, LastName AS lastName, Email AS email, PhoneNumber AS phone, Role AS role, isActive as active 
               FROM People 
               WHERE Role IN ('Member', 'NonMember')";
     $result = $connect->query($query);
@@ -136,10 +136,11 @@ function saveMember($connect) {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $role = $_POST['role'];
+    $active = $_POST['active'];
 
-    $query = "UPDATE People SET FirstName = ?, LastName = ?, Email = ?, PhoneNumber = ?, Role = ? WHERE PersonID = ?";
+    $query = "UPDATE People SET FirstName = ?, LastName = ?, Email = ?, PhoneNumber = ?, Role = ?, isActive = ? WHERE PersonID = ?";
     $stmt = $connect->prepare($query);
-    $stmt->bind_param('sssssi', $firstName, $lastName, $email, $phone, $role, $memberId);
+    $stmt->bind_param('sssssii', $firstName, $lastName, $email, $phone, $role, $active, $memberId);
 
     if ($stmt->execute()) {
         echo json_encode(['status' => 'success', 'message' => 'Member updated successfully']);

@@ -84,6 +84,7 @@ function editMember(member) {
     document.getElementById("editEmail").value = member.email;
     document.getElementById("editPhone").value = member.phone;
     document.getElementById("editRole").value = member.role;
+    document.getElementById("editActive").value = (member.active == "1" ? "active" : "disabled");
 
 
     // Show the edit form
@@ -98,7 +99,7 @@ function saveMember() {
     const email = document.getElementById("editEmail").value;
     const phone = document.getElementById("editPhone").value;
     const role = document.getElementById("editRole").value;
-
+    const active = (document.getElementById("editActive").value == "active") ? '1' : '0';
 
     fetch('php/manageMembers_mgr.php', {
         method: 'POST',
@@ -110,7 +111,8 @@ function saveMember() {
             lastName: lastName,
             email: email,
             phone: phone,
-            role: role
+            role: role,
+            active: active
         })
     })
     .then(response => response.json())
@@ -144,8 +146,7 @@ function populateResultsTable(members) {
         row.insertCell(3).innerText = member.email;
         row.insertCell(4).innerText = member.phone;
         row.insertCell(5).innerText = member.role;
-        member.isActive = member.isActive === '1' ? 'true' : 'false';
-        row.insertCell(6).innerText = member.isActive;
+        row.insertCell(6).innerText = (member.active == "1" ? "active" : "disabled");
 
         // Action cell for Edit and View Registrations buttons
         const actionCell = row.insertCell(7);

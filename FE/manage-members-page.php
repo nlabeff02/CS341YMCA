@@ -116,6 +116,13 @@
                             <option value="Admin">Admin</option>
                         </select>
                     </div>
+                    <div class="ymca-form-group">
+                        <label for="editActive" class="ymca-form-label">Active:</label>
+                        <select id="editActive" name="active" class="ymca-form-input">
+                            <option value="active">active</option>
+                            <option value="disabled">disabled</option>
+                        </select>
+                    </div>
                     <div class="ymca-form-actions">
                         <button type="button" class="ymca-btn ymca-primary-btn" onclick="saveMember()">Save Changes</button>
                         <button type="button" class="ymca-btn ymca-secondary-btn" onclick="cancelEdit()">Cancel</button>
