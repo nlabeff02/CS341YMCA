@@ -27,6 +27,7 @@
                 <li><a href="manage-members-page.php">Manage Members</a></li>
                 <li><a href="createClass-page.php">Create New Class</a></li>
                 <li><a href="manageClasses-page.php">Manage Classes</a></li>
+                <li><a href="members.php">My Classes</a></li>
             <?php elseif ($_SESSION['user']['role'] === 'Supervisor'): ?>
                 <!-- Links for Supervisors -->
                 <li><a href="manage-members-page.php">Manage Members</a></li>

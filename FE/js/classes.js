@@ -256,7 +256,7 @@ function populateClassesTable(classes) {
         createCell(row, cls.endTime);
         createCell(row, cls.classLocation);
         createCell(row, cls.maxParticipants);
-        createCell(row, cls.currentParticipantCount) ?? '0'; // Default to zero if no participants.
+        createCell(row, cls.currentParticipantCount ?? '0'); // Default to zero if no participants.
         createCell(row, cls.priceStaff);          
         createCell(row, cls.priceMember);
         createCell(row, cls.priceNonMember);
@@ -264,8 +264,14 @@ function populateClassesTable(classes) {
         createCell(row, cls.isActive);
 
         const actionsCell = row.insertCell();
+        
+        // Add Modify Button
         const modifyButton = createModifyButton(cls);
         actionsCell.appendChild(modifyButton);
+
+        // Add Cancel Button (Red)
+        const cancelButton = createCancelButton(cls);
+        actionsCell.appendChild(cancelButton);
     });
 }
 
@@ -387,3 +393,55 @@ function createRegisterButton(cls) {
     }
     return registerButton;
 }
+
+function createCancelButton(cls) {
+    const cancelButton = document.createElement('button');
+    cancelButton.innerText = 'Cancel';
+    cancelButton.style.backgroundColor = 'red';
+    cancelButton.style.color = 'white';
+
+    // Convert end date to a Date object and compare it to the current date
+    const today = new Date();
+    const endDate = new Date(cls.endDate);
+
+    if (endDate < today || cls.isActive === '0') { // Disable if class has already ended or is inactive
+        cancelButton.disabled = true;
+        cancelButton.style.backgroundColor = '#ccc';
+        cancelButton.style.cursor = 'not-allowed';
+    } else {
+        // Prompt for cancellation and send the request to cancel the class for everyone
+        cancelButton.onclick = () => {
+            if (confirm('Are you sure you want to cancel this class for all registered users?')) {
+                // Send the cancel request to the backend
+                fetch('php/cancelClass.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        classID: cls.classID,
+                        personID: personID // The ID of the staff member who is requesting the cancellation
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Class canceled successfully for all registered users');
+                        // Optionally, refresh the table or remove the canceled class from the view
+                        location.reload(); // Reload the page or refresh the table dynamically
+                    } else {
+                        alert('Error canceling class: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('Error: ' + error);
+                });
+            }
+        };
+    }
+
+    return cancelButton;
+}
+
+
+

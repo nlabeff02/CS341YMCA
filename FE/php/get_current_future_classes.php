@@ -48,25 +48,30 @@ function searchClasses($connect) {
     ];
     $column = $columns[$searchType];
 
-    $query = "SELECT
-                ClassID,
-                ClassName,
-                ClassDescription,
-                StartDate,
-                EndDate,
-                DayOfWeek,
-                StartTime,
-                EndTime,
-                ClassLocation,
-                MaxParticipants,
-                CurrentParticipantCount,
-                PriceMember,
-                PriceNonMember,
-                PrerequisiteClassName
-              FROM Classes
-              WHERE $column LIKE ?";
+    $currentDate = date('Y-m-d'); // Get the current date
+
+    $query = "
+        SELECT
+            ClassID,
+            ClassName,
+            ClassDescription,
+            StartDate,
+            EndDate,
+            DayOfWeek,
+            StartTime,
+            EndTime,
+            ClassLocation,
+            MaxParticipants,
+            CurrentParticipantCount,
+            PriceMember,
+            PriceNonMember,
+            PrerequisiteClassName
+        FROM Classes
+        WHERE $column LIKE ?
+          AND IsActive = 1   -- Exclude inactive classes
+          AND EndDate >= ?"; // Exclude classes that have ended
     $stmt = $connect->prepare($query);
-    $stmt->bind_param('s', $searchText);
+    $stmt->bind_param('ss', $searchText, $currentDate); // Bind the search text and current date
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -78,6 +83,7 @@ function searchClasses($connect) {
     echo json_encode(['status' => 'success', 'classes' => $classes]);
     $stmt->close();
 }
+
 
 // Function to fetch future classes
 function getFutureClassesPublic($connect) {
@@ -100,7 +106,7 @@ function getFutureClassesPublic($connect) {
             PrerequisiteClassName
         FROM Classes
         WHERE EndDate >= ?
-    ";
+          AND IsActive = 1"; // Exclude inactive classes
     $stmt = $connect->prepare($query);
     $stmt->bind_param('s', $currentDate);
     $stmt->execute();
@@ -114,6 +120,7 @@ function getFutureClassesPublic($connect) {
     echo json_encode(['status' => 'success', 'classes' => $classes]);
     $stmt->close();
 }
+
 
 // Helper function to format class data
 function formatClassData($row) {
