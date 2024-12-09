@@ -384,9 +384,12 @@ function populateMemberClassesActive(classes) {
         //createCell(row, cls.regIsActive);
 
         const actionsCell = row.insertCell();
-        if (cls.isActive) {
+        if (cls.isActive && cls.regIsActive) {
             const cancelMyRegistrationButton = createCancelMyRegistrationButton(cls);
             actionsCell.appendChild(cancelMyRegistrationButton);
+        } else if (cls.isActive && !cls.regIsActive) {
+            actionsCell.innerText = 'Registration Cancelled';
+            actionsCell.style.backgroundColor = 'gray';
         } else {
             actionsCell.innerText = 'Class is CANCELLED';
             actionsCell.style.backgroundColor = 'red';

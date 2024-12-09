@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check if the user is already registered for this class
-    $checkQuery = "SELECT 1 FROM Registrations WHERE personID = ? AND classID = ? LIMIT 1";
+    $checkQuery = "SELECT 1 FROM Registrations WHERE personID = ? AND classID = ? AND isActive = 1 LIMIT 1";
     $stmt = $connect->prepare($checkQuery);
     $stmt->bind_param("ii", $personID, $classID);
     $stmt->execute();

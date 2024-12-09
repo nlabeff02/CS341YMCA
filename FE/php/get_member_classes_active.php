@@ -55,7 +55,7 @@ $query = "
     JOIN 
         Classes c ON r.classID = c.classID
     WHERE 
-        r.personID = ? AND c.endDate >= ? AND regIsActive = 0
+        r.personID = ? AND c.endDate >= ?
 ";
 
 $stmt = $connect->prepare($query);
