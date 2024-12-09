@@ -34,6 +34,7 @@ $query = "
         r.classID,
         r.registrationDate,
         r.paymentStatus,
+        r.isActive as regIsActive,
         c.className,
         c.classDescription,
         c.startDate,
@@ -47,13 +48,14 @@ $query = "
         c.priceStaff,
         c.priceMember,
         c.priceNonMember,
-        c.prerequisiteClassName
+        c.prerequisiteClassName,
+        c.isActive
     FROM 
         Registrations r
     JOIN 
         Classes c ON r.classID = c.classID
     WHERE 
-        r.personID = ? AND c.endDate >= ?
+        r.personID = ? AND c.endDate >= ? AND regIsActive = 0
 ";
 
 $stmt = $connect->prepare($query);

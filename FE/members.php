@@ -24,6 +24,7 @@
                         <th>End Time</th>
                         <th>Location</th>
                         <th>Payment</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -51,17 +51,17 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 // Set default values for other fields not present in registration.html
 $role = 'NonMember'; // Default role
 $permissionID = 5; // Default permission to 'Member'
-$over18 = true; // Set default as true unless you want to check for specific conditions
-$isParent = false; // You can manually adjust this if necessary
-$isChild = false; // Default isChild to false
-$membershipPaid = false;
-$hasMessage = false;
-$messageText = '';
-$isActive = true; // Default isActive to true
+$over18 = FALSE; // Set default as true unless you want to check for specific conditions
+$isParent = FALSE; // You can manually adjust this if necessary
+$isChild = FALSE; // Default isChild to false
+$membershipPaid = FALSE;
+$hasMessage = TRUE;
+$messageText = 'Welcome to the Y!';
+$isActive = TRUE; // Default isActive to true
 
 // Insert user into the People table
 $stmt = $connect->prepare("INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID, MembershipPaid, HasMessage, MessageText, isActive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssissssissss", $firstName, $lastName, $email, $phoneNumber, $over18, $isParent, $isChild, $hashedPassword, $role, $permissionID, $MembershipPaid, $HasMessage, $MessageText, $isActive);
+$stmt->bind_param("ssssissssisiss", $firstName, $lastName, $email, $phoneNumber, $over18, $isParent, $isChild, $hashedPassword, $role, $permissionID, $membershipPaid, $hasMessage, $messageText, $isActive);
 
 if (!$stmt->execute()) {
     echo json_encode(['status' => 'error', 'message' => 'Error during registration']);

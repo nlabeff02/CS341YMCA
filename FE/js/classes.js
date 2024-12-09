@@ -208,7 +208,47 @@ async function registerForClass(cls) {
 }
 
 
+async function cancelMyRegistration(cls) {
+    // Display confirmation popup
+    const cancelRegistrationPopup = confirm(
+        "Are you sure you want to cancel your registration for\n\n" +
+        `${cls.className}?\n\n` +
+        "You are responsible for collecting refunds from the YMCA front desk."
+    );
 
+    if (cancelRegistrationPopup) {
+        // Variables to pass to the server
+        const data = { classID: cls.classID, personID: personID };
+
+        try {
+            // Send POST request to the server
+            const response = await fetch('php/cancel_my_registration_mgr.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            // Handle server response
+            if (!response.ok) {
+                throw new Error('Failed to cancel registration.');
+            }
+
+            const result = await response.json();
+            if (result.status === 'success') {
+                alert("You have successfully cancelled your registration.\n\nCheck with the Front Desk for refunds.");
+            } else {
+                alert(`Error: ${result.message}`);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred while cancelling your registration. Please try again later.");
+        }
+    } else {
+        console.log("Registration was NOT cancelled.");
+    }
+}
 
 // Reusable Fetch Function
 // $url is the PHP endpoint and $params is an optional object containing parameters to send
@@ -227,7 +267,6 @@ async function fetchData(url, params = {}) {
         return { status: 'error', message: error.message };
     }
 }
-
 
 
 /* * * * * * * * * * * * * * * * * * * *
@@ -342,6 +381,16 @@ function populateMemberClassesActive(classes) {
         //createCell(row, cls.priceNonMember);
         //createCell(row, cls.prerequisiteClassName ?? 'None');  // Default to 'None' if no prerequisite
         createCell(row, cls.paymentStatus);
+        //createCell(row, cls.regIsActive);
+
+        const actionsCell = row.insertCell();
+        if (cls.isActive) {
+            const cancelMyRegistrationButton = createCancelMyRegistrationButton(cls);
+            actionsCell.appendChild(cancelMyRegistrationButton);
+        } else {
+            actionsCell.innerText = 'Class is CANCELLED';
+            actionsCell.style.backgroundColor = 'red';
+        }
     });
 }
 
@@ -393,6 +442,16 @@ function createRegisterButton(cls) {
     }
     return registerButton;
 }
+
+
+// Creates a "Cancel My Registration" button
+function createCancelMyRegistrationButton(cls) {
+    const cancelMyRegistrationButton = document.createElement('button');
+    cancelMyRegistrationButton.innerText = 'Cancel My Registration';
+    cancelMyRegistrationButton.onclick = () => cancelMyRegistration(cls);
+    return cancelMyRegistrationButton;
+}
+
 
 function createCancelButton(cls) {
     const cancelButton = document.createElement('button');
