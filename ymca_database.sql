@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS People (
     MembershipPaid BOOLEAN DEFAULT FALSE,
     HasMessage BOOLEAN DEFAULT FALSE,
     MessageText VARCHAR(500),
-    isActive BOOLEAN DEFAULT TRUE;
+    isActive BOOLEAN DEFAULT TRUE,
     PRIMARY KEY (PersonID),
     FOREIGN KEY (PermissionID) REFERENCES Permissions(PermissionID) ON DELETE CASCADE
 ) ENGINE=InnoDB;
@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS Registrations (
     RegistrationDate DATE NOT NULL,
     PaymentAmount DECIMAL(10, 2),
     PaymentStatus ENUM('Paid', 'Due', 'Waived'),
+    IsActive BOOLEAN DEFAULT TRUE,
     PRIMARY KEY (RegistrationID),
     FOREIGN KEY (PersonID) REFERENCES People(PersonID),
     FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)

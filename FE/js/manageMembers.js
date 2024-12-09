@@ -193,11 +193,10 @@ function displayRegistrations(registrations) {
         row.insertCell(0).innerText = registration.className;
         row.insertCell(1).innerText = registration.startDate;
         row.insertCell(2).innerText = registration.endDate;
-        
         // Create dropdown for Payment Status
         const paymentCell = row.insertCell(3);
-        const paymentDropdown = document.createElement("select");
 
+        const paymentDropdown = document.createElement("select");
         ["Paid", "Due", "Waived"].forEach(status => {
             const option = document.createElement("option");
             option.value = status;
@@ -205,12 +204,13 @@ function displayRegistrations(registrations) {
             option.selected = registration.paymentStatus === status;
             paymentDropdown.appendChild(option);
         });
-
         paymentDropdown.onchange = function () {
             updatePaymentStatus(registration.registrationId, paymentDropdown.value);
         };
 
         paymentCell.appendChild(paymentDropdown);
+
+        row.insertCell(4).innerText = (registration.active == "1" ? "active" : "cancelled");;
     });
 
     document.getElementById("registrationsContainer").style.display = "block";

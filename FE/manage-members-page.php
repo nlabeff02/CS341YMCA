@@ -72,6 +72,7 @@
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>Payment Status</th>
+                                <th>Registration Status</th>
                             </tr>
                         </thead>
                         <tbody id="registrationsTableBody">
