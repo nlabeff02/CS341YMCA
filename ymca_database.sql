@@ -256,5 +256,7 @@ SET CurrentParticipantCount = (
 
 
 ALTER TABLE people ADD COLUMN isActive BOOLEAN DEFAULT TRUE;
-
 UPDATE People SET IsActive = TRUE;
+
+ALTER TABLE registrations ADD COLUMN isActive BOOLEAN DEFAULT TRUE;
+UPDATE registrations SET IsActive = TRUE;
