@@ -65,7 +65,7 @@
             <label for="prerequisite-class">Prerequisite Class Name (optional):</label>
             <input type="text" id="prerequisite-class" name="prerequisiteClassName">
 
-            <label for="is-active">Is this class available to register? (t or f):</label>
+            <label for="is-active">Is this class available to register? (1 or 0):</label>
             <input type="text" id="is-active" name="isActive">
 
             <button type="submit">Update Class</button>
