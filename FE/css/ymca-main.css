@@ -673,23 +673,23 @@ div#classTableContainer h3{
   font-weight: 600;
 }
 
-table#classesTable{
+/* General table styling for classesTable */
+table#classesTable {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 table#classesTable th,
-table#classesTable td{
+table#classesTable td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-table#classesTable th{
+table#classesTable th {
   background-color: #219ebc;
   color: white;
 }
-
-table#classesTable td button{
+table#classesTable td button {
   padding: 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -697,7 +697,28 @@ table#classesTable td button{
   width: 100%;
   margin-top: 5px;
 }
-div#class-form{
+
+/* Duplicate for pastClassesTable */
+table#pastClassesTable {
   width: 100%;
-  align-self: center;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+table#pastClassesTable th,
+table#pastClassesTable td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+table#pastClassesTable th {
+  background-color: #219ebc;
+  color: white;
+}
+table#pastClassesTable td button {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  margin-top: 5px;
 }

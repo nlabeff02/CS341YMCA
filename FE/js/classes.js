@@ -71,16 +71,24 @@ async function getFutureClasses() {
 }
 
 // Fetches only past classes
-function getPastClasses() {
-    return fetch('php/get_past_classes.php')
-        .then(response => response.json())
+function getPastClasses(memberID) {
+    fetch(`php/get_past_classes.php`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
-            // Handle data for past classes
-            console.log('Past Classes:', data);
-            return data;
+            if (data.status === 'success') {
+                populatePastClasses(data.classes);
+            } else {
+                console.error('Error from server:', data.message);
+            }
         })
         .catch(error => console.error('Error fetching past classes:', error));
 }
+
 
 // Fetches only active classes
 function getActiveClasses() {
@@ -238,6 +246,9 @@ async function cancelMyRegistration(cls) {
             const result = await response.json();
             if (result.status === 'success') {
                 alert("You have successfully cancelled your registration.\n\nCheck with the Front Desk for refunds.");
+
+                // Refresh the tables after successful cancellation
+                refreshTables();
             } else {
                 alert(`Error: ${result.message}`);
             }
@@ -249,6 +260,18 @@ async function cancelMyRegistration(cls) {
         console.log("Registration was NOT cancelled.");
     }
 }
+
+// Function to refresh tables
+function refreshTables() {
+    const memberID = personID; // Use the current user's ID
+
+    // Re-fetch and populate the active classes table
+    getMemberClassesActive(memberID);
+
+    // Re-fetch and populate the past classes table
+    getPastClasses(memberID);
+}
+
 
 // Reusable Fetch Function
 // $url is the PHP endpoint and $params is an optional object containing parameters to send
@@ -279,7 +302,7 @@ function populateClassesTable(classes) {
     tableBody.innerHTML = ''; // Clear any existing rows
 
     if (classes.length === 0) {
-        createNoDataRow(tableBody, 'No classes available.');
+        createNoDataRow(tableBody, 'No classes found.');
         return;
     }
 
@@ -322,7 +345,7 @@ function populateClassesTablePublic(classes) {
     //console.log("isLoggedIn in classes.js:", isLoggedIn); // Debugging line
 
     if (classes.length === 0) {
-        createNoDataRow(tableBody, 'No classes available.');
+        createNoDataRow(tableBody, 'No classes found.');
         return;
     }
 
@@ -360,7 +383,7 @@ function populateMemberClassesActive(classes) {
     //console.log("isLoggedIn in classes.js:", isLoggedIn); // Debugging line
 
     if (classes.length === 0) {
-        createNoDataRow(tableBody, 'No classes available.');
+        createNoDataRow(tableBody, 'No classes found.');
         return;
     }
 
@@ -396,6 +419,53 @@ function populateMemberClassesActive(classes) {
         }
     });
 }
+
+function populatePastClasses(classes) {
+    const tableBody = document.getElementById('pastClassesTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear any existing rows
+
+    if (classes.length === 0) {
+        createNoDataRow(tableBody, 'No past or canceled classes found.');
+        return;
+    }
+
+    classes.forEach(cls => {
+        const row = tableBody.insertRow();
+        createCell(row, cls.className);
+        createCell(row, cls.startDate);
+        createCell(row, cls.endDate);
+        createCell(row, cls.dayOfWeek);
+        createCell(row, cls.startTime);
+        createCell(row, cls.endTime);
+        createCell(row, cls.classLocation);
+        createCell(row, cls.paymentStatus);
+
+        const actionsCell = row.insertCell();
+        if (!cls.classIsActive && !cls.regIsActive) {
+            actionsCell.innerText = 'Class and Registration Canceled';
+            actionsCell.style.backgroundColor = 'red';
+        } else if (!cls.classIsActive) {
+            actionsCell.innerText = 'Class Canceled';
+            actionsCell.style.backgroundColor = 'red';
+        } else if (!cls.regIsActive) {
+            actionsCell.innerText = 'Registration Canceled';
+            actionsCell.style.backgroundColor = 'gray';
+        } else {
+            actionsCell.innerText = 'Past Class';
+            actionsCell.style.backgroundColor = 'lightgray';
+        }
+    });
+}
+
+function createNoDataRow(tableBody, message) {
+    const row = tableBody.insertRow();
+    const cell = row.insertCell();
+    cell.colSpan = tableBody.closest('table').querySelector('thead tr').children.length;
+    cell.textContent = message;
+    cell.style.textAlign = 'center';
+    cell.style.fontStyle = 'italic';
+}
+
 
 // Creates a generic cell and appends it to a row.
 function createCell(row, text) {

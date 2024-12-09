@@ -31,6 +31,25 @@
                     <!-- Data here -->
                 </tbody>
             </table>
+            <h3>Past or Canceled Classes</h3>
+            <table id="pastClassesTable" style="border: solid; width: 80%; margin: 0 auto; text-align: center; color: white;">
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Day(s)</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Location</th>
+                        <th>Payment</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be dynamically inserted here -->
+                </tbody>
+            </table>
         <?php else: ?>
             <!-- Message for users not logged in -->
             <p style="text-align: center; color: #FF0000; margin-top: 20px;">
@@ -52,6 +71,7 @@
         const memberID = <?php echo $_SESSION['user']['personID']; ?>;
         console.log(`members.php memberID: ${memberID}`)
         getMemberClassesActive(memberID);
+        getPastClasses(memberID); // Fetch past or canceled classes
     });
 </script>
 </html>

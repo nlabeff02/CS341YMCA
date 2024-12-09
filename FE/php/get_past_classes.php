@@ -4,7 +4,7 @@ include 'db.php'; // Include the database connection
 
 session_start();
 
-// Enable error reporting for debugging
+// Enable error reporting for debugging (comment out in production)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -15,20 +15,16 @@ if ($connect->connect_error) {
     exit();
 }
 
-// Check if personID is set in the session
-//if (!isset($_SESSION['user'])) {
-//    echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
-//    exit();
-//}
+// Validate session
+if (!isset($_SESSION['user']['personID'])) {
+    echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
+    exit();
+}
 
-// Get today's date
-$currentDate = date('Y-m-d');
-
+// Get the current user's personID from the session
 $personID = $_SESSION['user']['personID'];
 
-// Query to get classes that have not yet ended
-// Retrieve all classes for a member from Registrations
-// and join with Classes where EndDate is >= today
+// SQL query to fetch past classes
 $query = "
     SELECT 
         r.classID,
@@ -49,33 +45,35 @@ $query = "
         c.priceMember,
         c.priceNonMember,
         c.prerequisiteClassName,
-        c.isActive
+        c.isActive as classIsActive
     FROM 
         Registrations r
     JOIN 
         Classes c ON r.classID = c.classID
     WHERE 
         r.personID = ? 
-        AND c.endDate >= ? 
-        AND c.isActive = 1 
-        AND r.isActive = 1
+        AND (
+            c.endDate < CURRENT_DATE
+            OR c.isActive = 0
+            OR r.isActive = 0
+        )
 ";
 
-
-
+// Prepare and execute the statement
 $stmt = $connect->prepare($query);
-$stmt->bind_param('is', $personID, $currentDate);
+$stmt->bind_param('i', $personID);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Collect data
+// Collect the data
 $classes = [];
 while ($row = $result->fetch_assoc()) {
     $classes[] = $row;
 }
 
+// Close the statement and connection
 $stmt->close();
 $connect->close();
 
-// Output the result as JSON
+// Return the data as JSON
 echo json_encode(['status' => 'success', 'classes' => $classes]);

@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("i", $classID);
 
     if ($stmt->execute()) {
-        echo json_encode(['status' => 'success', 'message' => 'Class canceled successfully for all registered users']);
+        echo json_encode(['status' => 'success', 'message' => 'Class canceled successfully ']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Failed to cancel class: ' . $stmt->error]);
     }
