@@ -33,8 +33,12 @@
                 <li><a href="manage-members-page.php">Manage Members</a></li>
                 <li><a href="createClass-page.php">Create New Class</a></li>
                 <li><a href="manageClasses-page.php">Manage Classes</a></li>
-                <li><a href="manage-staff-page.php">Manage Staff</a></li>
-                <li><a href="overview-page.php">Supervisor Overview</a></li>
+                <li><a href="members.php">My Classes</a></li>
+            <?php elseif ($_SESSION['user']['role'] === 'Admin'): ?>
+                <li><a href="manageClasses-page.php">Manage Classes</a></li>
+                <li><a href="manage-members-page.php">Manage Members</a></li>
+                <li><a href="createClass-page.php">Create New Class</a></li>
+                <li><a href="adminReport-page.php">Admin Report</a></li>
             <?php elseif ($_SESSION['user']['role'] === 'Member' || $_SESSION['user']['role'] === 'NonMember'): ?>
                 <!-- Links for Members/Nonmembers -->
                 <li><a href="members.php">My Classes</a></li>

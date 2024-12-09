@@ -722,3 +722,114 @@ table#pastClassesTable td button {
   width: 100%;
   margin-top: 5px;
 }
+
+
+/* Admin Report Container */
+.adminReportContainer {
+  width: 90%;
+  margin: 20px auto;
+}
+
+/* Header Styling */
+.adminReportHeader {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.adminReportHeader img {
+  width: 200px;
+  height: 200px;
+}
+
+.adminReportHeader h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Date Range Form Section */
+.dateRangeFormContainer {
+  margin-bottom: 30px;
+}
+
+.dateRangeFormContainer h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.dateRangeForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.dateRangeForm label {
+  font-weight: bold;
+  color: white;
+}
+
+.dateRangeForm input {
+  padding: 8px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.dateRangeForm button {
+  padding: 10px 20px;
+  background-color: #2980B9;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Report Table Section */
+.reportTableContainer {
+  margin-top: 30px;
+  background-color: white; /* Added white background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.reportTableContainer h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* General table styling for Admin Report Table */
+table#adminReportTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table#adminReportTable th,
+table#adminReportTable td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+table#adminReportTable th {
+  background-color: #219ebc;
+  color: white;
+}
+
+table#adminReportTable td button {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
