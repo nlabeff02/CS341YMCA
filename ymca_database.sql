@@ -158,6 +158,7 @@ VALUES
 ('Log Rolling', '2025-01-05', '2025-02-09', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50, 100, 200, NULL),
 ('Log Rolling', '2025-01-05', '2025-02-09', 'Monday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 2, 50, 100, 200, NULL);
 
+/*
 INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID, MembershipPaid, HasMessage, MessageText) VALUES
 ('Mickey', 'Mouse', 'mm@email.com', '123-456-7890', TRUE, FALSE, FALSE, '123qwe', 'Member', 4, TRUE, FALSE, NULL),
 ('Donald', 'Duck', 'dd@email.com', '234-567-8901', TRUE, TRUE, FALSE, '123qwe', 'NonMember', 5, FALSE, TRUE, 'Welcome to YMCA!'),
@@ -184,6 +185,31 @@ INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, I
 ('Shrek', 'Ogre', 'so@email.com', '567-678-9012', TRUE, TRUE, FALSE, '123qwe', 'NonMember', 5, FALSE, FALSE, NULL),
 ('Fiona', 'Princess', 'fp@email.com', '678-789-0123', TRUE, TRUE, FALSE, '123qwe', 'Member', 4, TRUE, TRUE, 'Welcome to YMCA!'),
 ('Pooh', 'Bear', 'pb@email.com', '789-890-1234', TRUE, TRUE, FALSE, '123qwe', 'NonMember', 5, FALSE, FALSE, NULL);
+*/
+
+INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID, MembershipPaid, HasMessage, MessageText) VALUES
+('Mickey', 'Mouse', 'mm@email.com', '123-338-5530', TRUE, FALSE, FALSE, '$2b$12$wOrNWBXdM0queLjkRFBd.uhHb1kp9OwnXLMHG4oWe/t1WvZlcJawi', 'NonMember', 5, TRUE, FALSE, NULL),
+('Donald', 'Duck', 'dd@email.com', '123-896-1023', TRUE, FALSE, FALSE, '$2b$12$CE7hDN6PjsRJS58kYUYHMey5i91JiC1VGb/VHDEiaZ6uL6ImzyAGO', 'Member', 4, TRUE, TRUE, 'Welcome to YMCA!'),
+('Goofy', 'Goof', 'gg@email.com', '123-664-6256', TRUE, FALSE, FALSE, '$2b$12$.AUNcG0UE.tEyM3QC1hI9.UOEtppqBojheZ1KxeV6A9S5WDCLg9eK', 'Member', 4, TRUE, FALSE, NULL),
+('Daisy', 'Duck', 'ddu@email.com', '123-669-2911', TRUE, FALSE, FALSE, '$2b$12$71zQEArPerK/PKHpsEXCCeDQ/ufV7wQz3HFcc3dcCpGfFQPHNjRVi', 'Member', 4, TRUE, FALSE, NULL),
+('Pluto', 'Dog', 'pd@email.com', '123-626-9824', TRUE, FALSE, FALSE, '$2b$12$DdFA.T0Yd2Rko/nmonRzRO1UidrXp3dPKfFV8mCeL7aYl7Rc6Sn72', 'Member', 4, TRUE, FALSE, NULL),
+('Simba', 'Lion', 'sl@email.com', '123-224-6301', TRUE, FALSE, FALSE, '$2b$12$6AF..hE0gIBKkajQF00o..HGJpgePYi1I96oPyitZhtiWezzvxgTe', 'Member', 4, TRUE, TRUE, 'Check out our family plans!'),
+('Ariel', 'Mermaid', 'am@email.com', '123-913-2397', TRUE, FALSE, FALSE, '$2b$12$hZhzf91qcy.HWpFj7VipZO00AIe0.BcdOORoc7VSQ5x4ZYUWsW/Pa', 'Member', 4, TRUE, FALSE, NULL),
+('Elsa', 'Queen', 'eq@email.com', '123-537-5920', TRUE, FALSE, FALSE, '$2b$12$P1dsDQTBxh0/jINVZ3NgxOZqrWFA0QiopI2ijPHfir/w6r0nTstly', 'Member', 4, TRUE, FALSE, NULL),
+('Anna', 'Princess', 'ap@email.com', '123-816-4930', TRUE, FALSE, FALSE, '$2b$12$.OPdJrTs3tAgG83Ij0ABOuE9C9UlYcZcdVqVqexMgIUZnxaW6/Ese', 'Member', 4, TRUE, TRUE, 'See our upcoming events!'),
+('Woody', 'Cowboy', 'wc@email.com', '123-483-2946', TRUE, FALSE, FALSE, '$2b$12$INQKaoluAsEeg/fAPC2Iq.1cJKXc9/eBZE67hOzC.CthpFAYfu6UW', 'Member', 4, TRUE, FALSE, NULL),
+('Buzz', 'Lightyear', 'bl@email.com', '123-862-7085', TRUE, FALSE, FALSE, '$2b$12$GtL8WQxF/DeV8OkZPlcpE.2Ytw95hGWWVOjTbvr/9Mwigfrr14PQG', 'Member', 4, TRUE, FALSE, NULL),
+('Lisa', 'Simpson', 'ls@email.com', '123-244-9612', TRUE, FALSE, FALSE, '$2b$12$uVwo5RY5osXn/o.ff6nK5.5Yjuc5k/6MHTSjM.M8fGVRhLGLCwIr.', 'NonMember', 5, FALSE, FALSE, NULL),
+('Peter', 'Pan', 'pp@email.com', '123-840-4510', TRUE, FALSE, FALSE, '$2b$12$GMmmSpJ7U9qVE7vabcBLAuHQFg.nkgHysJqTiJTU4MOROpuBRzIbK', 'NonMember', 5, FALSE, TRUE, 'Welcome to YMCA!'),
+('Tiana', 'Princess', 'tp@email.com', '123-194-8696', TRUE, FALSE, FALSE, '$2b$12$9r9HW2k6SC5pH9AlBCluFOKhh//XckvuNSdqv0MEhXB173wlXXlPq', 'NonMember', 5, FALSE, TRUE, 'Special offers for members!'),
+('Aladdin', 'Prince', 'apr@email.com', '123-336-1502', TRUE, FALSE, FALSE, '$2b$12$PUN6FRI/cBYFRYAJLOTfeOqgLJDNHv0/.crXIyYGbNYLjMYEFU6Xq', 'Member', 4, TRUE, FALSE, NULL),
+('Belle', 'Beauty', 'bb@email.com', '123-694-6024', TRUE, FALSE, FALSE, '$2b$12$EiE.e5JE1DNOoMIv49heJ.T9YAzYgDI/gNMdJcWmijlUbsz/POBRC', 'NonMember', 5, FALSE, FALSE, NULL),
+('Jasmine', 'Princess', 'jp@email.com', '123-894-4903', TRUE, FALSE, FALSE, '$2b$12$1I.bud5kvyQ1Y9Uh5E9Vw.tgrbppamwdIBP1rgrX65EYR7Br5M9/u', 'NonMember', 5, FALSE, TRUE, 'Special offers for members!'),
+('Mulan', 'Warrior', 'mw@email.com', '123-204-1455', TRUE, FALSE, FALSE, '$2b$12$8u2/tl1KTxaKfV6lqL9pteC9tSt5iQ./4VxzmdMTLiIn8sKZCocHi', 'NonMember', 5, FALSE, FALSE, NULL),
+('Shrek', 'Ogre', 'so@email.com', '123-812-6217', TRUE, FALSE, FALSE, '$2b$12$RRftbkXHu67YzhaMEvGOvO9W6gsF1Cn1oCPEVwL.RPwjMiDmk2TES', 'NonMember', 5, FALSE, FALSE, NULL),
+('Fiona', 'Princess', 'fp@email.com', '123-789-8763', TRUE, FALSE, FALSE, '$2b$12$Xd/Frb188LbVdHAGwBezm.3pBEUr7b7hiAURyX4lmArRjQZV8wqsC', 'NonMember', 5, FALSE, FALSE, NULL),
+('Pooh', 'Bear', 'pb@email.com', '123-670-6826', TRUE, FALSE, FALSE, '$2b$12$yArpLoWU5DVtwHYJoomNK.vr4qr7tznFi6xTBjK5dvyuujYdo4iqe', 'NonMember', 5, FALSE, TRUE, 'Welcome to YMCA!');
+
 
 
 -- Fix up the max participants and staff prices.
