@@ -193,6 +193,7 @@ function displayRegistrations(registrations) {
         const row = tableBody.insertRow();
         row.insertCell(0).innerText = registration.className;
         row.insertCell(1).innerText = registration.startDate;
+
         row.insertCell(2).innerText = registration.endDate; 
         const endDate = new Date(registration.endDate); // Convert endDate to a Date object
         if (currentDate > endDate) {
@@ -214,8 +215,12 @@ function displayRegistrations(registrations) {
         };
 
         paymentCell.appendChild(paymentDropdown);
-
-        row.insertCell(4).innerText = (registration.active == "1" ? "active" : "cancelled");;
+        
+        const registrationStatusCell = row.insertCell(4);
+        registrationStatusCell.innerText = (registration.active == "1" ? "active" : "cancelled");
+        if (currentDate > endDate && registration.active == "1") { 
+            registrationStatusCell.innerText = "Class Completed";
+        }
     });
 
     document.getElementById("registrationsContainer").style.display = "block";
