@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Classes (
     StartTime TIME,
     EndTime TIME,
     ClassLocation VARCHAR(100),
-    MaxParticipants INT,
+    MaxParticipants INT DEFAULT 0 NOT NULL,
     CurrentParticipantCount INT,
     PriceStaff DECIMAL(10, 2),
     PriceMember DECIMAL(10, 2),
@@ -300,7 +300,6 @@ VALUES
 (15, 19, '2024-10-01', 20.00, 'Paid', TRUE),
 (16, 20, '2024-08-25', 30.00, 'Paid', TRUE),
 (17, 21, '2024-12-10', 48.00, 'Due', TRUE),
-(18, 22, '2024-09-01', 96.00, 'Paid', TRUE),
 (19, 5, '2024-06-20', 25.00, 'Paid', TRUE),
 (20, 9, '2024-05-05', 15.00, 'Paid', TRUE),
 (1, 8, '2024-09-15', 25.00, 'Paid', TRUE),
@@ -324,3 +323,9 @@ UPDATE People SET IsActive = TRUE;
 
 ALTER TABLE registrations ADD COLUMN isActive BOOLEAN DEFAULT TRUE;
 UPDATE registrations SET IsActive = TRUE;
+
+
+insert into registrations (PersonID, ClassID, RegistrationDate, PaymentAmount, PaymentStatus, IsActive)
+values (22, 32, '2024-10-11', 48, 'Paid', TRUE);
+insert into registrations (PersonID, ClassID, RegistrationDate, PaymentAmount, PaymentStatus, IsActive)
+values (24, 32, '2024-10-11', 48, 'Paid', TRUE);

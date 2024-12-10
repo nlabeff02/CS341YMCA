@@ -353,7 +353,7 @@ function populateClassesTablePublic(classes) {
         const row = tableBody.insertRow();
         createCell(row, cls.classID);
         createCell(row, cls.className);
-        createCell(row, cls.classDescription);
+        createCell(row, cls.description);
         createCell(row, cls.startDate);
         createCell(row, cls.endDate);
         createCell(row, cls.dayOfWeek);

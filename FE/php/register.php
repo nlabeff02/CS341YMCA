@@ -51,7 +51,7 @@ $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 // Set default values for other fields not present in registration.html
 $role = 'NonMember'; // Default role
 $permissionID = 5; // Default permission to 'Member'
-$over18 = FALSE; // Set default as true unless you want to check for specific conditions
+$over18 = TRUE; // Set default as true unless you want to check for specific conditions
 $isParent = FALSE; // You can manually adjust this if necessary
 $isChild = FALSE; // Default isChild to false
 $membershipPaid = FALSE;

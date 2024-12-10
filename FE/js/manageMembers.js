@@ -187,12 +187,17 @@ function viewRegistrations(memberId) {
 function displayRegistrations(registrations) {
     const tableBody = document.getElementById("registrationsTableBody");
     tableBody.innerHTML = ''; // Clear previous data
+    const currentDate = new Date();
 
     registrations.forEach(registration => {
         const row = tableBody.insertRow();
         row.insertCell(0).innerText = registration.className;
         row.insertCell(1).innerText = registration.startDate;
-        row.insertCell(2).innerText = registration.endDate;
+        row.insertCell(2).innerText = registration.endDate; 
+        const endDate = new Date(registration.endDate); // Convert endDate to a Date object
+        if (currentDate > endDate) {
+            row.style.backgroundColor = 'gray'; // Set the entire row to gray
+        }
         // Create dropdown for Payment Status
         const paymentCell = row.insertCell(3);
 
