@@ -8,9 +8,9 @@
     </head>
     <body>
         <?php include 'php/nav_mgr.php'; ?>
+        <img src="img/Designer.png" alt="YMCA" width="200" height="200">
 
         <header class="ymca-page-header">
-            <img class="ymca-logo" src="img/Designer.png" alt="YMCA Logo">
             <h1 class="ymca-page-title">Manage Members</h1>
         </header>
 
