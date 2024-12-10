@@ -833,3 +833,9 @@ footer {
   font-size: 14px;
 }
 
+.checkbox-container {
+  display: flex;
+  align-items: left;
+  gap: 5px;
+}
+

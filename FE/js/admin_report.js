@@ -1,17 +1,17 @@
 async function getAdminReport() {
     const startDate = document.getElementById('startDate').value;
     const endDate = document.getElementById('endDate').value;
+    const includeAllClasses = document.getElementById('includeAllClasses').checked; // Get checkbox value
 
     if (!startDate || !endDate) {
         alert('Both start and end dates are required.');
         return;
     }
-    
+
     if (new Date(startDate) > new Date(endDate)) {
         alert('Start date cannot be later than end date.');
         return;
     }
-        
 
     try {
         const response = await fetch('php/admin_report.php', {
@@ -19,7 +19,7 @@ async function getAdminReport() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ startDate, endDate }),
+            body: JSON.stringify({ startDate, endDate, includeAllClasses }), // Include checkbox value
         });
 
         const result = await response.json();
@@ -34,8 +34,6 @@ async function getAdminReport() {
         alert('An error occurred while fetching the report.');
     }
 }
-
-
 
 
 function populateAdminReport(data) {

@@ -15,9 +15,10 @@ function getAdminReport($connect) {
     // Debugging the incoming JSON payload
     error_log('Received JSON payload: ' . json_encode($data));
 
-    // Extract start and end date from the request
+    // Extract data from the request
     $startDate = $data['startDate'] ?? null;
     $endDate = $data['endDate'] ?? null;
+    $includeAllClasses = $data['includeAllClasses'] ?? false; // Checkbox flag
 
     // Validate the dates
     if (!$startDate || !$endDate) {
@@ -30,29 +31,61 @@ function getAdminReport($connect) {
         return;
     }
 
-    // Build the query dynamically for the date range
-    $query = "
-        SELECT 
-            r.RegistrationID,
-            p.PersonID AS userID,
-            p.FirstName AS firstName,
-            p.LastName AS lastName,
-            p.Email AS email,
-            c.ClassID AS classID,
-            c.ClassName AS className,
-            c.StartDate,
-            c.EndDate,
-            r.PaymentStatus
-        FROM Registrations r
-        JOIN People p ON r.PersonID = p.PersonID
-        JOIN Classes c ON r.ClassID = c.ClassID
-        WHERE c.StartDate >= ? AND c.EndDate <= ?
-        ORDER BY c.StartDate, p.LastName, p.FirstName;
-    ";
+    // Determine the query based on the checkbox
+    $query = "";
+    switch ($includeAllClasses) {
+        case true:
+            // Include any class that overlaps the date range
+            $query = "
+                SELECT 
+                    r.RegistrationID,
+                    p.PersonID AS userID,
+                    p.FirstName AS firstName,
+                    p.LastName AS lastName,
+                    p.Email AS email,
+                    c.ClassID AS classID,
+                    c.ClassName AS className,
+                    c.StartDate,
+                    c.EndDate,
+                    r.PaymentStatus
+                FROM Registrations r
+                JOIN People p ON r.PersonID = p.PersonID
+                JOIN Classes c ON r.ClassID = c.ClassID
+                WHERE c.StartDate <= ? AND c.EndDate >= ?
+                ORDER BY c.StartDate, p.LastName, p.FirstName;
+            ";
+            break;
+
+        default:
+            // Default behavior: classes that are completely within the date range
+            $query = "
+                SELECT 
+                    r.RegistrationID,
+                    p.PersonID AS userID,
+                    p.FirstName AS firstName,
+                    p.LastName AS lastName,
+                    p.Email AS email,
+                    c.ClassID AS classID,
+                    c.ClassName AS className,
+                    c.StartDate,
+                    c.EndDate,
+                    r.PaymentStatus
+                FROM Registrations r
+                JOIN People p ON r.PersonID = p.PersonID
+                JOIN Classes c ON r.ClassID = c.ClassID
+                WHERE c.StartDate >= ? AND c.EndDate <= ?
+                ORDER BY c.StartDate, p.LastName, p.FirstName;
+            ";
+            break;
+    }
 
     // Prepare and execute the query
     $stmt = $connect->prepare($query);
-    $stmt->bind_param('ss', $startDate, $endDate); // Bind dates as parameters
+    if ($includeAllClasses) {
+        $stmt->bind_param('ss', $endDate, $startDate); // Bind dates in reverse for overlap condition
+    } else {
+        $stmt->bind_param('ss', $startDate, $endDate); // Bind dates for within range condition
+    }
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -89,9 +122,7 @@ function getAdminReport($connect) {
     $stmt->close();
 }
 
-
 // Call the function
 getAdminReport($connect);
 
 ?>
-

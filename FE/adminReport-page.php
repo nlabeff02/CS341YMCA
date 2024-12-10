@@ -8,33 +8,39 @@
 </head>
 <body>
     <?php include 'php/nav_mgr.php'; ?>
-
+    <img src="img/Designer.png" alt="YMCA" width="200" height="200">
+    
     <!-- Header -->
     <header class="adminReportHeader">
-        <img src="img/Designer.png" alt="YMCA Logo" />
         <h1>Admin Report - User Program Registration</h1>
     </header>
 
     <!-- Main Content -->
     <div class="adminReportContainer">
 
-        <!-- Date Range Form -->
-        <section class="dateRangeFormContainer">
-            <h3>Select Date Range</h3>
-            <form id="dateRangeForm" class="dateRangeForm">
-                <div>
-                    <label for="startDate">Start Date:</label>
-                    <input type="date" id="startDate" />
-                </div>
-                <div>
-                    <label for="endDate">End Date:</label>
-                    <input type="date" id="endDate" />
-                </div>
-                <div>
-                    <button type="button" onclick="getAdminReport()">Generate Report</button>
-                </div>
-            </form>
-        </section>
+    <!-- Date Range Form -->
+    <section class="dateRangeFormContainer">
+        <h3>Select Date Range</h3>
+        <form id="dateRangeForm" class="dateRangeForm">
+            <div style="margin-bottom: 10px;">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" />
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" />
+            </div>
+            <div style="margin-bottom: 10px; text-align: left;">
+                <label for="includeAllClasses" style="display: inline-flex; align-items: center;">
+                    <input type="checkbox" id="includeAllClasses" style="margin-right: 5px;" />
+                    Include overlapping classes
+                </label>
+            </div>
+            <div>
+                <button type="button" onclick="getAdminReport()">Generate Report</button>
+            </div>
+        </form>
+    </section>
 
         <!-- Report Table -->
         <section class="reportTableContainer">
@@ -56,6 +62,7 @@
                 </tbody>
             </table>
         </section>
+        
     </div>
 
     <!-- Footer -->
