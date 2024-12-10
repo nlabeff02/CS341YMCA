@@ -103,7 +103,7 @@ VALUES ('Member', TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FA
 INSERT IGNORE INTO Permissions (Role, CanCreateNonMember, CanEditNonMember, CanCreateMember, CanEditMember, CanCreateClass, CanRegisterClass, CanViewRegistrations, CanRemoveRegistrations, CanCreateEmployee, CanEditEmployee)
 VALUES ('NonMember', TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE);
 
-
+/*
 -- Add Future Classes to Database --
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
 VALUES 
@@ -134,27 +134,66 @@ VALUES
 ('Kickboxing Advanced', '2024-04-10', '2024-06-20', 'Monday,Wednesday', '17:00:00', '18:00:00', 'Room 105', 15, 20, 15.00, 25.00, 'Kickboxing Intro'),
 ('Senior Yoga', '2023-09-10', '2023-12-20', 'Thursday', '10:00:00', '11:00:00', 'Room 101', 12, 20, 8.00, 12.00, NULL),
 ('Youth Swimming', '2024-03-01', '2024-06-01', 'Saturday', '09:00:00', '10:00:00', 'Pool', 20, 20, 5.00, 10.00, NULL);
+*/
+-- Add Future Classes to Database --
+INSERT INTO Classes (ClassName, Description, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+VALUES 
+('Yoga Basics', 'A beginner-level yoga class focusing on foundational poses.', '2025-01-10', '2025-03-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 101', 20, 20, 15.00, 25.00, NULL),
+('Yoga Intermediate', 'An intermediate yoga class for improving skills.', '2025-04-10', '2025-06-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 103', 20, 20, 20.00, 30.00, 'Yoga Basics'),
+('Pilates Beginner', 'An introduction to Pilates focusing on core strength.', '2025-02-15', '2025-05-01', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 15, 20, 12.00, 18.00, NULL),
+('Pilates Advanced', 'An advanced Pilates class with challenging exercises.', '2025-05-15', '2025-07-01', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 10, 20, 18.00, 25.00, 'Pilates Beginner'),
+('HIIT Workout', 'A high-intensity interval training session.', '2025-03-01', '2025-05-15', 'Saturday', '08:00:00', '09:00:00', 'Gym', 30, 20, 10.00, 20.00, NULL),
+('Swimming Basics', 'Learn basic swimming techniques and water safety.', '2025-06-01', '2025-08-01', 'Tuesday,Thursday', '13:00:00', '14:00:00', 'Pool', 25, 20, 15.00, 25.00, NULL),
+('Advanced Swimming', 'Advanced swimming techniques for experienced swimmers.', '2025-09-01', '2025-11-01', 'Tuesday,Thursday', '14:00:00', '15:00:00', 'Pool', 20, 20, 20.00, 30.00, 'Swimming Basics');
+
+-- Add Current Classes to Database --
+INSERT INTO Classes (ClassName, Description, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+VALUES 
+('Yoga Basics', 'A beginner-level yoga class focusing on foundational poses.', '2024-10-10', '2025-01-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 204', 20, 20, 15.00, 25.00, NULL),
+('Yoga Intermediate', 'An intermediate yoga class for improving skills.', '2024-09-10', '2024-12-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 103', 20, 20, 20.00, 30.00, 'Yoga Basics'),
+('Pilates Beginner', 'An introduction to Pilates focusing on core strength.', '2024-11-01', '2025-01-01', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 15, 20, 12.00, 18.00, NULL),
+('Pilates Advanced', 'An advanced Pilates class with challenging exercises.', '2024-10-15', '2024-12-14', 'Monday,Wednesday,Friday', '10:00:00', '11:00:00', 'Room 202', 10, 20, 18.00, 25.00, 'Pilates Beginner'),
+('HIIT Workout', 'A high-intensity interval training session.', '2024-08-01', '2024-12-15', 'Saturday', '08:00:00', '09:00:00', 'Gym', 30, 20, 10.00, 20.00, NULL),
+('Swimming Basics', 'Learn basic swimming techniques and water safety.', '2024-06-01', '2024-12-01', 'Tuesday,Thursday', '13:00:00', '14:00:00', 'Pool', 25, 20, 15.00, 25.00, NULL),
+('Advanced Swimming', 'Advanced swimming techniques for experienced swimmers.', '2024-09-01', '2025-02-01', 'Tuesday,Thursday', '14:00:00', '15:00:00', 'Pool', 20, 20, 20.00, 30.00, 'Swimming Basics');
+
+-- Add Past Classes to Database --
+INSERT INTO Classes (ClassName, Description, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+VALUES 
+('Yoga Basics', 'A beginner-level yoga class focusing on foundational poses.', '2024-04-10', '2024-06-20', 'Tuesday,Thursday', '09:00:00', '10:00:00', 'Room 100', 10, 20, 10.00, 15.00, NULL),
+('Kickboxing Intro', 'An introductory kickboxing class for all levels.', '2024-01-10', '2024-03-20', 'Monday,Wednesday', '17:00:00', '18:00:00', 'Room 105', 20, 20, 10.00, 15.00, NULL),
+('Kickboxing Advanced', 'An advanced kickboxing class for skill enhancement.', '2024-04-10', '2024-06-20', 'Monday,Wednesday', '17:00:00', '18:00:00', 'Room 105', 15, 20, 15.00, 25.00, 'Kickboxing Intro'),
+('Senior Yoga', 'A yoga class tailored for seniors.', '2023-09-10', '2023-12-20', 'Thursday', '10:00:00', '11:00:00', 'Room 101', 12, 20, 8.00, 12.00, NULL),
+('Youth Swimming', 'A swimming class designed for younger participants.', '2024-03-01', '2024-06-01', 'Saturday', '09:00:00', '10:00:00', 'Pool', 20, 20, 5.00, 10.00, NULL);
+
 
 -- Add Shark Program on Sundays
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+INSERT INTO Classes (ClassName, ClassDescription, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
 VALUES 
-('Shark', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24.00, 48.00, 96.00, 'Pike Level');
+('Shark', 'Shark swimming class 1 for demo 2','2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24.00, 48.00, 96.00, 'Pike');
 -- Add Shark Program on Mondays and Wednesdays
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+INSERT INTO Classes (ClassName, ClassDescription, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
 VALUES 
-('Shark', '2024-11-17', '2024-12-22', 'Monday,Wednesday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 8, 33.00, 65.00, 130.00, 'Pike Level');
+('Shark', 'Shark swimming class 2 for demo 2', '2024-11-17', '2024-12-22', 'Monday,Wednesday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 8, 33.00, 65.00, 130.00, 'Pike');
 -- Add Log Rolling Program on Sundays
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+INSERT INTO Classes (ClassName, ClassDescription, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
 VALUES 
-('Log Rolling', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50.00, 100.00, 200.00, NULL);
+('Log Rolling', 'log rolling class for Demo 2', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50.00, 100.00, 200.00, NULL);
 
 -- Demo 3 Preloaded classes
-INSERT INTO Classes (ClassName, ClassDescription StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+INSERT INTO Classes (ClassName, ClassDescription, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
 VALUES
-('Shark', '2025-01-05', '2025-02-09', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24, 48, 96, 'Pike'),
-('Shark', '2025-01-05', '2025-02-09', 'Monday,Wednesday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 8, 33, 65, 130, 'Pike'),
-('Log Rolling', '2025-01-05', '2025-02-09', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50, 100, 200, NULL),
-('Log Rolling', '2025-01-05', '2025-02-09', 'Monday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 2, 50, 100, 200, NULL);
+('Shark', 'Shark swimming class 1 for Demo 3', '2025-01-05', '2025-02-09', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24, 48, 96, 'Pike'),
+('Shark', 'Shark swimming class 2 for Demo 3', '2025-01-05', '2025-02-09', 'Monday,Wednesday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 8, 33, 65, 130, 'Pike'),
+('Log Rolling', 'log rolling class 1 for Demo 3', '2025-01-05', '2025-02-09', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50, 100, 200, NULL),
+('Log Rolling', 'log rolling class 2 for Demo 3', '2025-01-05', '2025-02-09', 'Monday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 2, 50, 100, 200, NULL);
+
+
+INSERT INTO Classes (ClassName, ClassDescription, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+VALUES
+('Pike', 'Pike swimming class 1', '2024-01-05', '2024-02-09', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24, 48, 96, NULL),
+('Pike', 'Pike swimming class 2', '2023-01-05', '2023-02-09', 'Monday', '14:00:00', '14:40:00', 'YMCA Onalaska Pool', 2, 50, 100, 200, NULL);
+
 
 /*
 INSERT INTO People (FirstName, LastName, Email, PhoneNumber, Over18, IsParent, IsChild, PasswordHash, Role, PermissionID, MembershipPaid, HasMessage, MessageText) VALUES
