@@ -139,19 +139,17 @@ VALUES
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
 VALUES 
 ('Shark', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24.00, 48.00, 96.00, 'Pike Level');
-
 -- Add Shark Program on Mondays and Wednesdays
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
 VALUES 
 ('Shark', '2024-11-17', '2024-12-22', 'Monday,Wednesday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 8, 33.00, 65.00, 130.00, 'Pike Level');
-
 -- Add Log Rolling Program on Sundays
 INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
 VALUES 
 ('Log Rolling', '2024-11-17', '2024-12-22', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 1, 50.00, 100.00, 200.00, NULL);
 
 -- Demo 3 Preloaded classes
-INSERT INTO Classes (ClassName, StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
+INSERT INTO Classes (ClassName, ClassDescription StartDate, EndDate, DayOfWeek, StartTime, EndTime, ClassLocation, MaxParticipants, PriceStaff, PriceMember, PriceNonMember, PrerequisiteClassName)
 VALUES
 ('Shark', '2025-01-05', '2025-02-09', 'Sunday', '17:00:00', '17:40:00', 'YMCA Onalaska Pool', 8, 24, 48, 96, 'Pike'),
 ('Shark', '2025-01-05', '2025-02-09', 'Monday,Wednesday', '18:00:00', '18:40:00', 'YMCA Onalaska Pool', 8, 33, 65, 130, 'Pike'),
@@ -220,56 +218,56 @@ UPDATE Classes SET PriceStaff = CEIL(PriceMember / 2);
 -- Populate Registrations for various classes ensuring prerequisites are met
 -- Assume PersonIDs 1 to 25 are the test users created
 
-INSERT INTO Registrations (PersonID, ClassID, RegistrationDate, PaymentAmount, PaymentStatus)
+INSERT INTO Registrations (PersonID, ClassID, RegistrationDate, PaymentAmount, PaymentStatus, isActive)
 VALUES 
-(1, 2, '2024-06-15', 20.00, 'Paid'),
-(2, 3, '2024-12-05', 12.00, 'Paid'),
-(3, 4, '2025-03-15', 18.00, 'Paid'),
-(4, 5, '2025-04-01', 10.00, 'Paid'),
-(5, 6, '2024-12-01', 15.00, 'Paid'),
-(6, 7, '2024-07-10', 20.00, 'Paid'),
-(7, 8, '2024-11-20', 10.00, 'Due'),
-(8, 9, '2024-03-05', 10.00, 'Paid'),
-(9, 10, '2024-08-01', 15.00, 'Paid'),
-(10, 11, '2023-12-01', 8.00, 'Paid'),
-(11, 12, '2024-02-10', 5.00, 'Paid'),
-(12, 13, '2024-09-10', 12.00, 'Due'),
-(13, 14, '2024-11-05', 10.00, 'Paid'),
-(14, 15, '2024-08-15', 20.00, 'Paid'),
-(15, 16, '2024-09-01', 12.00, 'Paid'),
-(16, 17, '2025-05-20', 18.00, 'Due'),
-(17, 18, '2024-10-05', 20.00, 'Paid'),
-(18, 19, '2024-11-01', 30.00, 'Paid'),
-(19, 20, '2024-12-01', 18.00, 'Due'),
-(20, 21, '2024-11-15', 48.00, 'Paid'),
-(21, 22, '2024-11-22', 96.00, 'Due'),
-(22, 1, '2024-09-15', 15.00, 'Paid'),
-(23, 3, '2024-11-25', 12.00, 'Paid'),
-(24, 5, '2024-10-30', 10.00, 'Paid'),
-(1, 7, '2024-09-20', 20.00, 'Paid'),
-(2, 2, '2024-07-01', 20.00, 'Paid'),
-(3, 6, '2024-05-10', 15.00, 'Paid'),
-(4, 10, '2024-09-01', 18.00, 'Paid'),
-(5, 8, '2024-08-01', 10.00, 'Paid'),
-(6, 13, '2024-12-05', 12.00, 'Paid'),
-(7, 9, '2024-10-05', 15.00, 'Paid'),
-(8, 4, '2024-11-01', 18.00, 'Paid'),
-(9, 16, '2024-06-10', 12.00, 'Paid'),
-(10, 14, '2024-09-15', 20.00, 'Paid'),
-(11, 12, '2024-07-10', 5.00, 'Paid'),
-(12, 15, '2024-08-10', 18.00, 'Paid'),
-(13, 17, '2024-07-20', 18.00, 'Paid'),
-(14, 18, '2025-03-10', 30.00, 'Paid'),
-(15, 19, '2024-10-01', 20.00, 'Paid'),
-(16, 20, '2024-08-25', 30.00, 'Paid'),
-(17, 21, '2024-12-10', 48.00, 'Due'),
-(18, 22, '2024-09-01', 96.00, 'Paid'),
-(19, 5, '2024-06-20', 25.00, 'Paid'),
-(20, 9, '2024-05-05', 15.00, 'Paid'),
-(21, 8, '2024-09-15', 25.00, 'Paid'),
-(22, 10, '2024-07-05', 15.00, 'Paid'),
-(23, 11, '2024-12-01', 18.00, 'Paid'),
-(24, 12, '2024-06-01', 5.00, 'Paid');
+(1, 2, '2024-06-15', 20.00, 'Paid', TRUE),
+(2, 3, '2024-12-05', 12.00, 'Paid', TRUE),
+(3, 4, '2025-03-15', 18.00, 'Paid', TRUE),
+(4, 5, '2025-04-01', 10.00, 'Paid', TRUE),
+(5, 6, '2024-12-01', 15.00, 'Paid', TRUE),
+(6, 7, '2024-07-10', 20.00, 'Paid', TRUE),
+(7, 8, '2024-11-20', 10.00, 'Due', TRUE),
+(8, 9, '2024-03-05', 10.00, 'Paid', TRUE),
+(9, 10, '2024-08-01', 15.00, 'Paid', TRUE),
+(10, 11, '2023-12-01', 8.00, 'Paid', TRUE),
+(11, 12, '2024-02-10', 5.00, 'Paid', TRUE),
+(12, 13, '2024-09-10', 12.00, 'Due', TRUE),
+(13, 14, '2024-11-05', 10.00, 'Paid', TRUE),
+(14, 15, '2024-08-15', 20.00, 'Paid', TRUE),
+(15, 16, '2024-09-01', 12.00, 'Paid', TRUE),
+(16, 17, '2025-05-20', 18.00, 'Due', TRUE),
+(17, 18, '2024-10-05', 20.00, 'Paid', TRUE),
+(18, 19, '2024-11-01', 30.00, 'Paid', TRUE),
+(19, 20, '2024-12-01', 18.00, 'Due', TRUE),
+(20, 21, '2024-11-15', 48.00, 'Paid', TRUE),
+(21, 22, '2024-11-22', 96.00, 'Due', TRUE),
+(2, 1, '2024-09-15', 15.00, 'Paid', TRUE),
+(3, 3, '2024-11-25', 12.00, 'Paid', TRUE),
+(4, 5, '2024-10-30', 10.00, 'Paid', TRUE),
+(1, 7, '2024-09-20', 20.00, 'Paid', TRUE),
+(2, 2, '2024-07-01', 20.00, 'Paid', TRUE),
+(3, 6, '2024-05-10', 15.00, 'Paid', TRUE),
+(4, 10, '2024-09-01', 18.00, 'Paid', TRUE),
+(5, 8, '2024-08-01', 10.00, 'Paid', TRUE),
+(6, 13, '2024-12-05', 12.00, 'Paid', TRUE),
+(7, 9, '2024-10-05', 15.00, 'Paid', TRUE),
+(8, 4, '2024-11-01', 18.00, 'Paid', TRUE),
+(9, 16, '2024-06-10', 12.00, 'Paid', TRUE),
+(10, 14, '2024-09-15', 20.00, 'Paid', TRUE),
+(11, 12, '2024-07-10', 5.00, 'Paid', TRUE),
+(12, 15, '2024-08-10', 18.00, 'Paid', TRUE),
+(13, 17, '2024-07-20', 18.00, 'Paid', TRUE),
+(14, 18, '2025-03-10', 30.00, 'Paid', TRUE),
+(15, 19, '2024-10-01', 20.00, 'Paid', TRUE),
+(16, 20, '2024-08-25', 30.00, 'Paid', TRUE),
+(17, 21, '2024-12-10', 48.00, 'Due', TRUE),
+(18, 22, '2024-09-01', 96.00, 'Paid', TRUE),
+(19, 5, '2024-06-20', 25.00, 'Paid', TRUE),
+(20, 9, '2024-05-05', 15.00, 'Paid', TRUE),
+(1, 8, '2024-09-15', 25.00, 'Paid', TRUE),
+(2, 10, '2024-07-05', 15.00, 'Paid', TRUE),
+(3, 11, '2024-12-01', 18.00, 'Paid', TRUE),
+(2, 12, '2024-06-01', 5.00, 'Paid', TRUE);
 
 
 
