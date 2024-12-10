@@ -15,23 +15,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate input
     if (!$classID) {
-        echo json_encode(['status' => 'error', 'message' => 'Class ID and Person ID are required']);
+        echo json_encode(['status' => 'error', 'message' => 'Class ID is required']);
         exit();
     }
 
-    //mark the class as inactive (canceled)
-    $cancelClassQuery = "UPDATE Classes SET isActive = 0 WHERE classID = ? AND isActive = 1"; 
-    $stmt = $connect->prepare($cancelClassQuery);
-    $stmt->bind_param("i", $classID);
+    // Start transaction
+    $connect->begin_transaction();
 
-    if ($stmt->execute()) {
-        echo json_encode(['status' => 'success', 'message' => 'Class canceled successfully ']);
-    } else {
-        echo json_encode(['status' => 'error', 'message' => 'Failed to cancel class: ' . $stmt->error]);
+    try {
+        // 1. Update 'isActive' to 0 for all users registered for the class
+        $updateRegistrationsQuery = "UPDATE Registrations SET isActive = 0 WHERE ClassID = ?";
+        $stmt1 = $connect->prepare($updateRegistrationsQuery);
+        $stmt1->bind_param("i", $classID);
+
+        if (!$stmt1->execute()) {
+            throw new Exception('Failed to update Registrations: ' . $stmt1->error);
+        }
+
+        // 2. Mark the class as inactive (cancel it)
+        $cancelClassQuery = "UPDATE Classes SET isActive = 0 WHERE classID = ? AND isActive = 1";
+        $stmt2 = $connect->prepare($cancelClassQuery);
+        $stmt2->bind_param("i", $classID);
+
+        if (!$stmt2->execute()) {
+            throw new Exception('Failed to cancel class: ' . $stmt2->error);
+        }
+
+        // Commit transaction
+        $connect->commit();
+
+        echo json_encode(['status' => 'success', 'message' => 'Class and all registrations canceled successfully']);
+
+    } catch (Exception $e) {
+        // Rollback transaction if any query fails
+        $connect->rollback();
+        echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
     }
 
-    $stmt->close();
+    // Close statements
+    $stmt1->close();
+    $stmt2->close();
 }
 
 $connect->close();
+?>
+
 
